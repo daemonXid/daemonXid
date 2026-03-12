@@ -1,16 +1,37 @@
-## Hi there 👋
+# Wonsub Song (Tony)
 
-<!--
-**daemonXid/daemonXid** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Backend Developer | Python | Django | AI SaaS Builder
 
-Here are some ideas to get you started:
+I build AI-powered SaaS platforms and data pipelines.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Main Interests
+
+- AI SaaS
+- Sports Technology
+- Data Platforms
+- Developer Tooling
+
+## Tech Stack
+
+Backend
+Python, Django, Django Ninja
+
+AI / Data
+LLM APIs, Data pipelines, Pydantic
+
+Database
+PostgreSQL
+
+DevOps
+Docker, GitHub Actions, Coolify, Hetzner
+
+## Projects
+
+Legal Radar  
+AI system for detecting potential legal disputes from news data
+
+Almaeng  
+Supplement price comparison platform
+
+SportsHub  
+Community platform for sports science research and athlete discussion
