@@ -5,11 +5,18 @@ import { getResumeDownloads } from '../../lib/resumeFiles'
 
 const experience = [
   {
-    role: '소프트웨어 엔지니어 인턴 (POC 프로젝트)',
+    role: 'Backend & AI Engineer Intern',
     company: 'LawAndGood × Likelion Rocket Team',
-    period: '2026.02',
+    period: '2026.02 - 2026.03',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-    desc: '2인 팀으로 LawNGood 법률 뉴스 모니터링 POC를 개발했습니다. 뉴스 수집 흐름, 기사 파싱 로직, Gemini 기반 분류, 사건 모니터링용 리뷰 인터페이스를 설계하고 구현했습니다.',
+    desc: '클라이언트 검토 워크플로우를 위한 법률분쟁 자동발굴 POC LawNGood를 2인 팀으로 개발했습니다. 수집, 추출, 분류, 그룹핑, 리뷰까지 구조화된 파이프라인을 설계하고 구현했습니다.',
+  },
+  {
+    role: 'Founder / Product Engineer',
+    company: 'Almaeng',
+    period: '2025.12 - 현재',
+    stack: ['Django', 'HTMX', 'Alpine.js', 'Gemini API', 'PostgreSQL', 'Hetzner VPS'],
+    desc: 'AI 기반 보충제 성분 분석 및 가격 비교 서비스 ALMAENG를 기획, 개발, 배포, 운영하고 있습니다. 성분과 가격 데이터를 구조화하고 외부 커머스 데이터를 연동해 실서비스로 운영 중입니다.',
   },
 ]
 
@@ -65,7 +72,7 @@ const resumeDownloads = getResumeDownloads()
 
   <section class="mb-14">
     <h2 class="section-label">소개</h2>
-    <p class="body-text">스포츠건강과학 전공 배경을 가진 풀스택 개발자입니다. Django, HTMX, PostgreSQL을 기반으로 백엔드 시스템과 AI 통합 웹 서비스를 설계하고 구현합니다. Hetzner와 Coolify를 활용한 셀프호스팅 운영 경험이 있으며, biomechanics 도메인 지식을 AI 제품과 데이터 시스템에 연결하고 있습니다. 해외 백엔드 및 AI 포지션에 열려 있습니다.</p>
+    <p class="body-text">안정적으로 운영 가능한 백엔드 시스템과 구조화된 AI 워크플로우를 만드는 AI 중심 풀스택 개발자입니다. 스포츠건강과학 전공, 농구선수 경험, 정형외과적 수술 및 재활 경험을 통해 스포츠의학, 재활, 움직임 분석 도메인 지식을 갖추고 있습니다. Django, HTMX, PostgreSQL, Gemini API 기반으로 시스템을 설계하고 구현하며, 검증 가능한 AI 흐름과 유지보수 가능한 구조를 중요하게 생각합니다.</p>
   </section>
 
   <section class="mb-14">
@@ -85,7 +92,7 @@ const resumeDownloads = getResumeDownloads()
   </section>
 
   <section class="mb-14">
-    <h2 class="section-label">프로젝트</h2>
+    <h2 class="section-label">주요 프로젝트</h2>
     <div class="projects-grid">
       {projects.map(p => (
         <div class="glass-card project-card" data-card-3d>
