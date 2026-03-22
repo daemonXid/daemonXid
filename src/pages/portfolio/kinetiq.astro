@@ -1,15 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro'
+import ProjectMetaBar from '../../components/ProjectMetaBar.astro'
 import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
-import { getExistingPortfolioMedia } from '../../lib/portfolioMedia'
+import { getPortfolioMedia } from '../../lib/portfolioMedia'
 
 const stack = ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector', 'Django', 'PostgreSQL']
-const media = getExistingPortfolioMedia([
-  { type: 'image', src: '/portfolio/sportsiq/graph.png', title: 'Knowledge Graph View', caption: 'Early view of graph-oriented retrieval and entity connections.' },
-  { type: 'image', src: '/portfolio/sportsiq/workflow.png', title: 'Agent Workflow', caption: 'Multi-agent and retrieval flow for analysis and knowledge operations.' },
-  { type: 'video', src: '/portfolio/sportsiq/demo.mp4', title: 'Prototype Demo', caption: 'Short product demo for the current in-progress build.' },
-])
+const media = getPortfolioMedia('sportsiq', {
+  graph: 'Early view of graph-oriented retrieval and entity connections.',
+  workflow: 'Multi-agent and retrieval flow for analysis and knowledge operations.',
+  demo: 'Short product demo for the current in-progress build.',
+})
 const techSections = [
   {
     title: 'Platform Direction',
@@ -46,9 +47,15 @@ agent_runs
 - status`,
   },
 ]
+const metaItems = [
+  { label: 'Role', value: 'Product direction, backend architecture, knowledge design' },
+  { label: 'Team', value: 'Solo project' },
+  { label: 'Period', value: 'Ongoing in 2026' },
+  { label: 'Links', value: 'Live only · GitHub private' },
+]
 ---
 
-<Base title="SportsIQ | Wonsub Song (Tony)" lang="en">
+<Base title="SportsIQ | Wonsub Song (Tony)" lang="en" description="SportsIQ case study: a sports-domain knowledge platform using multi-agent workflows, graphRAG, and pgvector.">
   <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
     ← Portfolio
   </a>
@@ -66,8 +73,16 @@ agent_runs
     <p class="text-sm mb-6" style="color:#52525b;">
       Ongoing · 2026
     </p>
+    <ProjectMetaBar items={metaItems} />
     <div class="flex flex-wrap gap-2">
       {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <div class="mt-6">
+      <a href="https://sportsiq.daemonxid.com" target="_blank" rel="noopener"
+         class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity inline-block"
+         style="background:#facc15;color:#000;">
+        Live Site →
+      </a>
     </div>
   </header>
 
@@ -93,6 +108,16 @@ agent_runs
         <li>→ pgvector storage for semantic search and knowledge recall</li>
         <li>→ Django backend for orchestration, storage, and review interfaces</li>
         <li>→ Sports-domain data structures designed for future movement and performance use cases</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">What I Did</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ Reframed the project from pure motion analysis into a broader knowledge platform direction</li>
+        <li>→ Designed the retrieval and knowledge layer around multi-agent workflows, graphRAG, and pgvector</li>
+        <li>→ Defined the backend structure for orchestration, storage, and review interfaces</li>
+        <li>→ Shaped the domain model so future sports-performance and movement use cases can plug into the same platform</li>
       </ul>
     </section>
 

@@ -4,6 +4,7 @@ import Base from './Base.astro'
 interface Props {
   frontmatter: {
     title: string
+    excerpt?: string
     date: Date
     category: string
     tags?: string[]
@@ -13,12 +14,12 @@ interface Props {
 }
 
 const { frontmatter, lang = 'en' } = Astro.props
-const { title, date, category, tags = [], lang: postLang = 'ko' } = frontmatter
+const { title, excerpt, date, category, tags = [], lang: postLang = 'ko' } = frontmatter
 const backHref = lang === 'ko' ? '/ko/blog' : '/blog'
 const backLabel = lang === 'ko' ? '← 블로그' : '← Blog'
 ---
 
-<Base title={`${title} | Wonsub Song (Tony)`} lang={lang}>
+<Base title={`${title} | Wonsub Song (Tony)`} lang={lang} description={excerpt ?? title}>
   <a href={backHref} class="back-link">{backLabel}</a>
 
   <article>

@@ -1,15 +1,16 @@
 ---
 import Base from '../../layouts/Base.astro'
+import ProjectMetaBar from '../../components/ProjectMetaBar.astro'
 import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
-import { getExistingPortfolioMedia } from '../../lib/portfolioMedia'
+import { getPortfolioMedia } from '../../lib/portfolioMedia'
 
 const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Gemini Flash', 'Pydantic AI', 'Coolify']
-const media = getExistingPortfolioMedia([
-  { type: 'image', src: '/portfolio/almaeng/overview.png', title: 'Overview Screen', caption: 'Landing or search overview for ingredient-first supplement discovery.' },
-  { type: 'image', src: '/portfolio/almaeng/compare.png', title: 'Comparison View', caption: 'Ingredient and unit-price comparison across supplement products.' },
-  { type: 'video', src: '/portfolio/almaeng/demo.mp4', title: 'Product Walkthrough', caption: 'Short demo of search, comparison, and analysis flow.' },
-])
+const media = getPortfolioMedia('almaeng', {
+  overview: 'Landing or search overview for ingredient-first supplement discovery.',
+  compare: 'Ingredient and unit-price comparison across supplement products.',
+  demo: 'Short demo of search, comparison, and analysis flow.',
+})
 const techSections = [
   {
     title: 'System Notes',
@@ -45,9 +46,15 @@ price_snapshots
 - captured_at`,
   },
 ]
+const metaItems = [
+  { label: 'Role', value: 'Product design, backend architecture, implementation' },
+  { label: 'Team', value: 'Solo project' },
+  { label: 'Period', value: '2025.12' },
+  { label: 'Links', value: 'Live only · GitHub private' },
+]
 ---
 
-<Base title="Almaeng | Wonsub Song (Tony)" lang="en">
+<Base title="Almaeng | Wonsub Song (Tony)" lang="en" description="Almaeng case study: an AI supplement analysis and price intelligence product focused on ingredient transparency.">
   <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
     ← Portfolio
   </a>
@@ -65,6 +72,7 @@ price_snapshots
     <p class="text-sm mb-6" style="color:#8b949e;">
       Solo build · 2025.12
     </p>
+    <ProjectMetaBar items={metaItems} />
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
@@ -73,11 +81,6 @@ price_snapshots
          class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity"
          style="background:#facc15;color:#000;">
         Live Site →
-      </a>
-      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener"
-         class="px-4 py-2 rounded hover:border-zinc-600 transition-colors"
-         style="border:1px solid #333;color:#a1a1aa;">
-        GitHub →
       </a>
     </div>
   </header>
@@ -117,6 +120,16 @@ price_snapshots
         <li>→ Unit pricing views to compare cost per serving and cost per meaningful ingredient amount</li>
         <li>→ Overlap alert concept for detecting duplicated ingredients across multiple supplements</li>
         <li>→ AI-assisted interpretation layer for supplement label understanding and user guidance</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">What I Did</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ Defined the product framing around ingredients-first supplement evaluation</li>
+        <li>→ Designed the data model for supplements, ingredients, and price snapshots</li>
+        <li>→ Implemented the backend-driven search and comparison flow</li>
+        <li>→ Built the deployment path on a self-managed stack with Coolify and Hetzner</li>
       </ul>
     </section>
 

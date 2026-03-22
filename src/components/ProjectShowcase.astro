@@ -27,20 +27,34 @@ const {
   <section class="showcase-block">
     <h2 class="showcase-label">{mediaLabel}</h2>
     <div class="media-grid">
-      {media.map((item) => (
+      {media.map((item, index) => (
         <figure class="media-card">
-          {item.type === 'image' ? (
-            <img src={item.src} alt={item.title} loading="lazy" class="media-asset" />
-          ) : (
-            <video
-              src={item.src}
-              controls
-              preload="metadata"
-              playsinline
-              class="media-asset"
-              poster={item.poster}
-            />
-          )}
+          <button
+            type="button"
+            class="media-trigger"
+            data-media-open
+            data-media-type={item.type}
+            data-media-src={item.src}
+            data-media-title={item.title}
+            data-media-caption={item.caption ?? ''}
+            data-media-poster={item.poster ?? ''}
+            aria-label={`${item.title} open`}
+          >
+            {item.type === 'image' ? (
+              <img src={item.src} alt={item.title} loading="lazy" class="media-asset" />
+            ) : (
+              <div class="media-video-shell">
+                <video
+                  src={item.src}
+                  preload="metadata"
+                  playsinline
+                  class="media-asset"
+                  poster={item.poster}
+                />
+                <span class="media-play">Play</span>
+              </div>
+            )}
+          </button>
           <figcaption class="media-meta">
             <span class="media-title">{item.title}</span>
             {item.caption && <span class="media-caption">{item.caption}</span>}
@@ -69,6 +83,19 @@ const {
       ))}
     </div>
   </section>
+)}
+
+{media.length > 0 && (
+  <dialog class="media-dialog" data-media-dialog>
+    <button type="button" class="media-dialog-close" data-media-close aria-label="Close media viewer">Close</button>
+    <div class="media-dialog-body">
+      <div class="media-dialog-stage" data-media-stage></div>
+      <div class="media-dialog-meta">
+        <h3 class="media-dialog-title" data-media-title></h3>
+        <p class="media-dialog-caption" data-media-caption></p>
+      </div>
+    </div>
+  </dialog>
 )}
 
 <style>
@@ -111,12 +138,39 @@ const {
     overflow: hidden;
   }
 
+  .media-trigger {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: zoom-in;
+    text-align: left;
+  }
+
   .media-asset {
     display: block;
     width: 100%;
     aspect-ratio: 16 / 10;
     object-fit: cover;
     background: linear-gradient(180deg, rgba(250, 204, 21, 0.03), rgba(255, 255, 255, 0.01));
+  }
+
+  .media-video-shell {
+    position: relative;
+  }
+
+  .media-play {
+    position: absolute;
+    right: 0.9rem;
+    bottom: 0.9rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.24);
+    background: rgba(10, 13, 18, 0.78);
+    color: #facc15;
+    font-size: 0.7rem;
+    font-family: "JetBrains Mono", monospace;
   }
 
   .media-meta,
@@ -167,4 +221,141 @@ const {
     line-height: 1.6;
     overflow-x: auto;
   }
+
+  .media-dialog {
+    width: min(92vw, 1100px);
+    max-height: 90vh;
+    padding: 0;
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    border-radius: 16px;
+    background: rgba(10, 13, 18, 0.96);
+    color: #e6edf3;
+  }
+
+  .media-dialog::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+  }
+
+  .media-dialog-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .media-dialog-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  .media-dialog-stage :global(img),
+  .media-dialog-stage :global(video) {
+    display: block;
+    max-width: 100%;
+    max-height: 72vh;
+    width: auto;
+    height: auto;
+  }
+
+  .media-dialog-close {
+    position: absolute;
+    top: 0.85rem;
+    right: 0.85rem;
+    z-index: 2;
+    padding: 0.4rem 0.65rem;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.18);
+    background: rgba(10, 13, 18, 0.9);
+    color: #8b949e;
+    font-size: 0.72rem;
+    cursor: pointer;
+  }
+
+  .media-dialog-title {
+    margin: 0;
+    color: #e6edf3;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .media-dialog-caption {
+    margin: 0.35rem 0 0;
+    color: #8b949e;
+    font-size: 0.82rem;
+    line-height: 1.65;
+  }
 </style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const dialog = document.querySelector('[data-media-dialog]');
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    const stage = dialog.querySelector('[data-media-stage]');
+    const title = dialog.querySelector('[data-media-title]');
+    const caption = dialog.querySelector('[data-media-caption]');
+    const closeButton = dialog.querySelector('[data-media-close]');
+
+    if (!stage || !title || !caption || !closeButton) return;
+
+    const openMedia = (button: HTMLElement) => {
+      const type = button.dataset.mediaType;
+      const src = button.dataset.mediaSrc;
+      const mediaTitle = button.dataset.mediaTitle ?? '';
+      const mediaCaption = button.dataset.mediaCaption ?? '';
+      const poster = button.dataset.mediaPoster ?? '';
+
+      if (!type || !src) return;
+
+      stage.innerHTML = '';
+
+      if (type === 'video') {
+        const video = document.createElement('video');
+        video.src = src;
+        video.controls = true;
+        video.autoplay = true;
+        video.preload = 'metadata';
+        video.playsInline = true;
+        if (poster) video.poster = poster;
+        stage.appendChild(video);
+      } else {
+        const image = document.createElement('img');
+        image.src = src;
+        image.alt = mediaTitle;
+        image.loading = 'eager';
+        stage.appendChild(image);
+      }
+
+      title.textContent = mediaTitle;
+      caption.textContent = mediaCaption;
+      dialog.showModal();
+    };
+
+    document.querySelectorAll('[data-media-open]').forEach((node) => {
+      node.addEventListener('click', () => openMedia(node as HTMLElement));
+    });
+
+    closeButton.addEventListener('click', () => dialog.close());
+
+    dialog.addEventListener('click', (event) => {
+      const rect = dialog.getBoundingClientRect();
+      const inside =
+        rect.top <= event.clientY &&
+        event.clientY <= rect.top + rect.height &&
+        rect.left <= event.clientX &&
+        event.clientX <= rect.left + rect.width;
+
+      if (!inside) dialog.close();
+    });
+
+    dialog.addEventListener('close', () => {
+      stage.innerHTML = '';
+    });
+  });
+</script>

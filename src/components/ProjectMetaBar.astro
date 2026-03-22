@@ -1,0 +1,60 @@
+---
+interface MetaItem {
+  label: string
+  value: string
+}
+
+interface Props {
+  items: MetaItem[]
+}
+
+const { items } = Astro.props
+---
+
+<div class="project-meta-bar">
+  {items.map((item) => (
+    <div class="project-meta-item">
+      <span class="project-meta-label">{item.label}</span>
+      <span class="project-meta-value">{item.value}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .project-meta-bar {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0 0 1.4rem;
+  }
+
+  @media (min-width: 768px) {
+    .project-meta-bar {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .project-meta-item {
+    padding: 0.75rem 0.85rem;
+    border-radius: 10px;
+    border: 1px solid rgba(250, 204, 21, 0.12);
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .project-meta-label {
+    font-size: 0.62rem;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(250, 204, 21, 0.58);
+  }
+
+  .project-meta-value {
+    font-size: 0.84rem;
+    color: #d0d7de;
+    line-height: 1.45;
+  }
+</style>

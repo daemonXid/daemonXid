@@ -29,7 +29,8 @@ const otherLangHref = withLang(current, otherLang)
 <nav class="nav-bar">
   <div class="nav-inner">
     <a href={withLang('/', currentLang)} class="logo">
-      <span class="logo-bracket">[</span>WT<span class="logo-bracket">]</span>
+      <span class="logo-name">Wonsub Song</span>
+      <span class="logo-sub">(Tony)</span>
     </a>
 
     <div class="nav-right">
@@ -72,15 +73,23 @@ const otherLangHref = withLang(current, otherLang)
   }
 
   .logo {
-    font-family: "JetBrains Mono", monospace;
-    font-size: 0.88rem;
-    font-weight: 500;
-    color: #facc15;
-    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
     transition: filter 0.2s;
   }
   .logo:hover { filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.6)); }
-  .logo-bracket { color: #8b949e; opacity: 0.6; }
+  .logo-name {
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #facc15;
+  }
+  .logo-sub {
+    font-size: 0.72rem;
+    font-family: "JetBrains Mono", monospace;
+    color: #8b949e;
+  }
 
   .nav-right {
     display: flex;

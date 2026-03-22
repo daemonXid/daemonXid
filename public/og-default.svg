@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d1117"/>
+  <g stroke="#21262d" stroke-width="1">
+    <path d="M0 120h1200"/>
+    <path d="M0 250h1200"/>
+    <path d="M0 380h1200"/>
+    <path d="M0 510h1200"/>
+    <path d="M160 0v630"/>
+    <path d="M360 0v630"/>
+    <path d="M560 0v630"/>
+    <path d="M760 0v630"/>
+    <path d="M960 0v630"/>
+  </g>
+  <circle cx="166" cy="122" r="4" fill="#facc15"/>
+  <text x="160" y="210" fill="#facc15" font-family="Inter, Arial, sans-serif" font-size="22" letter-spacing="6">WONSUB SONG (TONY)</text>
+  <text x="160" y="300" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="700">AI-First Full-Stack</text>
+  <text x="160" y="376" fill="#ffffff" font-family="Inter, Arial, sans-serif" font-size="64" font-weight="700">Developer</text>
+  <text x="160" y="450" fill="#8b949e" font-family="Inter, Arial, sans-serif" font-size="28">Backend systems, Django, HTMX, PostgreSQL, and AI-integrated products.</text>
+</svg>

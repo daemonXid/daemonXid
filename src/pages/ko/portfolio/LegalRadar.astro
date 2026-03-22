@@ -1,15 +1,16 @@
 ---
 import Base from '../../../layouts/Base.astro'
+import ProjectMetaBar from '../../../components/ProjectMetaBar.astro'
 import ProjectShowcase from '../../../components/ProjectShowcase.astro'
 import SkillBadge from '../../../components/SkillBadge.astro'
-import { getExistingPortfolioMedia } from '../../../lib/portfolioMedia'
+import { getPortfolioMedia } from '../../../lib/portfolioMedia'
 
 const stack = ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL', 'Pydantic']
-const media = getExistingPortfolioMedia([
-  { type: 'image', src: '/portfolio/lawngood/dashboard.png', title: '모니터링 대시보드', caption: '수집 기사, 분류 결과, 사건 검토를 보는 화면.' },
-  { type: 'image', src: '/portfolio/lawngood/pipeline.png', title: '파이프라인 다이어그램', caption: '수집, 파싱, 분류, 검토 흐름을 보여주는 그림.' },
-  { type: 'video', src: '/portfolio/lawngood/demo.mp4', title: '데모 영상', caption: '기사 수집과 리뷰 흐름을 짧게 보여주는 영상.' },
-])
+const media = getPortfolioMedia('lawngood', {
+  dashboard: '수집 기사, 분류 결과, 사건 검토를 보는 화면.',
+  pipeline: '수집, 파싱, 분류, 검토 흐름을 보여주는 그림.',
+  demo: '기사 수집과 리뷰 흐름을 짧게 보여주는 영상.',
+})
 const techSections = [
   {
     title: '파이프라인 메모',
@@ -44,9 +45,15 @@ case_articles
 - match_reason`,
   },
 ]
+const metaItems = [
+  { label: 'Role', value: '백엔드 및 AI 워크플로우 구현' },
+  { label: 'Team', value: '2인 인턴십 팀' },
+  { label: 'Period', value: '2026.02.09 - 2026.03.06' },
+  { label: 'Links', value: 'GitHub 공개 · Live 없음' },
+]
 ---
 
-<Base title="LawNGood | Wonsub Song (Tony)" lang="ko">
+<Base title="LawNGood | Wonsub Song (Tony)" lang="ko" description="LawNGood 케이스 스터디: LawAndGood를 위해 만든 법률 뉴스 모니터링 POC입니다.">
   <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
 
   <header class="mb-12">
@@ -56,6 +63,7 @@ case_articles
     </div>
     <p class="lead">LawAndGood의 사건 발굴 및 검토 흐름을 지원하기 위해 만든 법률 뉴스 모니터링 proof of concept입니다.</p>
     <p class="meta">2인 인턴십 팀 · 2026.02.09 - 2026.03.06</p>
+    <ProjectMetaBar items={metaItems} />
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
@@ -86,6 +94,16 @@ case_articles
         <li>→ Pydantic 스키마를 통한 구조화된 LLM 출력 검증</li>
         <li>→ 사건과 기사 매칭 결과를 검토할 수 있는 Django 기반 리뷰 화면</li>
         <li>→ 기사 이력과 분류 결과를 저장하는 PostgreSQL 구조</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">내가 한 일</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ Naver News API와 BeautifulSoup4 기반 수집·파싱 흐름을 설계했습니다</li>
+        <li>→ Gemini 기반 관련성 분류 파이프라인과 검증 구조를 구현했습니다</li>
+        <li>→ 기사와 사건 검토를 연결하는 백엔드 리뷰 흐름을 만들었습니다</li>
+        <li>→ 기사 이력, 분석 결과, 검토 상태를 PostgreSQL에 구조화했습니다</li>
       </ul>
     </section>
 

@@ -1,15 +1,16 @@
 ---
 import Base from '../../../layouts/Base.astro'
+import ProjectMetaBar from '../../../components/ProjectMetaBar.astro'
 import ProjectShowcase from '../../../components/ProjectShowcase.astro'
 import SkillBadge from '../../../components/SkillBadge.astro'
-import { getExistingPortfolioMedia } from '../../../lib/portfolioMedia'
+import { getPortfolioMedia } from '../../../lib/portfolioMedia'
 
 const stack = ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector', 'Django', 'PostgreSQL']
-const media = getExistingPortfolioMedia([
-  { type: 'image', src: '/portfolio/sportsiq/graph.png', title: '지식 그래프 화면', caption: '그래프 기반 검색과 엔티티 연결 구조를 보여주는 초기 화면.' },
-  { type: 'image', src: '/portfolio/sportsiq/workflow.png', title: '에이전트 워크플로우', caption: '멀티 에이전트와 검색 흐름을 설명하는 다이어그램.' },
-  { type: 'video', src: '/portfolio/sportsiq/demo.mp4', title: '프로토타입 데모', caption: '현재 진행 중인 빌드의 짧은 시연 영상.' },
-])
+const media = getPortfolioMedia('sportsiq', {
+  graph: '그래프 기반 검색과 엔티티 연결 구조를 보여주는 초기 화면.',
+  workflow: '멀티 에이전트와 검색 흐름을 설명하는 다이어그램.',
+  demo: '현재 진행 중인 빌드의 짧은 시연 영상.',
+})
 const techSections = [
   {
     title: '플랫폼 방향',
@@ -46,9 +47,15 @@ agent_runs
 - status`,
   },
 ]
+const metaItems = [
+  { label: 'Role', value: '제품 방향, 백엔드 아키텍처, knowledge 설계' },
+  { label: 'Team', value: '개인 프로젝트' },
+  { label: 'Period', value: '2026년 진행 중' },
+  { label: 'Links', value: 'Live만 공개 · GitHub 비공개' },
+]
 ---
 
-<Base title="SportsIQ | Wonsub Song (Tony)" lang="ko">
+<Base title="SportsIQ | Wonsub Song (Tony)" lang="ko" description="SportsIQ 케이스 스터디: multi-agent workflow, graphRAG, pgvector 기반 sports knowledge platform입니다.">
   <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
 
   <header class="mb-12">
@@ -58,8 +65,12 @@ agent_runs
     </div>
     <p class="lead">스포츠 도메인 지식과 multi-agent workflow, graph 기반 검색을 결합하는 knowledge platform 프로젝트입니다.</p>
     <p class="meta">진행 중 · 2026</p>
+    <ProjectMetaBar items={metaItems} />
     <div class="flex flex-wrap gap-2">
       {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <div class="mt-6">
+      <a href="https://sportsiq.daemonxid.com" target="_blank" rel="noopener" class="cta-primary">Live Site →</a>
     </div>
   </header>
 
@@ -78,6 +89,16 @@ agent_runs
         <li>→ pgvector 기반 의미 검색과 knowledge recall</li>
         <li>→ Django 기반 orchestration, 저장소, 리뷰 인터페이스</li>
         <li>→ 향후 움직임 분석과 퍼포먼스 데이터까지 연결 가능한 도메인 모델</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">내가 한 일</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ 프로젝트를 순수 움직임 분석에서 knowledge platform 방향으로 재정의했습니다</li>
+        <li>→ multi-agent workflow, graphRAG, pgvector 중심의 검색 계층을 설계했습니다</li>
+        <li>→ orchestration, 저장소, 리뷰 화면을 위한 백엔드 구조를 정의했습니다</li>
+        <li>→ 향후 스포츠 퍼포먼스와 움직임 분석이 같은 플랫폼에 연결되도록 도메인 모델을 잡았습니다</li>
       </ul>
     </section>
 

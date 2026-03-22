@@ -1,15 +1,16 @@
 ---
 import Base from '../../../layouts/Base.astro'
+import ProjectMetaBar from '../../../components/ProjectMetaBar.astro'
 import ProjectShowcase from '../../../components/ProjectShowcase.astro'
 import SkillBadge from '../../../components/SkillBadge.astro'
-import { getExistingPortfolioMedia } from '../../../lib/portfolioMedia'
+import { getPortfolioMedia } from '../../../lib/portfolioMedia'
 
 const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Gemini Flash', 'Pydantic AI', 'Coolify']
-const media = getExistingPortfolioMedia([
-  { type: 'image', src: '/portfolio/almaeng/overview.png', title: '개요 화면', caption: '성분 중심 검색과 제품 탐색 화면.' },
-  { type: 'image', src: '/portfolio/almaeng/compare.png', title: '비교 화면', caption: '성분 함량과 단위 가격을 함께 비교하는 화면.' },
-  { type: 'video', src: '/portfolio/almaeng/demo.mp4', title: '데모 영상', caption: '검색, 비교, 분석 흐름을 짧게 보여주는 영상.' },
-])
+const media = getPortfolioMedia('almaeng', {
+  overview: '성분 중심 검색과 제품 탐색 화면.',
+  compare: '성분 함량과 단위 가격을 함께 비교하는 화면.',
+  demo: '검색, 비교, 분석 흐름을 짧게 보여주는 영상.',
+})
 const techSections = [
   {
     title: '시스템 메모',
@@ -45,9 +46,15 @@ price_snapshots
 - captured_at`,
   },
 ]
+const metaItems = [
+  { label: 'Role', value: '제품 설계, 백엔드 아키텍처, 구현' },
+  { label: 'Team', value: '개인 프로젝트' },
+  { label: 'Period', value: '2025.12' },
+  { label: 'Links', value: 'Live만 공개 · GitHub 비공개' },
+]
 ---
 
-<Base title="Almaeng | Wonsub Song (Tony)" lang="ko">
+<Base title="Almaeng | Wonsub Song (Tony)" lang="ko" description="Almaeng 케이스 스터디: 성분 투명성과 가격 효율 비교에 초점을 맞춘 AI 영양제 분석 제품입니다.">
   <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
 
   <header class="mb-12">
@@ -57,12 +64,12 @@ price_snapshots
     </div>
     <p class="lead">성분 투명성과 가격 비교를 함께 다루는 AI 영양제 분석 및 가격 인텔리전스 서비스입니다.</p>
     <p class="meta">개인 프로젝트 · 2025.12</p>
+    <ProjectMetaBar items={metaItems} />
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
     <div class="flex gap-4 text-sm">
       <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener" class="cta-primary">Live Site →</a>
-      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener" class="cta-secondary">GitHub →</a>
     </div>
   </header>
 
@@ -92,6 +99,16 @@ price_snapshots
         <li>→ 1회 섭취량과 주요 성분 기준으로 다시 계산하는 가격 비교</li>
         <li>→ 여러 제품 간 중복 성분을 확인하는 overlap alert 방향</li>
         <li>→ 라벨 이해를 돕는 AI 기반 보조 해석 레이어</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">내가 한 일</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ 성분 중심 평가라는 제품 방향과 비교 기준을 정의했습니다</li>
+        <li>→ 영양제, 성분, 가격 스냅샷 중심의 데이터 모델을 설계했습니다</li>
+        <li>→ 검색과 비교 흐름을 백엔드 중심 구조로 직접 구현했습니다</li>
+        <li>→ Coolify와 Hetzner 기반 self-managed 배포 경로를 구성했습니다</li>
       </ul>
     </section>
 

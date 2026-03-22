@@ -9,13 +9,16 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3)
 
+const getExcerpt = (post: (typeof posts)[number]) =>
+  post.data.excerpt ?? post.body.replace(/[#>*`-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 96) + '…'
+
 const featuredProjects = [
   {
     name: 'Almaeng',
     desc: 'AI supplement analysis and price intelligence product focused on ingredient transparency and practical value comparison.',
     stack: ['Django Ninja', 'HTMX', 'pgvector', 'Coolify'],
     url: 'https://almaeng.daemonx.cc',
-    github: 'https://github.com/daemonxid/almaeng',
+    github: null,
     href: '/portfolio/almaeng',
     status: 'live' as const,
   },
@@ -32,7 +35,7 @@ const featuredProjects = [
     name: 'SportsIQ',
     desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, Mirofish, and pgvector.',
     stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
-    url: null,
+    url: 'https://sportsiq.daemonxid.com',
     github: null,
     href: '/portfolio/kinetiq',
     status: 'wip' as const,
@@ -40,7 +43,7 @@ const featuredProjects = [
 ]
 ---
 
-<Base title="Wonsub Song (Tony) | AI-First Full-Stack Developer" lang="en">
+<Base title="Wonsub Song (Tony) | AI-First Full-Stack Developer" lang="en" description="AI-first full-stack developer building backend systems, productized AI tools, and sports-domain software.">
   <header class="hero">
     <div class="journey-arc">
       <span class="arc-dim">basketball player</span>
@@ -109,6 +112,7 @@ const featuredProjects = [
           <li>
             <a href={post.data.lang === 'ko' ? `/ko/blog/${post.id}` : `/blog/${post.id}`} class="post-link">
               <span class="post-title">{post.data.title}</span>
+              <span class="post-excerpt">{getExcerpt(post)}</span>
               <span class="post-meta-inline">
                 <span class={`post-lang post-lang--${post.data.lang}`}>{post.data.lang.toUpperCase()}</span>
                 <span class="post-date-inline">{post.data.date.toISOString().slice(0, 10)}</span>
@@ -152,7 +156,8 @@ const featuredProjects = [
   .post-link { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
   .post-link:hover { border-color: rgba(250, 204, 21, 0.1); background: rgba(250, 204, 21, 0.02); }
   .post-link:hover .post-title { color: #facc15; }
-  .post-title { font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
+  .post-title { display:block; font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
+  .post-excerpt { display:block; margin-top:0.22rem; font-size:0.76rem; line-height:1.55; color:#8b949e; max-width:34rem; }
   .post-meta-inline { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
   .post-lang {
     font-size: 0.62rem;

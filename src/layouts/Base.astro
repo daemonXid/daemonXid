@@ -1,14 +1,20 @@
 ---
 import Nav from '../components/Nav.astro'
 import Footer from '../components/Footer.astro'
+import { DEFAULT_DESCRIPTION, DEFAULT_OG_IMAGE, SITE_NAME, SITE_URL } from '../lib/siteMeta'
 import '../styles/global.css'
 
 interface Props {
   title: string
   lang?: 'en' | 'ko'
+  description?: string
+  ogImage?: string
+  noindex?: boolean
 }
 
-const { title, lang = 'en' } = Astro.props
+const { title, lang = 'en', description = DEFAULT_DESCRIPTION, ogImage = DEFAULT_OG_IMAGE, noindex = false } = Astro.props
+const canonical = new URL(Astro.url.pathname, SITE_URL).toString()
+const ogUrl = new URL(ogImage, SITE_URL).toString()
 ---
 
 <!DOCTYPE html>
@@ -17,6 +23,22 @@ const { title, lang = 'en' } = Astro.props
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="generator" content={SITE_NAME} />
+  <meta name="theme-color" content="#0d1117" />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogUrl} />
+  <meta property="og:site_name" content={SITE_NAME} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogUrl} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

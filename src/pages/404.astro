@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro'
+---
+
+<Base title="404 | Wonsub Song (Tony)" lang="en" description="Page not found." noindex={true}>
+  <section class="not-found">
+    <p class="not-found-code">404</p>
+    <h1 class="not-found-title">Page Not Found</h1>
+    <p class="not-found-copy">
+      The page you are looking for does not exist or has moved. Use the main sections below to get back on track.
+    </p>
+    <div class="not-found-actions">
+      <a href="/" class="not-found-primary">Home</a>
+      <a href="/portfolio" class="not-found-secondary">Portfolio</a>
+      <a href="/blog" class="not-found-secondary">Blog</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .not-found {
+    min-height: 58vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.9rem;
+  }
+  .not-found-code {
+    font-size: 0.78rem;
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0.14em;
+    color: rgba(250, 204, 21, 0.62);
+  }
+  .not-found-title {
+    font-size: clamp(2.2rem, 7vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    color: #e6edf3;
+  }
+  .not-found-copy {
+    max-width: 36rem;
+    color: #8b949e;
+    line-height: 1.75;
+  }
+  .not-found-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 0.6rem;
+  }
+  .not-found-primary,
+  .not-found-secondary {
+    padding: 0.58rem 1rem;
+    border-radius: 6px;
+    font-size: 0.82rem;
+  }
+  .not-found-primary {
+    background: rgba(250, 204, 21, 0.1);
+    border: 1px solid rgba(250, 204, 21, 0.35);
+    color: #facc15;
+  }
+  .not-found-secondary {
+    border: 1px solid #30363d;
+    color: #8b949e;
+  }
+</style>
