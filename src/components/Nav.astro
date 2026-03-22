@@ -4,10 +4,12 @@ import { detectLang, withLang, type SiteLang } from '../lib/i18n'
 
 interface Props {
   lang?: SiteLang
+  langToggleHref?: string
 }
 
 const current = Astro.url.pathname
 const currentLang = Astro.props.lang ?? detectLang(current)
+const forcedLangToggleHref = Astro.props.langToggleHref
 const labels = currentLang === 'ko'
   ? { home: '홈', resume: '이력서', portfolio: '포트폴리오', blog: '블로그' }
   : { home: 'Home', resume: 'Resume', portfolio: 'Portfolio', blog: 'Blog' }
@@ -23,7 +25,7 @@ const isActive = (href: string) =>
   href === '/ko' || href === '/' ? current === href : current.startsWith(href)
 
 const otherLang: SiteLang = currentLang === 'ko' ? 'en' : 'ko'
-const otherLangHref = withLang(current, otherLang)
+const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
 ---
 
 <nav class="nav-bar">

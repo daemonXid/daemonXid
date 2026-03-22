@@ -10,9 +10,17 @@ interface Props {
   description?: string
   ogImage?: string
   noindex?: boolean
+  langToggleHref?: string
 }
 
-const { title, lang = 'en', description = DEFAULT_DESCRIPTION, ogImage = DEFAULT_OG_IMAGE, noindex = false } = Astro.props
+const {
+  title,
+  lang = 'en',
+  description = DEFAULT_DESCRIPTION,
+  ogImage = DEFAULT_OG_IMAGE,
+  noindex = false,
+  langToggleHref,
+} = Astro.props
 const canonical = new URL(Astro.url.pathname, SITE_URL).toString()
 const ogUrl = new URL(ogImage, SITE_URL).toString()
 ---
@@ -44,7 +52,7 @@ const ogUrl = new URL(ogImage, SITE_URL).toString()
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <Nav lang={lang} />
+  <Nav lang={lang} langToggleHref={langToggleHref} />
   <main class="max-w-3xl mx-auto px-6 py-16">
     <slot />
   </main>

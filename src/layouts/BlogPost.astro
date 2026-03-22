@@ -7,19 +7,21 @@ interface Props {
     excerpt?: string
     date: Date
     category: string
+    translationKey: string
     tags?: string[]
     lang?: string
   }
   lang?: 'en' | 'ko'
+  langToggleHref?: string
 }
 
-const { frontmatter, lang = 'en' } = Astro.props
+const { frontmatter, lang = 'en', langToggleHref } = Astro.props
 const { title, excerpt, date, category, tags = [], lang: postLang = 'ko' } = frontmatter
 const backHref = lang === 'ko' ? '/ko/blog' : '/blog'
 const backLabel = lang === 'ko' ? '← 블로그' : '← Blog'
 ---
 
-<Base title={`${title} | Wonsub Song (Tony)`} lang={lang} description={excerpt ?? title}>
+<Base title={`${title} | Wonsub Song (Tony)`} lang={lang} description={excerpt ?? title} langToggleHref={langToggleHref}>
   <a href={backHref} class="back-link">{backLabel}</a>
 
   <article>

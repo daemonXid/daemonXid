@@ -1,10 +1,12 @@
 ---
 import Base from '../../layouts/Base.astro'
 import { getCollection } from 'astro:content'
+import { getBlogPath, selectPostsForLang } from '../../lib/blogTranslations'
 
-const posts = (await getCollection('blog'))
-  .filter(p => !p.data.draft)
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+const posts = selectPostsForLang(
+  (await getCollection('blog')).filter(p => !p.data.draft),
+  'en',
+)
 
 const getExcerpt = (post: (typeof posts)[number]) =>
   post.data.excerpt ?? post.body.replace(/[#>*`-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 140) + '…'
@@ -33,7 +35,7 @@ const categories = [
           <ul class="post-list">
             {filtered.map(post => (
               <li>
-                <a href={post.data.lang === 'ko' ? `/ko/blog/${post.id}` : `/blog/${post.id}`} class="post-link">
+                <a href={getBlogPath(post)} class="post-link">
                   <span class="post-copy">
                     <span class="post-title">{post.data.title}</span>
                     <span class="post-excerpt">{getExcerpt(post)}</span>

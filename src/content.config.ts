@@ -8,6 +8,7 @@ const blog = defineCollection({
     excerpt: z.string().optional(),
     date: z.coerce.date(),
     category: z.enum(['daemon', 'deployment', 'sports-ai', 'retrospective']),
+    translationKey: z.string(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     lang: z.enum(['ko', 'en']).default('ko'),

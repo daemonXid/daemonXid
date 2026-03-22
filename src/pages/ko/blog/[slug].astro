@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content'
 import BlogPost from '../../../layouts/BlogPost.astro'
+import { findTranslatedPost, getBlogPath } from '../../../lib/blogTranslations'
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog')
@@ -13,9 +14,12 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props
+const posts = await getCollection('blog')
+const translated = findTranslatedPost(posts, post, 'en')
+const langToggleHref = translated ? getBlogPath(translated) : '/blog'
 const { Content } = await render(post)
 ---
 
-<BlogPost frontmatter={post.data} lang="ko">
+<BlogPost frontmatter={post.data} lang="ko" langToggleHref={langToggleHref}>
   <Content />
 </BlogPost>
