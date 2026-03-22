@@ -1,48 +1,71 @@
-﻿---
+---
 import Base from '../../../layouts/Base.astro'
 import SkillBadge from '../../../components/SkillBadge.astro'
 
-const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify', 'Cloudflare']
+const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Gemini Flash', 'Pydantic AI', 'Coolify']
 ---
 
 <Base title="Almaeng | Wonsub Song (Tony)" lang="ko">
-  <a href="/ko/portfolio" class="back-link">???ы듃?대━??/a>
+  <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
 
   <header class="mb-12">
     <div class="flex items-center gap-3 mb-4">
       <h1 class="text-3xl font-bold">Almaeng</h1>
       <span class="status-live">Live</span>
     </div>
-    <p class="lead">?쒓뎅 ?쒖옣 ????곸뼇??媛寃??명뀛由ъ쟾???쒗뭹?낅땲??</p>
+    <p class="lead">성분 투명성과 가격 비교를 함께 다루는 AI 영양제 분석 및 가격 인텔리전스 서비스입니다.</p>
+    <p class="meta">개인 프로젝트 · 2025.12</p>
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
     <div class="flex gap-4 text-sm">
-      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener" class="cta-primary">Live Site ??/a>
-      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener" class="cta-secondary">GitHub ??/a>
+      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener" class="cta-primary">Live Site →</a>
+      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener" class="cta-secondary">GitHub →</a>
     </div>
   </header>
 
   <div class="content-wrap">
     <section>
-      <h2 class="case-label">臾몄젣</h2>
-      <p class="leading-relaxed">援?궡 ?곸뼇??媛寃⑹? ?먮ℓ泥섎쭏???ш쾶 ?ㅻⅤ怨? ?뚮퉬?먮뒗 ?ㅼ떆媛?鍮꾧탳媛 ?대졄?듬땲?? MFDS ?쒗뭹 ?뺣낫 ??떆 ?⑹뼱???덉뼱 ?④퍡 蹂닿린 ?대졄?듬땲??</p>
+      <h2 class="case-label">포지셔닝</h2>
+      <p class="leading-relaxed">Almaeng은 영양제를 브랜드나 광고 문구가 아니라, 실제 성분과 가격 효율 기준으로 다시 보게 만드는 제품입니다. 라벨 해석, 성분 비교, 가격 인텔리전스를 한 흐름으로 묶어 한국 사용자에게 더 실용적인 구매 판단을 제공하는 데 초점을 맞췄습니다.</p>
     </section>
 
     <section>
-      <h2 class="case-label">?닿껐</h2>
-      <p class="leading-relaxed mb-4">Naver Shopping API ?곗씠?곗뿉 MFDS 洹쒖젣 ?뺣낫瑜?寃고빀?덉뒿?덈떎. 寃?됯낵 ?꾪꽣留곸? HTMX 湲곕컲 ?쒕쾭 ?뚮뜑留곸쑝濡?泥섎━??遺덊븘?뷀븳 ?꾨줎?몄뿏??蹂듭옟?꾨? 以꾩??듬땲??</p>
+      <h2 class="case-label">문제</h2>
+      <p class="leading-relaxed mb-4">영양제 구매는 브랜드 인지도, 패키지, 광고 문구에 크게 좌우되지만, 실제로는 성분 함량과 가격 효율을 함께 봐야 합니다. 단순한 판매가 비교만으로는 진짜 가성비를 판단하기 어렵고, 여러 제품을 함께 복용할 경우 성분 중복이나 과다 섭취 위험도 커집니다.</p>
       <ul class="space-y-2 text-sm">
-        <li>???ㅼ떆媛?媛寃?鍮꾧탳瑜??꾪븳 Naver Shopping API ?곕룞</li>
-        <li>??怨듭떇 ?덉쟾 ?뺣낫瑜??꾪븳 MFDS API ?곕룞</li>
-        <li>??HTMX 湲곕컲 寃???꾪꽣 UX</li>
-        <li>??PostgreSQL 寃??理쒖쟻??/li>
+        <li>→ 제품 단위가 아니라 성분 단위 비교가 필요했습니다</li>
+        <li>→ 1통 가격만으로는 1정당 비용과 성분당 비용을 판단하기 어렵습니다</li>
+        <li>→ 복수 영양제 복용 시 성분 중복과 과다 섭취 위험이 존재합니다</li>
+        <li>→ 공공 제품 정보와 판매 정보가 흩어져 있어 한 번에 보기 어렵습니다</li>
       </ul>
     </section>
 
     <section>
-      <h2 class="case-label">?꾪궎?띿쿂</h2>
-      <p class="leading-relaxed">媛寃??곗씠?곕뒗 ?쒕쾭媛 吏꾩떎???먯쿇?대?濡?React蹂대떎 Django + HTMX媛 ???곹빀?덉뒿?덈떎. ?댁쁺? Hetzner VPS? Coolify瑜??ъ슜??吏곸젒 ?듭젣 媛?ν븳 援ъ“濡??ㅺ퀎?덉뒿?덈떎.</p>
+      <h2 class="case-label">구현 내용</h2>
+      <p class="leading-relaxed">Almaeng은 영양제 정보를 제품명 중심이 아니라 성분 중심으로 구조화합니다. 판매 데이터와 제품 정보를 정리한 뒤, 사용자가 실제 가치 판단을 할 수 있도록 비교 가능한 화면과 분석 흐름으로 연결했습니다.</p>
+      <ul class="space-y-2 text-sm mt-4">
+        <li>→ 판매 데이터와 제품 정보를 결합한 검색 및 비교 흐름</li>
+        <li>→ 브랜드보다 성분 함량을 중심으로 보는 제품 분석 구조</li>
+        <li>→ 1회 섭취량과 주요 성분 기준으로 다시 계산하는 가격 비교</li>
+        <li>→ 여러 제품 간 중복 성분을 확인하는 overlap alert 방향</li>
+        <li>→ 라벨 이해를 돕는 AI 기반 보조 해석 레이어</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">아키텍처</h2>
+      <p class="leading-relaxed">프론트엔드 복잡도를 키우기보다 Django 중심의 서버 렌더링 구조에 HTMX와 Alpine.js를 조합했습니다. 검색, 비교, 분석 로직이 서버 권한형으로 움직이는 제품이기 때문에 React SPA보다 구현과 운영이 단순했고, 실험 속도도 더 빨랐습니다. PostgreSQL과 pgvector는 구조화 데이터와 향후 의미 기반 기능을 받치고, Gemini Flash와 Pydantic AI는 AI 분석 결과를 더 예측 가능한 형태로 다루는 데 사용했습니다.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">인프라</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ Hetzner 기반 self-hosted 배포와 Coolify 운영</li>
+        <li>→ Docker 중심 배포 흐름으로 운영 제어권 확보</li>
+        <li>→ Cloudflare 기반 DNS, TLS, edge 처리</li>
+        <li>→ 개인 개발 속도와 낮은 운영 부담에 맞춘 구조</li>
+      </ul>
     </section>
   </div>
 </Base>
@@ -51,10 +74,10 @@ const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify',
   .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
   .back-link:hover { color:#facc15; }
   .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#001a00; color:#22c55e; border:1px solid #14532d; }
-  .lead { color:#a3adb8; font-size:1rem; margin-bottom:1.5rem; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; }
+  .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; }
   .cta-primary { padding:0.55rem 1rem; border-radius:6px; background:#facc15; color:#000; font-weight:600; }
   .cta-secondary { padding:0.55rem 1rem; border-radius:6px; border:1px solid #333; color:#8b949e; }
   .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
   .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
 </style>
-

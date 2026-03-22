@@ -1,13 +1,13 @@
-﻿---
+---
 import Base from '../../layouts/Base.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
 
-const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify', 'Cloudflare']
+const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Gemini Flash', 'Pydantic AI', 'Coolify']
 ---
 
 <Base title="Almaeng | Wonsub Song (Tony)" lang="en">
   <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
-    ??Portfolio
+    ← Portfolio
   </a>
 
   <header class="mb-12">
@@ -17,8 +17,11 @@ const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify',
         Live
       </span>
     </div>
-    <p class="text-lg mb-6" style="color:#a1a1aa;">
-      Supplement price intelligence product for the Korean market.
+    <p class="text-lg mb-2" style="color:#a1a1aa;">
+      AI supplement analysis and price intelligence product focused on ingredient transparency.
+    </p>
+    <p class="text-sm mb-6" style="color:#8b949e;">
+      Solo build · 2025.12
     </p>
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
@@ -27,54 +30,71 @@ const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify',
       <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener"
          class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity"
          style="background:#facc15;color:#000;">
-        Live Site ??      </a>
+        Live Site →
+      </a>
       <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener"
          class="px-4 py-2 rounded hover:border-zinc-600 transition-colors"
          style="border:1px solid #333;color:#a1a1aa;">
-        GitHub ??      </a>
+        GitHub →
+      </a>
     </div>
   </header>
 
   <div class="space-y-12" style="color:#a1a1aa;">
     <section>
-      <h2 class="case-label">Problem</h2>
+      <h2 class="case-label">Positioning</h2>
       <p class="leading-relaxed">
-        Supplement prices vary significantly across Korean retailers (Coupang, iHerb Korea, brand stores).
-        Consumers have no easy way to compare prices in real-time, and MFDS (Ministry of Food and Drug Safety)
-        product data is scattered and hard to access.
+        Almaeng is built around a simple question: not which supplement looks better, but which one delivers better ingredients for the price.
+        The product combines label interpretation, ingredient-level comparison, and price intelligence into one workflow for Korean supplement buyers.
       </p>
     </section>
 
     <section>
-      <h2 class="case-label">Solution</h2>
+      <h2 class="case-label">Problem</h2>
       <p class="leading-relaxed mb-4">
-        Aggregates product listings from Naver Shopping API and enriches them with MFDS regulatory data.
-        Server-rendered pages with HTMX for search interactions ??no React, no SPA overhead.
+        Supplement shopping is usually driven by brand reputation, packaging, and marketing copy. That makes it hard to compare products by
+        ingredient density, duplicated intake risk, and real unit economics. A lower list price does not necessarily mean better value.
       </p>
       <ul class="space-y-2 text-sm">
-        <li>??Naver Shopping API integration for live price data</li>
-        <li>??MFDS API for official product safety information</li>
-        <li>??HTMX-powered search and filtering (no page reload)</li>
-        <li>??PostgreSQL full-text search with Korean tokenization</li>
+        <li>→ Users need ingredient-level comparison, not just product-level browsing</li>
+        <li>→ A single bottle price hides the actual cost per tablet and per active ingredient</li>
+        <li>→ Multi-supplement routines increase the chance of overlapping or excessive intake</li>
+        <li>→ Public regulatory and product data is fragmented and inconvenient to review</li>
       </ul>
     </section>
 
     <section>
-      <h2 class="case-label">Architecture Decision</h2>
+      <h2 class="case-label">What I Built</h2>
       <p class="leading-relaxed">
-        Chose Django + HTMX over React because the data is server-authoritative ??prices update from API,
-        not from client state. HTMX lets the server control UI state without a JavaScript bundle.
-        Deployed on Hetzner CPX32 via Coolify for full infrastructure ownership.
+        Almaeng structures supplement data around ingredients first. Product information is normalized, enriched, and then surfaced through
+        searchable views that help users judge practical value rather than branding alone.
+      </p>
+      <ul class="space-y-2 text-sm mt-4">
+        <li>→ Search and comparison flow combining market listing data with official product information</li>
+        <li>→ Ingredient-focused product analysis instead of simple title or brand comparison</li>
+        <li>→ Unit pricing views to compare cost per serving and cost per meaningful ingredient amount</li>
+        <li>→ Overlap alert concept for detecting duplicated ingredients across multiple supplements</li>
+        <li>→ AI-assisted interpretation layer for supplement label understanding and user guidance</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Architecture</h2>
+      <p class="leading-relaxed">
+        I chose a Django-centered server-rendered architecture with HTMX and Alpine.js rather than a React-heavy SPA. The product logic,
+        search behavior, and comparison flows are server authoritative, so keeping rendering close to the backend reduced complexity and made
+        the iteration loop faster. PostgreSQL and pgvector support structured storage and future semantic features, while Gemini Flash and
+        Pydantic AI help shape AI-assisted product analysis into predictable outputs.
       </p>
     </section>
 
     <section>
       <h2 class="case-label">Infrastructure</h2>
       <ul class="space-y-2 text-sm">
-        <li>??Hetzner CPX32 VPS (??0.49/month)</li>
-        <li>??Coolify for zero-downtime deployments</li>
-        <li>??GitHub Actions ??GHCR ??Coolify CD pipeline</li>
-        <li>??Cloudflare for DNS, CDN, and SSL</li>
+        <li>→ Hetzner-hosted deployment managed through Coolify</li>
+        <li>→ Docker-based application delivery with controlled self-hosting</li>
+        <li>→ Cloudflare for DNS, TLS, and edge-level traffic handling</li>
+        <li>→ Build path optimized for fast solo iteration and low operational overhead</li>
       </ul>
     </section>
   </div>
@@ -86,8 +106,7 @@ const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify',
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #52525b;
+    color: rgba(250, 204, 21, 0.72);
     margin-bottom: 1rem;
   }
 </style>
-
