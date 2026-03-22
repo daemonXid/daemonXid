@@ -1,0 +1,84 @@
+---
+import Base from '../../layouts/Base.astro'
+import SkillBadge from '../../components/SkillBadge.astro'
+
+const stack = ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL', 'Pydantic']
+---
+
+<Base title="LawNGood | Wonsub Song (Tony)" lang="en">
+  <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
+    ← Portfolio
+  </a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">LawNGood</h1>
+      <span class="text-xs px-2 py-0.5 rounded" style="background:#1a1a00;color:#facc15;border:1px solid #333300;">
+        POC
+      </span>
+    </div>
+    <p class="text-lg mb-2" style="color:#a1a1aa;">
+      Legal news monitoring proof of concept built for LawAndGood during the Likelion Rocket internship.
+    </p>
+    <p class="text-sm mb-6" style="color:#52525b;">
+      LawAndGood × Likelion Rocket Team · 2026.02
+    </p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <a href="https://github.com/ken-do-it/law_news_c_v2" target="_blank" rel="noopener"
+       class="px-4 py-2 rounded text-sm hover:border-zinc-600 transition-colors inline-block"
+       style="border:1px solid #333;color:#a1a1aa;">
+      GitHub →
+    </a>
+  </header>
+
+  <div class="space-y-12" style="color:#a1a1aa;">
+    <section>
+      <h2 class="case-label">Context</h2>
+      <p class="leading-relaxed">
+        Built in a 2-person internship team for LawAndGood via the Likelion Rocket program.
+        The company needed a way to collect legal-news signals around active cases without relying on manual monitoring.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">What I Built</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ News collection flow using Naver News API as the primary source</li>
+        <li>→ Article parsing and cleanup with BeautifulSoup4</li>
+        <li>→ Gemini-based classification flow for dispute relevance and risk labeling</li>
+        <li>→ Pydantic schemas to validate structured LLM output</li>
+        <li>→ Django admin interface for reviewing cases and article matches</li>
+        <li>→ PostgreSQL storage for article history, classifications, and monitoring results</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Architecture</h2>
+      <p class="leading-relaxed">
+        The pipeline separates collection, parsing, classification, and review. Naver News API provides the initial article set,
+        BeautifulSoup4 extracts the usable content, Gemini classifies legal relevance, and validated outputs flow into Django and PostgreSQL.
+        That structure kept the POC simple enough to ship while still making the AI output operationally usable.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Outcome</h2>
+      <p class="leading-relaxed">
+        Delivered as a working proof of concept. The system reduced manual scanning effort and made legal-news review more structured during the internship project.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52525b;
+    margin-bottom: 1rem;
+  }
+</style>

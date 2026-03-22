@@ -1,134 +1,31 @@
-# Wonsub Song (Tony)
+# daemonxid.com
 
-Backend Developer | Python Django | AI SaaS Builder
+Tony(xid)의 개인 프로필 사이트.
+이력서 · 포트폴리오 · 기술 블로그를 한 곳에서 관리합니다.
 
-I design and build AI-powered SaaS platforms using Python and Django.
+**Live:** https://daemonxid.com
 
-My focus is on building real-world products — from data pipelines and backend architecture to production deployment and operations.
-
-Currently exploring the intersection of:
-
-* AI SaaS
-* Sports Technology
-* Data Platforms
-* Knowledge Systems
+## Stack
+Jekyll (GitHub Pages) · Tailwind CSS · DAEMON Stack 소개
 
 ---
 
-# Tech Stack
+## Resume 업데이트
 
-### Backend
+PDF 파일을 교체하면 자동으로 반영됩니다.
 
-Python
-Django
-Django Ninja
+```
+assets/resume/
+├── tony_resume_en.pdf   ← 영문 이력서
+└── tony_resume_ko.pdf   ← 한국어 이력서
+```
 
-### AI / Data
+## 사이트맵
 
-LLM APIs
-Data pipelines
-Pydantic validation
-
-### Database
-
-PostgreSQL
-
-### Frontend
-
-HTMX
-Alpine.js
-
-### DevOps
-
-Docker
-GitHub Actions
-Coolify
-Hetzner VPS
-
-### Architecture
-
-Modular Monolith
-Vertical Slice Architecture
-
----
-
-# Projects
-
-## Legal Radar
-
-AI-powered legal dispute detection platform.
-
-Pipeline:
-
-News Collection
-→ Article Extraction
-→ AI Analysis
-→ Case Grouping
-→ Dashboard Visualization
-
-Highlights
-
-* AI structured response validation using Pydantic
-* Entity-based deduplication algorithm
-* Similarity threshold tuning
-* End-to-end AI pipeline design
-
----
-
-## Almaeng
-
-Supplement price comparison platform.
-
-Features
-
-* structured supplement data
-* ingredient database
-* AI-based supplement recommendations
-
-Infrastructure
-
-GitHub Actions
-→ GHCR
-→ Coolify
-→ Hetzner VPS
-
----
-
-## SportsHub (in progress)
-
-Community platform for sports science research and athlete knowledge sharing.
-
-Planned features
-
-* sports research sharing
-* athlete community
-* AI-assisted training insights
-* sports knowledge graph
-
----
-
-# Philosophy
-
-I believe good software should:
-
-* solve real-world problems
-* be simple to operate
-* scale through clear architecture
-
-My approach focuses on building **modular monolith systems** that allow fast iteration while remaining production-ready.
-
----
-
-# Interests
-
-AI SaaS
-Sports Technology
-Knowledge Systems
-Developer Tools
-
----
-
-# Contact
-
-LinkedIn : www.linkedin.com/in/wonsub-song-0b0291167
-Email : [redacted-email]
+```
+/           Home
+/about      About
+/resume     Resume (웹 버전 + PDF 다운로드)
+/portfolio  Portfolio
+/blog       Blog (Jekyll _posts/)
+```

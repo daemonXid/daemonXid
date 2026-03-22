@@ -1,0 +1,60 @@
+﻿---
+import Base from '../../../layouts/Base.astro'
+import SkillBadge from '../../../components/SkillBadge.astro'
+
+const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify', 'Cloudflare']
+---
+
+<Base title="Almaeng | Wonsub Song (Tony)" lang="ko">
+  <a href="/ko/portfolio" class="back-link">???ы듃?대━??/a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">Almaeng</h1>
+      <span class="status-live">Live</span>
+    </div>
+    <p class="lead">?쒓뎅 ?쒖옣 ????곸뼇??媛寃??명뀛由ъ쟾???쒗뭹?낅땲??</p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <div class="flex gap-4 text-sm">
+      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener" class="cta-primary">Live Site ??/a>
+      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener" class="cta-secondary">GitHub ??/a>
+    </div>
+  </header>
+
+  <div class="content-wrap">
+    <section>
+      <h2 class="case-label">臾몄젣</h2>
+      <p class="leading-relaxed">援?궡 ?곸뼇??媛寃⑹? ?먮ℓ泥섎쭏???ш쾶 ?ㅻⅤ怨? ?뚮퉬?먮뒗 ?ㅼ떆媛?鍮꾧탳媛 ?대졄?듬땲?? MFDS ?쒗뭹 ?뺣낫 ??떆 ?⑹뼱???덉뼱 ?④퍡 蹂닿린 ?대졄?듬땲??</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">?닿껐</h2>
+      <p class="leading-relaxed mb-4">Naver Shopping API ?곗씠?곗뿉 MFDS 洹쒖젣 ?뺣낫瑜?寃고빀?덉뒿?덈떎. 寃?됯낵 ?꾪꽣留곸? HTMX 湲곕컲 ?쒕쾭 ?뚮뜑留곸쑝濡?泥섎━??遺덊븘?뷀븳 ?꾨줎?몄뿏??蹂듭옟?꾨? 以꾩??듬땲??</p>
+      <ul class="space-y-2 text-sm">
+        <li>???ㅼ떆媛?媛寃?鍮꾧탳瑜??꾪븳 Naver Shopping API ?곕룞</li>
+        <li>??怨듭떇 ?덉쟾 ?뺣낫瑜??꾪븳 MFDS API ?곕룞</li>
+        <li>??HTMX 湲곕컲 寃???꾪꽣 UX</li>
+        <li>??PostgreSQL 寃??理쒖쟻??/li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">?꾪궎?띿쿂</h2>
+      <p class="leading-relaxed">媛寃??곗씠?곕뒗 ?쒕쾭媛 吏꾩떎???먯쿇?대?濡?React蹂대떎 Django + HTMX媛 ???곹빀?덉뒿?덈떎. ?댁쁺? Hetzner VPS? Coolify瑜??ъ슜??吏곸젒 ?듭젣 媛?ν븳 援ъ“濡??ㅺ퀎?덉뒿?덈떎.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
+  .back-link:hover { color:#facc15; }
+  .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#001a00; color:#22c55e; border:1px solid #14532d; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:1.5rem; }
+  .cta-primary { padding:0.55rem 1rem; border-radius:6px; background:#facc15; color:#000; font-weight:600; }
+  .cta-secondary { padding:0.55rem 1rem; border-radius:6px; border:1px solid #333; color:#8b949e; }
+  .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
+  .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
+</style>
+

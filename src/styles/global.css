@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+/* ── GitHub Dark + Yellow Neon ── */
+:root {
+  --neon:        #facc15;
+  --neon-glow:   rgba(250, 204, 21, 0.3);
+  --bg:          #0d1117;
+  --bg-subtle:   #161b22;
+  --surface:     rgba(250, 204, 21, 0.03);
+  --border:      #30363d;
+  --border-glow: rgba(250, 204, 21, 0.45);
+  --text:        #e6edf3;
+  --text-muted:  #8b949e;
+  --text-soft:   #a3adb8;
+  --text-dim:    #6e7681;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
+  scroll-behavior: smooth;
+}
+
+/* ── Cyber grid ── */
+body {
+  position: relative;
+  min-height: 100vh;
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(250, 204, 21, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(250, 204, 21, 0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Top radial glow ── */
+body::after {
+  content: '';
+  position: fixed;
+  top: -120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 480px;
+  background: radial-gradient(ellipse at center,
+    rgba(250, 204, 21, 0.06) 0%,
+    rgba(250, 204, 21, 0.02) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+main { position: relative; z-index: 1; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(250, 204, 21, 0.2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgba(250, 204, 21, 0.4); }
+
+/* ── Glass card base ── */
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: transform 0.15s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.glass-card:hover {
+  border-color: rgba(250, 204, 21, 0.35);
+  box-shadow:
+    0 0 24px rgba(250, 204, 21, 0.07),
+    0 16px 48px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Animations ── */
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50%       { opacity: 1; }
+}
+.pulse { animation: pulse-glow 2.5s ease-in-out infinite; }
+
+/* ── Section label ── */
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--neon);
+  opacity: 0.78;
+  margin-bottom: 1.5rem;
+}

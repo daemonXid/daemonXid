@@ -1,0 +1,173 @@
+---
+import Base from '../../layouts/Base.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+import SocialLinks from '../../components/SocialLinks.astro'
+import { getCollection } from 'astro:content'
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3)
+
+const featuredProjects = [
+  {
+    name: 'Almaeng',
+    desc: 'Naver Shopping 검색 데이터와 MFDS 공공 정보를 결합한 한국 영양제 가격 인텔리전스 플랫폼입니다.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Coolify'],
+    url: 'https://almaeng.daemonx.cc',
+    github: 'https://github.com/daemonxid/almaeng',
+    href: '/ko/portfolio/almaeng',
+    status: 'live' as const,
+  },
+  {
+    name: 'LawNGood',
+    desc: 'Naver News API 수집, BeautifulSoup4 파싱, Gemini 분류를 결합한 법률 뉴스 모니터링 POC입니다.',
+    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'PostgreSQL'],
+    url: null,
+    github: 'https://github.com/ken-do-it/law_news_c_v2',
+    href: '/ko/portfolio/LegalRadar',
+    status: 'live' as const,
+  },
+  {
+    name: 'SportsIQ',
+    desc: 'Multi-agent workflow, graphRAG, Mirofish, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
+    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+    url: null,
+    github: null,
+    href: '/ko/portfolio/kinetiq',
+    status: 'wip' as const,
+  },
+]
+---
+
+<Base title="Wonsub Song (Tony) | 홈" lang="ko">
+  <header class="hero">
+    <div class="journey-arc">
+      <span class="arc-dim">농구 선수</span>
+      <span class="arc-arrow">→</span>
+      <span class="arc-dim">스포츠 과학 전공</span>
+      <span class="arc-arrow">→</span>
+      <span class="arc-active">개발자</span>
+    </div>
+
+    <h1 class="hero-name">
+      Wonsub Song <span class="hero-paren">(Tony)</span>
+    </h1>
+
+    <p class="hero-title">AI 중심 풀스택 개발자</p>
+
+    <div class="hero-facts">
+      <span class="fact-pill">백엔드 + AI</span>
+      <span class="fact-pill">Django / HTMX / PostgreSQL</span>
+      <span class="fact-pill">해외 포지션에 열려있음</span>
+    </div>
+
+    <div class="hero-copy">
+      <p>사람의 움직임을 오랫동안 공부해 왔습니다. 농구 코트에서는 수비 로테이션을 읽었고, 스포츠 과학 실험실에서는 관절 각도와 힘의 방향을 분석했습니다.</p>
+      <p>지금은 그 경험을 바탕으로 기계가 움직임을 해석하도록 돕는 소프트웨어를 만듭니다. 제 도메인 지식은 배경이 아니라 제품 경쟁력의 핵심입니다.</p>
+    </div>
+
+    <p class="hero-location">
+      <span class="location-dot"></span>
+      해외 백엔드 및 AI 포지션에 열려 있습니다
+    </p>
+
+    <div class="hero-actions">
+      <div class="hero-ctas">
+        <a href="/ko/resume" class="cta-primary">이력서</a>
+        <a href="/ko/portfolio" class="cta-secondary">포트폴리오</a>
+      </div>
+      <SocialLinks size="md" />
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="section-header">
+      <h2 class="section-label">프로젝트</h2>
+      <a href="/ko/portfolio" class="section-more">전체 →</a>
+    </div>
+    <div class="cards-grid">
+      {featuredProjects.map(p => <ProjectCard {...p} />)}
+    </div>
+  </section>
+
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-label">글</h2>
+        <a href="/ko/blog" class="section-more">전체 →</a>
+      </div>
+      <ul class="posts-list">
+        {posts.map(post => (
+          <li>
+            <a href={post.data.lang === 'ko' ? `/ko/blog/${post.id}` : `/blog/${post.id}`} class="post-link">
+              <span class="post-title">{post.data.title}</span>
+              <span class="post-meta-inline">
+                <span class={`post-lang post-lang--${post.data.lang}`}>{post.data.lang.toUpperCase()}</span>
+                <span class="post-date-inline">{post.data.date.toISOString().slice(0, 10)}</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+</Base>
+
+<style>
+  .hero { margin-bottom: 6rem; padding-top: 2rem; }
+  .journey-arc { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; font-family: "JetBrains Mono", monospace; font-size: 0.7rem; }
+  .arc-dim { color: rgba(250, 204, 21, 0.35); }
+  .arc-active { color: rgba(250, 204, 21, 0.82); }
+  .arc-arrow { color: #8b949e; }
+  .hero-name { font-size: clamp(2.8rem, 8vw, 4.2rem); font-weight: 700; line-height: 1.05; letter-spacing: -0.025em; margin-bottom: 0.75rem; background: linear-gradient(135deg, #ffffff 20%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 28px rgba(250, 204, 21, 0.2)); }
+  .hero-paren { opacity: 0.6; }
+  .hero-title { font-size: 1.05rem; font-weight: 500; color: #a3adb8; margin-bottom: 1rem; letter-spacing: 0.01em; }
+  .hero-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+  .fact-pill { font-size: 0.72rem; font-family: "JetBrains Mono", monospace; padding: 0.28rem 0.6rem; border-radius: 999px; color: rgba(250, 204, 21, 0.82); border: 1px solid rgba(250, 204, 21, 0.18); background: rgba(250, 204, 21, 0.06); }
+  .hero-copy { max-width: 580px; display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.25rem; font-size: 0.95rem; line-height: 1.8; color: #8b949e; }
+  .hero-location { display: flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-family: "JetBrains Mono", monospace; color: rgba(250, 204, 21, 0.58); margin-bottom: 2rem; }
+  .location-dot { width: 5px; height: 5px; border-radius: 50%; background: #facc15; box-shadow: 0 0 7px #facc15; animation: pulse-glow 2s ease-in-out infinite; }
+  .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .hero-ctas { display: flex; gap: 0.6rem; }
+  .cta-primary { padding: 0.55rem 1.25rem; border-radius: 6px; font-size: 0.82rem; font-weight: 600; background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.4); color: #facc15; transition: box-shadow 0.2s, background 0.2s; }
+  .cta-primary:hover { background: rgba(250, 204, 21, 0.15); box-shadow: 0 0 20px rgba(250, 204, 21, 0.2); }
+  .cta-secondary { padding: 0.55rem 1.1rem; border-radius: 6px; font-size: 0.82rem; border: 1px solid #30363d; color: #8b949e; transition: border-color 0.2s, color 0.2s; }
+  .cta-secondary:hover { border-color: rgba(250, 204, 21, 0.3); color: #facc15; }
+  .section { margin-bottom: 5rem; }
+  .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+  .section-more { font-size: 0.78rem; color: #8b949e; transition: color 0.2s; }
+  .section-more:hover { color: #facc15; }
+  .cards-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+  @media (min-width: 640px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .cards-grid { grid-template-columns: repeat(3, 1fr); } }
+  .posts-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+  .post-link { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .post-link:hover { border-color: rgba(250, 204, 21, 0.1); background: rgba(250, 204, 21, 0.02); }
+  .post-link:hover .post-title { color: #facc15; }
+  .post-title { font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
+  .post-meta-inline { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
+  .post-lang {
+    font-size: 0.62rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 0.16rem 0.38rem;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.16);
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.06);
+  }
+  .post-lang--ko {
+    color: #ffd76a;
+    background: rgba(250, 204, 21, 0.08);
+  }
+  .post-lang--en {
+    color: #e6edf3;
+    border-color: rgba(139, 148, 158, 0.24);
+    background: rgba(139, 148, 158, 0.08);
+  }
+  .post-date-inline {
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono", monospace;
+    color: #8b949e;
+  }
+</style>

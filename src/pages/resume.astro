@@ -1,0 +1,173 @@
+---
+import Base from '../layouts/Base.astro'
+import SkillBadge from '../components/SkillBadge.astro'
+import { getResumeDownloads } from '../lib/resumeFiles'
+
+const experience = [
+  {
+    role: 'Software Engineer Intern (POC Project)',
+    company: 'LawAndGood × Likelion Rocket Team',
+    period: '2026.02',
+    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
+    desc: 'Built LawNGood, a legal news monitoring proof of concept, in a 2-person team. Designed the collection pipeline, parsing flow, Gemini-based classification, and the web interface for case monitoring.',
+  },
+]
+
+const projects = [
+  {
+    name: 'Almaeng',
+    url: 'https://almaeng.daemonx.cc',
+    github: 'https://github.com/daemonxid/almaeng',
+    desc: 'Supplement price intelligence platform combining Naver Shopping search data with MFDS regulatory information. Launched in 2025.12.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Docker', 'Coolify'],
+  },
+  {
+    name: 'LawNGood',
+    url: null,
+    github: 'https://github.com/ken-do-it/law_news_c_v2',
+    desc: 'Legal news monitoring POC combining Naver News API collection, BeautifulSoup4 parsing, and Gemini-based classification.',
+    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
+  },
+  {
+    name: 'SportsIQ',
+    url: null,
+    github: null,
+    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, Mirofish, and pgvector.',
+    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+  },
+]
+
+const skills = {
+  Backend:        ['Python', 'Django', 'Django Ninja', 'PostgreSQL', 'Pydantic', 'Taskiq'],
+  Frontend:       ['HTMX', 'Alpine.js', 'Tailwind CSS', 'Astro'],
+  'AI / Vision':  ['Gemini API', 'MediaPipe', 'YOLO', 'Pydantic AI'],
+  Infrastructure: ['Docker', 'Coolify', 'Hetzner VPS', 'GitHub Actions', 'Cloudflare'],
+}
+
+const resumeDownloads = getResumeDownloads()
+---
+
+<Base title="Wonsub Song (Tony) | Resume" lang="en">
+  <header class="mb-16">
+    <h1 class="resume-name">Wonsub Song <span class="resume-name-sub">(Tony)</span></h1>
+    <p class="resume-title">AI-First Full-Stack Developer</p>
+    <div class="resume-facts">
+      <span class="resume-fact">Backend + AI roles</span>
+      <span class="resume-fact">Django / HTMX / PostgreSQL</span>
+      <span class="resume-fact">Self-hosted deployment</span>
+    </div>
+    <div class="resume-links">
+      <a href="https://github.com/daemonxid" target="_blank" rel="noopener" class="resume-link">github.com/daemonxid ↗</a>
+      <a href="mailto:[redacted-email]" class="resume-link">[redacted-email] ↗</a>
+      <a href="https://daemonxid.com" class="resume-link">daemonxid.com ↗</a>
+    </div>
+  </header>
+
+  <section class="mb-14">
+    <h2 class="section-label">Summary</h2>
+    <p class="body-text">
+      Full-stack developer with a Sports Science background, focused on backend systems and AI-integrated web products.
+      Builds with Django, HTMX, and PostgreSQL, and ships production workloads on self-managed infrastructure
+      using Hetzner and Coolify. Applies biomechanics domain knowledge to AI products and data systems.
+      Open to relocation for backend and AI roles.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Experience</h2>
+    <div class="space-y-8">
+      {experience.map(e => (
+        <div class="timeline-item">
+          <h3 class="timeline-role">{e.role}</h3>
+          <p class="timeline-meta">{e.company} · {e.period}</p>
+          <p class="timeline-desc">{e.desc}</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {e.stack.map(s => <SkillBadge name={s} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Projects</h2>
+    <div class="projects-grid">
+      {projects.map(p => (
+        <div class="glass-card project-card" data-card-3d>
+          <h3 class="project-name">{p.name}</h3>
+          <p class="project-desc">{p.desc}</p>
+          <div class="flex flex-wrap gap-2 mt-3">
+            {p.stack.map(s => <SkillBadge name={s} />)}
+          </div>
+          <div class="project-links">
+            {p.url && <a href={p.url} target="_blank" rel="noopener" class="project-link project-link--primary">Live ↗</a>}
+            {p.github && <a href={p.github} target="_blank" rel="noopener" class="project-link project-link--secondary">GitHub ↗</a>}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Skills</h2>
+    <div class="skills-list">
+      {Object.entries(skills).map(([cat, items]) => (
+        <div class="skill-row">
+          <span class="skill-cat">{cat}</span>
+          <div class="flex flex-wrap gap-2">
+            {items.map(s => <SkillBadge name={s} />)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Education</h2>
+    <div class="timeline-item">
+      <h3 class="timeline-role">B.S. Sports Health Science</h3>
+      <p class="timeline-meta">Coursework: Biomechanics, Exercise Physiology, Sports Analytics</p>
+    </div>
+  </section>
+
+  <section class="flex flex-wrap gap-3">
+    {resumeDownloads.ko && <a href={resumeDownloads.ko} download class="cta-dl cta-dl--primary">이력서 다운로드 (KO)</a>}
+    {resumeDownloads.en && <a href={resumeDownloads.en} download class="cta-dl cta-dl--secondary">Resume Download (EN)</a>}
+  </section>
+</Base>
+
+<style>
+  .resume-name { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.02em; line-height: 1.08; background: linear-gradient(135deg, #ffffff 18%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 0.5rem; filter: drop-shadow(0 0 22px rgba(250, 204, 21, 0.16)); }
+  .resume-name-sub { opacity: 0.72; }
+  .resume-title { font-size: 1.05rem; color: #a3adb8; margin-bottom: 1rem; }
+  .resume-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
+  .resume-fact { font-size: 0.72rem; font-family: "JetBrains Mono", monospace; padding: 0.28rem 0.6rem; border-radius: 999px; color: rgba(250, 204, 21, 0.82); border: 1px solid rgba(250, 204, 21, 0.18); background: rgba(250, 204, 21, 0.06); }
+  .resume-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+  .resume-link { font-size: 0.8rem; font-family: "JetBrains Mono", monospace; color: #8b949e; transition: color 0.2s, text-shadow 0.2s; }
+  .resume-link:hover { color: #facc15; text-shadow: 0 0 10px rgba(250, 204, 21, 0.25); }
+  .body-text { font-size: 0.95rem; line-height: 1.85; color: #8b949e; }
+  .timeline-item { padding-left: 1.25rem; border-left: 1px solid rgba(250, 204, 21, 0.22); }
+  .timeline-role { font-weight: 600; font-size: 0.95rem; color: #e2e8f0; margin-bottom: 0.25rem; }
+  .timeline-meta { font-size: 0.78rem; font-family: "JetBrains Mono", monospace; color: rgba(250, 204, 21, 0.62); margin-bottom: 0.6rem; }
+  .timeline-desc { font-size: 0.88rem; line-height: 1.75; color: #8b949e; }
+  .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+  @media (min-width: 640px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+  .project-card { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .project-name { font-weight: 600; font-size: 0.9rem; color: #e2e8f0; }
+  .project-desc { font-size: 0.82rem; line-height: 1.6; color: #8b949e; }
+  .project-links { display: flex; gap: 1rem; font-size: 0.78rem; margin-top: 0.25rem; }
+  .project-link { transition: color 0.2s; }
+  .project-link--primary { color: #facc15; }
+  .project-link--primary:hover { text-shadow: 0 0 10px rgba(250, 204, 21, 0.35); }
+  .project-link--secondary { color: #8b949e; }
+  .project-link--secondary:hover { color: #facc15; }
+  .skills-list { display: flex; flex-direction: column; gap: 1rem; }
+  .skill-row { display: flex; flex-direction: column; gap: 0.5rem; }
+  @media (min-width: 640px) { .skill-row { flex-direction: row; align-items: flex-start; } }
+  .skill-cat { font-size: 0.75rem; font-family: "JetBrains Mono", monospace; color: rgba(250, 204, 21, 0.62); min-width: 7rem; padding-top: 0.2rem; }
+  .cta-dl { padding: 0.55rem 1.2rem; border-radius: 6px; font-size: 0.82rem; font-weight: 500; transition: box-shadow 0.2s, border-color 0.2s; }
+  .cta-dl--primary { border: 1px solid rgba(250, 204, 21, 0.35); color: #facc15; background: rgba(250, 204, 21, 0.08); }
+  .cta-dl--primary:hover { box-shadow: 0 0 20px rgba(250, 204, 21, 0.18); }
+  .cta-dl--secondary { border: 1px solid rgba(250, 204, 21, 0.14); color: #8b949e; }
+  .cta-dl--secondary:hover { border-color: rgba(250, 204, 21, 0.28); color: #facc15; }
+</style>

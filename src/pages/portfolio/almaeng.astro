@@ -1,0 +1,93 @@
+﻿---
+import Base from '../../layouts/Base.astro'
+import SkillBadge from '../../components/SkillBadge.astro'
+
+const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'Docker', 'Coolify', 'Cloudflare']
+---
+
+<Base title="Almaeng | Wonsub Song (Tony)" lang="en">
+  <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
+    ??Portfolio
+  </a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">Almaeng</h1>
+      <span class="text-xs px-2 py-0.5 rounded" style="background:#001a00;color:#22c55e;border:1px solid #14532d;">
+        Live
+      </span>
+    </div>
+    <p class="text-lg mb-6" style="color:#a1a1aa;">
+      Supplement price intelligence product for the Korean market.
+    </p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <div class="flex gap-4 text-sm">
+      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener"
+         class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity"
+         style="background:#facc15;color:#000;">
+        Live Site ??      </a>
+      <a href="https://github.com/daemonxid/almaeng" target="_blank" rel="noopener"
+         class="px-4 py-2 rounded hover:border-zinc-600 transition-colors"
+         style="border:1px solid #333;color:#a1a1aa;">
+        GitHub ??      </a>
+    </div>
+  </header>
+
+  <div class="space-y-12" style="color:#a1a1aa;">
+    <section>
+      <h2 class="case-label">Problem</h2>
+      <p class="leading-relaxed">
+        Supplement prices vary significantly across Korean retailers (Coupang, iHerb Korea, brand stores).
+        Consumers have no easy way to compare prices in real-time, and MFDS (Ministry of Food and Drug Safety)
+        product data is scattered and hard to access.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Solution</h2>
+      <p class="leading-relaxed mb-4">
+        Aggregates product listings from Naver Shopping API and enriches them with MFDS regulatory data.
+        Server-rendered pages with HTMX for search interactions ??no React, no SPA overhead.
+      </p>
+      <ul class="space-y-2 text-sm">
+        <li>??Naver Shopping API integration for live price data</li>
+        <li>??MFDS API for official product safety information</li>
+        <li>??HTMX-powered search and filtering (no page reload)</li>
+        <li>??PostgreSQL full-text search with Korean tokenization</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Architecture Decision</h2>
+      <p class="leading-relaxed">
+        Chose Django + HTMX over React because the data is server-authoritative ??prices update from API,
+        not from client state. HTMX lets the server control UI state without a JavaScript bundle.
+        Deployed on Hetzner CPX32 via Coolify for full infrastructure ownership.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Infrastructure</h2>
+      <ul class="space-y-2 text-sm">
+        <li>??Hetzner CPX32 VPS (??0.49/month)</li>
+        <li>??Coolify for zero-downtime deployments</li>
+        <li>??GitHub Actions ??GHCR ??Coolify CD pipeline</li>
+        <li>??Cloudflare for DNS, CDN, and SSL</li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52525b;
+    margin-bottom: 1rem;
+  }
+</style>
+

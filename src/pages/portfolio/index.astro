@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro'
+import ProjectCard from '../../components/ProjectCard.astro'
+
+const projects = [
+  {
+    name: 'Almaeng',
+    desc: 'Supplement price intelligence platform integrating Naver Shopping search data with MFDS regulatory data, self-hosted on Hetzner via Coolify. Launched in 2025.12.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Docker', 'Coolify'],
+    url: 'https://almaeng.daemonx.cc',
+    github: 'https://github.com/daemonxid/almaeng',
+    href: '/portfolio/almaeng',
+    status: 'live' as const,
+  },
+  {
+    name: 'LawNGood',
+    desc: 'Legal news monitoring POC combining Naver News API collection, BeautifulSoup4 parsing, and Gemini-based classification.',
+    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
+    url: null,
+    github: 'https://github.com/ken-do-it/law_news_c_v2',
+    href: '/portfolio/LegalRadar',
+    status: 'live' as const,
+  },
+  {
+    name: 'SportsIQ',
+    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, Mirofish, and pgvector.',
+    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+    url: null,
+    github: null,
+    href: '/portfolio/kinetiq',
+    status: 'wip' as const,
+  },
+]
+---
+
+<Base title="Wonsub Song (Tony) | Portfolio" lang="en">
+  <header class="mb-12">
+    <h1 class="text-3xl font-bold mb-3">Portfolio</h1>
+    <p style="color:#8b949e;" class="text-sm">
+      Production deployments and work-in-progress builds.
+    </p>
+  </header>
+
+  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+    {projects.map(p => (
+      <ProjectCard
+        name={p.name}
+        desc={p.desc}
+        stack={p.stack}
+        url={p.url}
+        github={p.github}
+        href={p.href}
+        status={p.status}
+      />
+    ))}
+  </div>
+</Base>

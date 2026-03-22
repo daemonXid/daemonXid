@@ -1,0 +1,56 @@
+---
+import Base from '../../../layouts/Base.astro'
+import SkillBadge from '../../../components/SkillBadge.astro'
+
+const stack = ['Python', 'MediaPipe', 'YOLO', 'Django', 'PostgreSQL', 'pgvector']
+---
+
+<Base title="SportsIQ | Wonsub Song (Tony)" lang="ko">
+  <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">SportsIQ</h1>
+      <span class="status-wip">WIP</span>
+    </div>
+    <p class="lead">스포츠 과학 지식을 운동선수 움직임 분석용 Vision AI 제품으로 연결하는 프로젝트입니다.</p>
+    <p class="meta">진행 중 · 2026</p>
+    <div class="flex flex-wrap gap-2">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+  </header>
+
+  <div class="content-wrap">
+    <section>
+      <h2 class="case-label">왜 이 프로젝트인가</h2>
+      <p class="leading-relaxed">스포츠 과학 전공자는 관절 각도, 힘의 방향, 움직임 효율을 배웁니다. 하지만 실제 적용은 고가의 모션 캡처 장비에 의존하는 경우가 많습니다. SportsIQ는 표준 카메라와 포즈 추정 모델만으로 이 분석을 더 실용적인 제품 형태로 가져오려는 시도입니다.</p>
+      <p class="leading-relaxed mt-3">핵심은 단순 추적이 아니라, 스포츠 과학 지식을 바탕으로 의미 있는 선수 피드백으로 바꾸는 데 있습니다.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">계획 중인 구조</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ 비디오 업로드, 프레임 추출, MediaPipe 포즈 키포인트 생성</li>
+        <li>→ 관절 각도, 대칭성, 가동 범위 기반 biomechanics 분석</li>
+        <li>→ pgvector 기반 움직임 임베딩 저장 및 세션 간 비교</li>
+        <li>→ Django + HTMX 기반 프레임 단위 분석 UI</li>
+        <li>→ 팀 스포츠 상황을 위한 YOLO 기반 멀티플레이어 추적</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">상태</h2>
+      <p class="leading-relaxed">2026년 현재 진행 중인 프로젝트입니다. 아키텍처는 정리된 상태이고 구현을 이어가고 있습니다.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
+  .back-link:hover { color:#facc15; }
+  .status-wip { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#1a1a00; color:#facc15; border:1px solid #333300; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; }
+  .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; }
+  .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
+  .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
+</style>

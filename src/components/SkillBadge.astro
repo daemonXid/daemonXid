@@ -1,0 +1,23 @@
+---
+interface Props { name: string }
+const { name } = Astro.props
+---
+<span class="skill-badge">{name}</span>
+
+<style>
+  .skill-badge {
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 0.22em 0.55em;
+    border-radius: 4px;
+    background: rgba(250, 204, 21, 0.05);
+    border: 1px solid rgba(250, 204, 21, 0.15);
+    color: rgba(250, 204, 21, 0.55);
+    display: inline-block;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-badge:hover {
+    border-color: rgba(250, 204, 21, 0.4);
+    color: #facc15;
+  }
+</style>

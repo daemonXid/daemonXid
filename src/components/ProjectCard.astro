@@ -1,0 +1,168 @@
+---
+interface Props {
+  name: string
+  desc: string
+  stack: string[]
+  url?: string | null
+  github?: string
+  status?: 'live' | 'wip'
+  href?: string
+}
+
+const { name, desc, stack, url, github, status = 'live', href } = Astro.props
+---
+
+<article class="glass-card card" data-card-3d>
+  <!-- Hover shimmer -->
+  <div class="shimmer" aria-hidden="true"></div>
+
+  <div class="card-inner">
+    <div class="card-header">
+      <h3 class="card-name">{name}</h3>
+      {status === 'live' && (
+        <span class="badge badge--live pulse">● LIVE</span>
+      )}
+      {status === 'wip' && (
+        <span class="badge badge--wip">◌ WIP</span>
+      )}
+    </div>
+
+    <p class="card-desc">{desc}</p>
+
+    <div class="card-stack">
+      {stack.map(s => <span class="stack-tag">{s}</span>)}
+    </div>
+
+    <div class="card-links">
+      {url && (
+        <a href={url} target="_blank" rel="noopener" class="card-link card-link--primary">
+          Live ↗
+        </a>
+      )}
+      {github && (
+        <a href={github} target="_blank" rel="noopener" class="card-link card-link--dim">
+          GitHub ↗
+        </a>
+      )}
+      {href && (
+        <a href={href} class="card-link card-link--dim">
+          Case Study →
+        </a>
+      )}
+    </div>
+  </div>
+
+  <!-- Corner brackets -->
+  <div class="corner corner-tl"></div>
+  <div class="corner corner-br"></div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    overflow: hidden;
+    cursor: default;
+  }
+
+  .shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(250,204,21,0.04) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .card:hover .shimmer { opacity: 1; }
+
+  .card-inner {
+    padding: 1.1rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Corner brackets */
+  .corner {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+  .corner-tl { top: 5px; left: 5px; border-top: 1.5px solid #facc15; border-left: 1.5px solid #facc15; }
+  .corner-br { bottom: 5px; right: 5px; border-bottom: 1.5px solid rgba(250,204,21,0.4); border-right: 1.5px solid rgba(250,204,21,0.4); }
+  .card:hover .corner { opacity: 1; }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+  .card-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #e6edf3;
+  }
+
+  .badge {
+    font-size: 0.6rem;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    padding: 0.2em 0.55em;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .badge--live {
+    color: #3fb950;
+    background: rgba(63, 185, 80, 0.08);
+    border: 1px solid rgba(63, 185, 80, 0.2);
+  }
+  .badge--wip {
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.07);
+    border: 1px solid rgba(250, 204, 21, 0.2);
+  }
+
+  .card-desc {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: #8b949e;
+  }
+
+  .card-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+  .stack-tag {
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 0.18em 0.5em;
+    border-radius: 4px;
+    background: rgba(250, 204, 21, 0.06);
+    border: 1px solid rgba(250, 204, 21, 0.15);
+    color: rgba(250, 204, 21, 0.82);
+  }
+
+  .card-links {
+    display: flex;
+    gap: 0.85rem;
+    font-size: 0.78rem;
+    margin-top: 0.1rem;
+  }
+  .card-link { transition: color 0.2s, text-shadow 0.2s; }
+  .card-link--primary {
+    color: #facc15;
+  }
+  .card-link--primary:hover {
+    text-shadow: 0 0 10px rgba(250,204,21,0.6);
+  }
+  .card-link--dim {
+    color: #8b949e;
+  }
+  .card-link--dim:hover { color: #facc15; }
+</style>

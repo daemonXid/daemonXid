@@ -1,0 +1,63 @@
+---
+import Base from '../../../layouts/Base.astro'
+import SkillBadge from '../../../components/SkillBadge.astro'
+
+const stack = ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL', 'Pydantic']
+---
+
+<Base title="LawNGood | Wonsub Song (Tony)" lang="ko">
+  <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">LawNGood</h1>
+      <span class="status-poc">POC</span>
+    </div>
+    <p class="lead">LawAndGood 인턴십에서 진행한 법률 뉴스 모니터링 proof of concept입니다.</p>
+    <p class="meta">LawAndGood × Likelion Rocket Team · 2026.02</p>
+    <div class="flex flex-wrap gap-2 mb-6">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+    <a href="https://github.com/ken-do-it/law_news_c_v2" target="_blank" rel="noopener" class="cta-secondary">GitHub →</a>
+  </header>
+
+  <div class="content-wrap">
+    <section>
+      <h2 class="case-label">배경</h2>
+      <p class="leading-relaxed">LawAndGood 인턴십에서 2인 팀으로 진행한 프로젝트입니다. 사건 관리 흐름과 관련된 법률 뉴스 신호를 사람이 일일이 찾지 않고도 빠르게 검토할 수 있는 모니터링 시스템이 필요했습니다.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">구현 내용</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ Naver News API 기반 뉴스 수집 흐름</li>
+        <li>→ BeautifulSoup4를 활용한 기사 본문 파싱 및 정제</li>
+        <li>→ Gemini 기반 법률 분쟁 관련성 및 리스크 분류 흐름</li>
+        <li>→ Pydantic 스키마를 통한 구조화된 LLM 출력 검증</li>
+        <li>→ 사건과 기사 매칭 결과를 검토할 수 있는 Django 관리자 화면</li>
+        <li>→ 기사 이력과 분류 결과를 저장하는 PostgreSQL 구조</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">아키텍처</h2>
+      <p class="leading-relaxed">파이프라인은 수집, 파싱, 분류, 검토 단계로 나뉩니다. Naver News API가 초기 기사 목록을 제공하고, BeautifulSoup4가 본문을 정제하며, Gemini가 법률 관련성을 분류하고, 검증된 결과가 Django와 PostgreSQL로 연결됩니다. POC 범위에서 빠르게 구현하면서도 운영 가능한 흐름을 만들기 위한 구조였습니다.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">결과</h2>
+      <p class="leading-relaxed">작동하는 POC로 납품했습니다. 인턴십 프로젝트 범위에서 수동 뉴스 확인 부담을 줄이고, 법률 뉴스 검토를 더 구조화된 방식으로 처리할 수 있도록 만들었습니다.</p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
+  .back-link:hover { color:#facc15; }
+  .status-poc { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#1a1a00; color:#facc15; border:1px solid #333300; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; }
+  .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; }
+  .cta-secondary { padding:0.55rem 1rem; border-radius:6px; border:1px solid #333; color:#8b949e; display:inline-block; }
+  .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
+  .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
+</style>

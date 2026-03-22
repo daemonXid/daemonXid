@@ -1,0 +1,37 @@
+---
+import SocialLinks from './SocialLinks.astro'
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-copy">
+      <span style="color:#30363d;font-family:'JetBrains Mono',monospace;">//</span>
+      © 2026 Wonsub Song (Tony)
+    </span>
+    <SocialLinks size="sm" />
+  </div>
+</footer>
+
+<style>
+  .footer {
+    margin-top: 8rem;
+    border-top: 1px solid #21262d;
+    position: relative;
+    z-index: 1;
+  }
+  .footer-inner {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-copy {
+    font-size: 0.78rem;
+    color: #8b949e;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>

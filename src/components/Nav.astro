@@ -1,0 +1,156 @@
+---
+import SocialLinks from './SocialLinks.astro'
+import { detectLang, withLang, type SiteLang } from '../lib/i18n'
+
+interface Props {
+  lang?: SiteLang
+}
+
+const current = Astro.url.pathname
+const currentLang = Astro.props.lang ?? detectLang(current)
+const labels = currentLang === 'ko'
+  ? { home: '홈', resume: '이력서', portfolio: '포트폴리오', blog: '블로그' }
+  : { home: 'Home', resume: 'Resume', portfolio: 'Portfolio', blog: 'Blog' }
+
+const links = [
+  { href: withLang('/', currentLang), label: labels.home },
+  { href: withLang('/resume', currentLang), label: labels.resume },
+  { href: withLang('/portfolio', currentLang), label: labels.portfolio },
+  { href: withLang('/blog', currentLang), label: labels.blog },
+]
+
+const isActive = (href: string) =>
+  href === '/ko' || href === '/' ? current === href : current.startsWith(href)
+
+const otherLang: SiteLang = currentLang === 'ko' ? 'en' : 'ko'
+const otherLangHref = withLang(current, otherLang)
+---
+
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href={withLang('/', currentLang)} class="logo">
+      <span class="logo-bracket">[</span>WT<span class="logo-bracket">]</span>
+    </a>
+
+    <div class="nav-right">
+      <ul class="nav-links">
+        {links.map(l => (
+          <li>
+            <a href={l.href} class={`nav-link ${isActive(l.href) ? 'nav-link--active' : ''}`}>
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a href={otherLangHref} class="lang-toggle" aria-label={`Switch language to ${otherLang.toUpperCase()}`}>
+        <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
+        <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
+      </a>
+      <SocialLinks size="sm" />
+    </div>
+  </div>
+</nav>
+
+<style>
+  .nav-bar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(13, 17, 23, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid #21262d;
+  }
+
+  .nav-inner {
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: 0.85rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #facc15;
+    letter-spacing: 0.05em;
+    transition: filter 0.2s;
+  }
+  .logo:hover { filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.6)); }
+  .logo-bracket { color: #8b949e; opacity: 0.6; }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.25rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-link {
+    font-size: 0.82rem;
+    color: #8b949e;
+    transition: color 0.2s, text-shadow 0.2s;
+  }
+  .nav-link:hover {
+    color: #e6edf3;
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.18);
+  }
+  .nav-link--active {
+    color: #facc15;
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.4);
+  }
+
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem;
+    border: 1px solid #30363d;
+    border-radius: 999px;
+    background: rgba(250, 204, 21, 0.03);
+    gap: 0.2rem;
+  }
+
+  .lang-chip {
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 0.22rem 0.5rem;
+    border-radius: 999px;
+    color: #8b949e;
+    transition: color 0.2s, background 0.2s;
+  }
+
+  .lang-chip--active {
+    background: rgba(250, 204, 21, 0.14);
+    color: #facc15;
+  }
+
+  @media (max-width: 720px) {
+    .nav-inner {
+      align-items: flex-start;
+      gap: 0.85rem;
+      flex-direction: column;
+    }
+
+    .nav-right {
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+    }
+
+    .nav-links {
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+    }
+  }
+</style>

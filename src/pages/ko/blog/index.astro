@@ -1,0 +1,81 @@
+---
+import Base from '../../../layouts/Base.astro'
+import { getCollection } from 'astro:content'
+
+const posts = (await getCollection('blog'))
+  .filter(p => !p.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+const categories = [
+  { key: 'daemon', label: 'DAEMON' },
+  { key: 'deployment', label: '배포' },
+  { key: 'sports-ai', label: '스포츠 AI' },
+  { key: 'retrospective', label: '회고' },
+] as const
+---
+
+<Base title="Wonsub Song (Tony) | 블로그" lang="ko">
+  <header class="mb-12">
+    <h1 class="page-title">블로그</h1>
+    <p class="page-sub">영문과 국문을 모두 포함해, 아키텍처 결정과 배포 경험, 기술 노트를 정리합니다.</p>
+  </header>
+
+  <div class="space-y-12">
+    {categories.map(({ key, label }) => {
+      const filtered = posts.filter(p => p.data.category === key)
+      if (!filtered.length) return null
+      return (
+        <section>
+          <h2 class="section-label">{label}</h2>
+          <ul class="post-list">
+            {filtered.map(post => (
+              <li>
+                <a href={post.data.lang === 'ko' ? `/ko/blog/${post.id}` : `/blog/${post.id}`} class="post-link">
+                  <span class="post-title">{post.data.title}</span>
+                  <span class="post-date">
+                    <span class={`post-lang post-lang--${post.data.lang}`}>{post.data.lang.toUpperCase()}</span>
+                    <span class="post-date-value">{post.data.date.toISOString().slice(0, 10)}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )
+    })}
+  </div>
+</Base>
+
+<style>
+  .page-title { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; background: linear-gradient(135deg, #ffffff 20%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .page-sub { font-size: 0.86rem; color: #8b949e; }
+  .post-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
+  .post-link { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.6rem 0.8rem; border-radius: 6px; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
+  .post-link:hover { border-color: rgba(250, 204, 21, 0.1); background: rgba(250, 204, 21, 0.02); }
+  .post-link:hover .post-title { color: #facc15; }
+  .post-title { font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
+  .post-date { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
+  .post-lang {
+    font-size: 0.62rem;
+    font-family: "JetBrains Mono", monospace;
+    padding: 0.16rem 0.38rem;
+    border-radius: 999px;
+    border: 1px solid rgba(250, 204, 21, 0.16);
+    color: #facc15;
+    background: rgba(250, 204, 21, 0.06);
+  }
+  .post-lang--ko {
+    color: #ffd76a;
+    background: rgba(250, 204, 21, 0.08);
+  }
+  .post-lang--en {
+    color: #e6edf3;
+    border-color: rgba(139, 148, 158, 0.24);
+    background: rgba(139, 148, 158, 0.08);
+  }
+  .post-date-value {
+    font-size: 0.68rem;
+    font-family: "JetBrains Mono", monospace;
+    color: #8b949e;
+  }
+</style>
