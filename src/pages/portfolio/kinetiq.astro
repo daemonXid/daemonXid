@@ -1,8 +1,51 @@
 ---
 import Base from '../../layouts/Base.astro'
+import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
+import { getExistingPortfolioMedia } from '../../lib/portfolioMedia'
 
-const stack = ['Python', 'MediaPipe', 'YOLO', 'Django', 'PostgreSQL', 'pgvector']
+const stack = ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector', 'Django', 'PostgreSQL']
+const media = getExistingPortfolioMedia([
+  { type: 'image', src: '/portfolio/sportsiq/graph.png', title: 'Knowledge Graph View', caption: 'Early view of graph-oriented retrieval and entity connections.' },
+  { type: 'image', src: '/portfolio/sportsiq/workflow.png', title: 'Agent Workflow', caption: 'Multi-agent and retrieval flow for analysis and knowledge operations.' },
+  { type: 'video', src: '/portfolio/sportsiq/demo.mp4', title: 'Prototype Demo', caption: 'Short product demo for the current in-progress build.' },
+])
+const techSections = [
+  {
+    title: 'Platform Direction',
+    bullets: [
+      'The project is moving from pure motion analysis into a broader sports knowledge platform.',
+      'Multi-agent workflows are used to orchestrate research, retrieval, synthesis, and structured feedback generation.',
+      'graphRAG, Mirofish, and pgvector are part of the current retrieval and knowledge-layer direction.',
+    ],
+  },
+  {
+    title: 'Data Model Snapshot',
+    code: `knowledge_entities
+- id
+- entity_type
+- canonical_name
+
+entity_edges
+- source_entity_id
+- target_entity_id
+- relation_type
+
+documents
+- id
+- source_type
+- summary
+
+document_embeddings
+- document_id
+- embedding
+
+agent_runs
+- id
+- task_type
+- status`,
+  },
+]
 ---
 
 <Base title="SportsIQ | Wonsub Song (Tony)" lang="en">
@@ -18,7 +61,7 @@ const stack = ['Python', 'MediaPipe', 'YOLO', 'Django', 'PostgreSQL', 'pgvector'
       </span>
     </div>
     <p class="text-lg mb-2" style="color:#a1a1aa;">
-      Vision AI product for athlete movement analysis. Sports Science meets pose estimation.
+      Knowledge platform in progress, combining sports-domain context with multi-agent workflows and graph-based retrieval.
     </p>
     <p class="text-sm mb-6" style="color:#52525b;">
       Ongoing · 2026
@@ -32,23 +75,24 @@ const stack = ['Python', 'MediaPipe', 'YOLO', 'Django', 'PostgreSQL', 'pgvector'
     <section>
       <h2 class="case-label">Why This Exists</h2>
       <p class="leading-relaxed">
-        Sports Science graduates spend years learning biomechanics, including joint angles, force vectors,
-        and movement efficiency. In practice, applying that knowledge often depends on expensive motion-capture systems.
-        SportsIQ is an attempt to bring that analysis into a more practical product using standard video and pose estimation.
+        SportsIQ started from movement analysis, but the current direction is broader: a knowledge platform that can store,
+        retrieve, and operationalize sports-domain information with AI assistance. The goal is to connect domain expertise,
+        structured knowledge, and product workflows in one system.
       </p>
       <p class="leading-relaxed mt-3">
-        The domain expertise is what turns raw pose keypoints into useful athletic feedback, rather than generic tracking output.
+        The long-term advantage is not just computer vision, but the ability to turn sports knowledge into usable retrieval,
+        reasoning, and feedback products.
       </p>
     </section>
 
     <section>
       <h2 class="case-label">Planned Architecture</h2>
       <ul class="space-y-2 text-sm">
-        <li>→ Video upload, frame extraction, and MediaPipe pose keypoints</li>
-        <li>→ Biomechanical analysis for joint angles, symmetry, and range of motion</li>
-        <li>→ pgvector storage for movement embeddings and cross-session comparison</li>
-        <li>→ Django backend + HTMX interface for frame-by-frame review</li>
-        <li>→ YOLO for multi-person tracking in team-sport scenarios</li>
+        <li>→ Multi-agent workflows for retrieval, synthesis, and feedback generation</li>
+        <li>→ graphRAG and Mirofish to connect entity relations with document-level retrieval</li>
+        <li>→ pgvector storage for semantic search and knowledge recall</li>
+        <li>→ Django backend for orchestration, storage, and review interfaces</li>
+        <li>→ Sports-domain data structures designed for future movement and performance use cases</li>
       </ul>
     </section>
 
@@ -59,6 +103,8 @@ const stack = ['Python', 'MediaPipe', 'YOLO', 'Django', 'PostgreSQL', 'pgvector'
         Updates will be posted in <a href="/blog" class="hover:text-white transition-colors" style="color:#facc15;">the blog</a>.
       </p>
     </section>
+
+    <ProjectShowcase media={media} techSections={techSections} />
   </div>
 </Base>
 

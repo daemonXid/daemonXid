@@ -1,8 +1,50 @@
 ---
 import Base from '../../layouts/Base.astro'
+import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
+import { getExistingPortfolioMedia } from '../../lib/portfolioMedia'
 
 const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Gemini Flash', 'Pydantic AI', 'Coolify']
+const media = getExistingPortfolioMedia([
+  { type: 'image', src: '/portfolio/almaeng/overview.png', title: 'Overview Screen', caption: 'Landing or search overview for ingredient-first supplement discovery.' },
+  { type: 'image', src: '/portfolio/almaeng/compare.png', title: 'Comparison View', caption: 'Ingredient and unit-price comparison across supplement products.' },
+  { type: 'video', src: '/portfolio/almaeng/demo.mp4', title: 'Product Walkthrough', caption: 'Short demo of search, comparison, and analysis flow.' },
+])
+const techSections = [
+  {
+    title: 'System Notes',
+    bullets: [
+      'Server-rendered flow with Django Ninja, HTMX, and Alpine.js to keep the interaction model simple and backend-driven.',
+      'PostgreSQL stores normalized product, ingredient, and comparison data while pgvector leaves room for semantic lookup features.',
+      'Gemini Flash and Pydantic AI are used for AI-assisted label interpretation and safer structured output.',
+    ],
+  },
+  {
+    title: 'Data Model Snapshot',
+    code: `supplements
+- id
+- brand
+- product_name
+- serving_size
+
+ingredients
+- id
+- name
+- daily_value_ref
+
+supplement_ingredients
+- supplement_id
+- ingredient_id
+- amount
+- unit
+
+price_snapshots
+- supplement_id
+- retailer
+- price
+- captured_at`,
+  },
+]
 ---
 
 <Base title="Almaeng | Wonsub Song (Tony)" lang="en">
@@ -97,6 +139,8 @@ const stack = ['Django Ninja', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'G
         <li>→ Build path optimized for fast solo iteration and low operational overhead</li>
       </ul>
     </section>
+
+    <ProjectShowcase media={media} techSections={techSections} />
   </div>
 </Base>
 

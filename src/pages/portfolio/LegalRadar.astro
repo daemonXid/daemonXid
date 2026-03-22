@@ -1,8 +1,49 @@
 ---
 import Base from '../../layouts/Base.astro'
+import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
+import { getExistingPortfolioMedia } from '../../lib/portfolioMedia'
 
 const stack = ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL', 'Pydantic']
+const media = getExistingPortfolioMedia([
+  { type: 'image', src: '/portfolio/lawngood/dashboard.png', title: 'Monitoring Dashboard', caption: 'Review surface for collected articles, classifications, and case monitoring.' },
+  { type: 'image', src: '/portfolio/lawngood/pipeline.png', title: 'Pipeline Diagram', caption: 'Collection, parsing, classification, and review flow.' },
+  { type: 'video', src: '/portfolio/lawngood/demo.mp4', title: 'Workflow Demo', caption: 'Short walkthrough of article collection and review flow.' },
+])
+const techSections = [
+  {
+    title: 'Pipeline Notes',
+    bullets: [
+      'Naver News API is used as the primary discovery source for legal-news collection.',
+      'BeautifulSoup4 cleans and extracts article bodies before AI analysis.',
+      'Gemini classification output is validated through Pydantic before being saved for review.',
+    ],
+  },
+  {
+    title: 'Data Model Snapshot',
+    code: `articles
+- id
+- source_url
+- title
+- published_at
+
+analyses
+- article_id
+- relevance_score
+- risk_label
+- summary
+
+cases
+- id
+- case_name
+- status
+
+case_articles
+- case_id
+- article_id
+- match_reason`,
+  },
+]
 ---
 
 <Base title="LawNGood | Wonsub Song (Tony)" lang="en">
@@ -80,6 +121,8 @@ const stack = ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'Post
         making it easier to collect signals, classify relevance, and review candidate cases inside one system.
       </p>
     </section>
+
+    <ProjectShowcase media={media} techSections={techSections} />
   </div>
 </Base>
 
