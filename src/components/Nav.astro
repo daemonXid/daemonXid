@@ -52,18 +52,19 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
       <SocialLinks size="sm" />
     </div>
 
-    <details class="nav-mobile">
-      <summary class="nav-mobile-summary" aria-label="Toggle navigation">
-        <span class="nav-mobile-lang">
-          <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
-          <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
-        </span>
-        <span class="hamburger" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </summary>
+    <div class="nav-mobile-shell">
+      <a href={otherLangHref} class="lang-toggle" aria-label={`Switch language to ${otherLang.toUpperCase()}`}>
+        <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
+        <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
+      </a>
+      <details class="nav-mobile">
+        <summary class="nav-mobile-summary" aria-label="Toggle navigation">
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </summary>
       <div class="nav-mobile-panel">
         <ul class="nav-links nav-links--mobile">
           {links.map(l => (
@@ -75,14 +76,11 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
           ))}
         </ul>
         <div class="nav-mobile-actions">
-          <a href={otherLangHref} class="lang-toggle" aria-label={`Switch language to ${otherLang.toUpperCase()}`}>
-            <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
-            <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
-          </a>
           <SocialLinks size="sm" />
         </div>
       </div>
-    </details>
+      </details>
+    </div>
   </div>
   <script>
     document.addEventListener('click', (event) => {
@@ -147,6 +145,12 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     gap: 1.5rem;
   }
 
+  .nav-mobile-shell {
+    display: none;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
   .nav-mobile {
     display: none;
     position: relative;
@@ -154,6 +158,8 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
 
   .nav-mobile-summary {
     list-style: none;
+    display: inline-flex;
+    cursor: pointer;
   }
 
   .nav-mobile-summary::-webkit-details-marker {
@@ -180,21 +186,11 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     border-radius: 999px;
   }
 
-  .nav-mobile-lang {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.18rem;
-    border: 1px solid #30363d;
-    border-radius: 999px;
-    background: rgba(250, 204, 21, 0.03);
-    gap: 0.2rem;
-  }
-
   .nav-mobile-panel {
     position: absolute;
     top: calc(100% + 0.7rem);
     right: 0;
-    width: min(15.5rem, calc(100vw - 1.5rem));
+    width: min(8.25rem, calc(100vw - 1rem));
     padding: 0.85rem;
     border: 1px solid rgba(250, 204, 21, 0.28);
     border-radius: 12px;
@@ -213,7 +209,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
   .nav-mobile-actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
     gap: 0.75rem;
     margin-top: 0.85rem;
   }
@@ -300,15 +296,16 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
       display: none;
     }
 
+    .nav-mobile-shell {
+      display: inline-flex;
+    }
+
     .nav-mobile {
       display: inline-block;
     }
 
     .nav-mobile-summary {
-      display: flex;
       align-items: center;
-      gap: 0.65rem;
-      cursor: pointer;
     }
 
     .nav-mobile-panel .nav-link {
@@ -325,16 +322,15 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     }
 
     .nav-mobile-summary {
-      justify-content: flex-end;
+      justify-content: center;
     }
 
     .nav-mobile-panel {
-      width: min(14.5rem, calc(100vw - 1rem));
+      width: min(7.8rem, calc(100vw - 1rem));
       padding: 0.72rem 0.78rem;
     }
 
     .nav-mobile-actions {
-      flex-wrap: wrap;
       gap: 0.65rem;
       margin-top: 0.7rem;
     }
