@@ -53,20 +53,6 @@ If the domain does not open immediately after deployment, the usual causes are:
 - DNS records have not fully propagated yet
 - HTTPS certificate issuance is still pending in GitHub Pages settings
 
-## Resume PDFs
-
-Resume download links are served from `public/`.
-
-Examples:
-
-```text
-public/
-├── resume_en.pdf
-├── jobkorea_ko.pdf
-```
-
-The site also includes resolver logic so resume file handling is less tightly coupled to one exact filename.
-
 ## Project Structure
 
 ```text
@@ -104,6 +90,5 @@ public/
 
 ## Notes
 
-- `docs/resume-versions/` contains tailored resume variants for different application contexts.
 - Blog posts support KO / EN pairing through `translationKey`.
 - Portfolio media can be placed under `public/portfolio/`.
