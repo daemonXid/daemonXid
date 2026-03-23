@@ -162,4 +162,28 @@ const metaItems = [
     color: rgba(250, 204, 21, 0.72);
     margin-bottom: 1rem;
   }
+
+  @media (max-width: 640px) {
+    .mb-12 {
+      margin-bottom: 2.25rem;
+    }
+
+    .text-3xl {
+      font-size: 1.75rem;
+      line-height: 1.2;
+    }
+
+    .text-lg {
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+
+    .space-y-12 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 2.2rem;
+    }
+
+    .leading-relaxed {
+      line-height: 1.75;
+    }
+  }
 </style>

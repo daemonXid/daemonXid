@@ -186,5 +186,64 @@ const resumeDownloads = getResumeDownloads()
   .cta-dl--primary:hover { box-shadow: 0 0 20px rgba(250, 204, 21, 0.18); }
   .cta-dl--secondary { border: 1px solid rgba(250, 204, 21, 0.14); color: #8b949e; }
   .cta-dl--secondary:hover { border-color: rgba(250, 204, 21, 0.28); color: #facc15; }
+
+  @media (max-width: 640px) {
+    .mb-16 {
+      margin-bottom: 3rem;
+    }
+
+    .mb-14 {
+      margin-bottom: 2.4rem;
+    }
+
+    .resume-links {
+      gap: 0.75rem 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .resume-link {
+      min-height: 2rem;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .body-text {
+      font-size: 0.9rem;
+      line-height: 1.78;
+    }
+
+    .timeline-item {
+      padding-left: 0.95rem;
+    }
+
+    .timeline-role {
+      font-size: 0.92rem;
+    }
+
+    .timeline-desc {
+      font-size: 0.86rem;
+      line-height: 1.68;
+    }
+
+    .projects-grid {
+      gap: 0.85rem;
+    }
+
+    .project-card {
+      padding: 1rem;
+    }
+
+    .project-links {
+      flex-wrap: wrap;
+      gap: 0.7rem 1rem;
+    }
+
+    .cta-dl {
+      width: 100%;
+      justify-content: center;
+      display: inline-flex;
+    }
+  }
 </style>
 

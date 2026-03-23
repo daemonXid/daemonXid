@@ -290,6 +290,54 @@ const {
     font-size: 0.82rem;
     line-height: 1.65;
   }
+
+  @media (max-width: 640px) {
+    .showcase-block {
+      gap: 0.8rem;
+    }
+
+    .media-grid,
+    .notes-grid {
+      gap: 0.8rem;
+    }
+
+    .media-meta,
+    .note-card {
+      padding: 0.85rem 0.9rem;
+    }
+
+    .media-caption,
+    .note-body,
+    .note-list {
+      font-size: 0.82rem;
+      line-height: 1.6;
+    }
+
+    .note-code {
+      font-size: 0.68rem;
+      padding: 0.8rem;
+    }
+
+    .media-dialog {
+      width: min(96vw, 1100px);
+      max-height: 94vh;
+      border-radius: 14px;
+    }
+
+    .media-dialog-body {
+      gap: 0.8rem;
+      padding: 0.85rem;
+    }
+
+    .media-dialog-stage {
+      min-height: 180px;
+    }
+
+    .media-dialog-close {
+      top: 0.6rem;
+      right: 0.6rem;
+    }
+  }
 </style>
 
 <script>

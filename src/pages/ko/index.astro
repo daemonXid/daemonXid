@@ -117,7 +117,7 @@ const featuredProjects = [
 </Base>
 
 <style>
-  .hero { margin-bottom: 6rem; padding-top: 2rem; }
+  .hero { margin-bottom: 6rem; padding-top: 2rem; min-height: calc(100vh - 8rem); display: flex; flex-direction: column; justify-content: center; }
   .journey-arc { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.75rem; font-family: "JetBrains Mono", monospace; font-size: 0.7rem; }
   .arc-dim { color: rgba(250, 204, 21, 0.35); }
   .arc-active { color: rgba(250, 204, 21, 0.82); }
@@ -172,5 +172,56 @@ const featuredProjects = [
     font-size: 0.68rem;
     font-family: "JetBrains Mono", monospace;
     color: #8b949e;
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      margin-bottom: 4.5rem;
+      padding-top: 0.8rem;
+      min-height: auto;
+    }
+
+    .journey-arc {
+      flex-wrap: wrap;
+      row-gap: 0.3rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.66rem;
+    }
+
+    .hero-title {
+      font-size: 0.98rem;
+      margin-bottom: 0.85rem;
+    }
+
+    .hero-copy {
+      font-size: 0.9rem;
+      line-height: 1.74;
+    }
+
+    .hero-actions {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .hero-ctas {
+      width: 100%;
+    }
+
+    .hero-ctas a {
+      flex: 1;
+      justify-content: center;
+      display: inline-flex;
+    }
+
+    .post-link {
+      gap: 0.5rem;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .post-meta-inline {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 </style>

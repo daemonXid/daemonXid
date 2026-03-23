@@ -57,4 +57,21 @@ const { items } = Astro.props
     color: #d0d7de;
     line-height: 1.45;
   }
+
+  @media (max-width: 640px) {
+    .project-meta-bar {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+      margin-bottom: 1.1rem;
+    }
+
+    .project-meta-item {
+      padding: 0.7rem 0.8rem;
+    }
+
+    .project-meta-value {
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+  }
 </style>

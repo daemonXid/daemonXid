@@ -41,7 +41,6 @@ const categories = [
                     <span class="post-excerpt">{getExcerpt(post)}</span>
                   </span>
                   <span class="post-date">
-                    <span class={`post-lang post-lang--${post.data.lang}`}>{post.data.lang.toUpperCase()}</span>
                     <span class="post-date-value">{post.data.date.toISOString().slice(0, 10)}</span>
                   </span>
                 </a>
@@ -65,27 +64,33 @@ const categories = [
   .post-title { font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
   .post-excerpt { font-size: 0.78rem; color: #8b949e; line-height: 1.6; }
   .post-date { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
-  .post-lang {
-    font-size: 0.62rem;
-    font-family: "JetBrains Mono", monospace;
-    padding: 0.16rem 0.38rem;
-    border-radius: 999px;
-    border: 1px solid rgba(250, 204, 21, 0.16);
-    color: #facc15;
-    background: rgba(250, 204, 21, 0.06);
-  }
-  .post-lang--ko {
-    color: #ffd76a;
-    background: rgba(250, 204, 21, 0.08);
-  }
-  .post-lang--en {
-    color: #e6edf3;
-    border-color: rgba(139, 148, 158, 0.24);
-    background: rgba(139, 148, 158, 0.08);
-  }
   .post-date-value {
     font-size: 0.68rem;
     font-family: "JetBrains Mono", monospace;
     color: #8b949e;
+  }
+
+  @media (max-width: 640px) {
+    .page-sub {
+      line-height: 1.7;
+    }
+
+    .post-link {
+      gap: 0.55rem;
+      flex-direction: column;
+    }
+
+    .post-copy {
+      max-width: none;
+    }
+
+    .post-excerpt {
+      font-size: 0.8rem;
+    }
+
+    .post-date {
+      width: 100%;
+      justify-content: flex-start;
+    }
   }
 </style>
