@@ -1,17 +1,19 @@
 # daemonxid.com
 
-Wonsub Song (Tony)의 개인 사이트입니다.  
-이력서, 포트폴리오, 기술 블로그를 한 곳에서 관리합니다.
+Personal website for Wonsub Song (Tony).
 
-**Live:** https://daemonxid.com
+The site combines a public web resume, selected project case studies, and a technical blog in Korean and English.
+
+Live: https://daemonxid.com
 
 ## Overview
 
-- Dark theme + yellow accent + grid background
-- KO / EN bilingual navigation
-- Web resume + PDF download
-- Portfolio detail pages with media-ready sections
-- Technical blog with language-aware routing
+- Dark theme with yellow accent and grid background
+- KO / EN bilingual navigation and routes
+- Public web resume with reduced personal detail exposure
+- Portfolio case studies with media-ready sections
+- Technical blog with translation pairing via `translationKey`
+- Lightweight installable PWA
 
 ## Stack
 
@@ -37,21 +39,16 @@ Build output is generated in `dist/`.
 
 ## Deployment
 
-GitHub Pages deployment is handled by GitHub Actions.
+Deployment is handled by GitHub Actions.
 
 - Workflow: `.github/workflows/deploy.yml`
 - Output: `dist/`
 - Custom domain: `daemonxid.com`
-- Domain files:
-  - `CNAME`
-  - `public/CNAME`
-  - `public/.nojekyll`
 
-If the domain does not open immediately after deployment, the usual causes are:
+Domain-related files:
 
-- GitHub Pages source is not set to `GitHub Actions`
-- DNS records have not fully propagated yet
-- HTTPS certificate issuance is still pending in GitHub Pages settings
+- `public/CNAME`
+- `public/.nojekyll`
 
 ## Project Structure
 
@@ -71,7 +68,10 @@ src/
 public/
 ├── portfolio/
 ├── favicon.svg
+├── manifest.webmanifest
 ├── og-default.svg
+├── pwa-icon.svg
+├── sw.js
 └── .nojekyll
 ```
 
@@ -87,6 +87,19 @@ public/
 /ko/portfolio  Portfolio (Korean)
 /ko/blog       Blog (Korean)
 ```
+
+## Recommended Posts
+
+- [Why I removed Redis and kept just PostgreSQL](https://daemonxid.com/blog/no-redis)
+- [Why I chose HTML, CSS, and HTMX over React for Django](https://daemonxid.com/blog/why-i-did-not-pick-react-for-django-en)
+- [Why I prefer vertical slice architecture](https://daemonxid.com/blog/why-i-prefer-vertical-slice)
+
+## Privacy Notes
+
+- Public-facing contact is limited to GitHub and LinkedIn.
+- Detailed resume drafts are intentionally kept out of version control.
+- Do not add email addresses, phone numbers, resume PDFs, or sensitive personal documents to tracked files.
+- Keep public timeline detail at month granularity unless there is a strong reason to be more specific.
 
 ## Notes
 
