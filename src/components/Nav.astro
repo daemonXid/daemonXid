@@ -149,6 +149,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
 
   .nav-mobile {
     display: none;
+    position: relative;
   }
 
   .nav-mobile-summary {
@@ -190,11 +191,16 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
   }
 
   .nav-mobile-panel {
-    margin-top: 0.7rem;
+    position: absolute;
+    top: calc(100% + 0.7rem);
+    right: 0;
+    width: min(18rem, calc(100vw - 2rem));
     padding: 0.85rem;
     border: 1px solid #21262d;
     border-radius: 12px;
     background: rgba(13, 17, 23, 0.96);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+    z-index: 60;
   }
 
   .nav-links--mobile {
@@ -285,7 +291,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
 
   @media (max-width: 720px) and (pointer: coarse) {
     .nav-inner {
-      padding: 0.8rem 1rem 0.95rem;
+      padding: 0.8rem 1rem;
     }
 
     .nav-right--desktop {
@@ -293,7 +299,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     }
 
     .nav-mobile {
-      display: block;
+      display: inline-block;
     }
 
     .nav-mobile-summary {
@@ -312,17 +318,12 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
   }
 
   @media (max-width: 480px) and (pointer: coarse) {
-    .nav-inner {
-      gap: 0.75rem;
-    }
-
     .logo-name {
       font-size: 0.88rem;
     }
 
     .nav-mobile-summary {
-      justify-content: space-between;
-      width: 100%;
+      justify-content: flex-end;
     }
 
     .nav-mobile-panel {
