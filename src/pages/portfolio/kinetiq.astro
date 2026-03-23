@@ -51,7 +51,7 @@ const metaItems = [
   { label: 'Role', value: 'Product direction, backend architecture, knowledge design' },
   { label: 'Team', value: 'Solo project' },
   { label: 'Period', value: 'Ongoing in 2026' },
-  { label: 'Links', value: 'Live only · GitHub private' },
+  { label: 'Links', value: 'Case study only · GitHub private' },
 ]
 ---
 
@@ -77,13 +77,9 @@ const metaItems = [
     <div class="flex flex-wrap gap-2">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
-    <div class="mt-6">
-      <a href="https://sportsiq.daemonxid.com" target="_blank" rel="noopener"
-         class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity inline-block"
-         style="background:#facc15;color:#000;">
-        Live Site →
-      </a>
-    </div>
+    <p class="text-sm mt-6" style="color:#8b949e;">
+      The live deployment is currently offline. This page documents the platform direction and architecture.
+    </p>
   </header>
 
   <div class="space-y-12" style="color:#a1a1aa;">

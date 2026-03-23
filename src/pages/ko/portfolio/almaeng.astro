@@ -50,7 +50,7 @@ const metaItems = [
   { label: 'Role', value: '제품 설계, 백엔드 아키텍처, 구현' },
   { label: 'Team', value: '개인 프로젝트' },
   { label: 'Period', value: '2025.12' },
-  { label: 'Links', value: 'Live만 공개 · GitHub 비공개' },
+  { label: 'Links', value: '케이스 스터디만 공개 · GitHub 비공개' },
 ]
 ---
 
@@ -60,7 +60,7 @@ const metaItems = [
   <header class="mb-12">
     <div class="flex items-center gap-3 mb-4">
       <h1 class="text-3xl font-bold">Almaeng</h1>
-      <span class="status-live">Live</span>
+      <span class="status-live">Offline</span>
     </div>
     <p class="lead">성분 투명성과 가격 비교를 함께 다루는 AI 영양제 분석 및 가격 인텔리전스 서비스입니다.</p>
     <p class="meta">개인 프로젝트 · 2025.12</p>
@@ -68,9 +68,7 @@ const metaItems = [
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
-    <div class="flex gap-4 text-sm">
-      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener" class="cta-primary">Live Site →</a>
-    </div>
+    <p class="meta">현재 live 배포는 내려간 상태이며, 이 페이지는 제품과 아키텍처 기록용입니다.</p>
   </header>
 
   <div class="content-wrap">
@@ -134,7 +132,7 @@ const metaItems = [
 <style>
   .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
   .back-link:hover { color:#facc15; }
-  .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#001a00; color:#22c55e; border:1px solid #14532d; }
+  .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:#1a1204; color:#f97316; border:1px solid rgba(249, 115, 22, 0.25); }
   .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; }
   .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; }
   .cta-primary { padding:0.55rem 1rem; border-radius:6px; background:#facc15; color:#000; font-weight:600; }

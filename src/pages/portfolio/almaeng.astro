@@ -50,7 +50,7 @@ const metaItems = [
   { label: 'Role', value: 'Product design, backend architecture, implementation' },
   { label: 'Team', value: 'Solo project' },
   { label: 'Period', value: '2025.12' },
-  { label: 'Links', value: 'Live only · GitHub private' },
+  { label: 'Links', value: 'Case study only · GitHub private' },
 ]
 ---
 
@@ -62,8 +62,8 @@ const metaItems = [
   <header class="mb-12">
     <div class="flex items-center gap-3 mb-4">
       <h1 class="text-3xl font-bold">Almaeng</h1>
-      <span class="text-xs px-2 py-0.5 rounded" style="background:#001a00;color:#22c55e;border:1px solid #14532d;">
-        Live
+      <span class="text-xs px-2 py-0.5 rounded" style="background:#1a1204;color:#f97316;border:1px solid rgba(249, 115, 22, 0.25);">
+        Offline
       </span>
     </div>
     <p class="text-lg mb-2" style="color:#a1a1aa;">
@@ -76,13 +76,9 @@ const metaItems = [
     <div class="flex flex-wrap gap-2 mb-6">
       {stack.map(s => <SkillBadge name={s} />)}
     </div>
-    <div class="flex gap-4 text-sm">
-      <a href="https://almaeng.daemonx.cc" target="_blank" rel="noopener"
-         class="px-4 py-2 rounded font-medium hover:opacity-90 transition-opacity"
-         style="background:#facc15;color:#000;">
-        Live Site →
-      </a>
-    </div>
+    <p class="text-sm mb-2" style="color:#8b949e;">
+      The live deployment is currently offline. This page documents the product and architecture.
+    </p>
   </header>
 
   <div class="space-y-12" style="color:#a1a1aa;">
