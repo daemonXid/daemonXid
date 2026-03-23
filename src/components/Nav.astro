@@ -35,7 +35,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
       <span class="logo-sub">(Tony)</span>
     </a>
 
-    <div class="nav-right">
+    <div class="nav-right nav-right--desktop">
       <ul class="nav-links">
         {links.map(l => (
           <li>
@@ -51,7 +51,54 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
       </a>
       <SocialLinks size="sm" />
     </div>
+
+    <details class="nav-mobile">
+      <summary class="nav-mobile-summary" aria-label="Toggle navigation">
+        <span class="nav-mobile-lang">
+          <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
+          <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
+        </span>
+        <span class="hamburger" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </summary>
+      <div class="nav-mobile-panel">
+        <ul class="nav-links nav-links--mobile">
+          {links.map(l => (
+            <li>
+              <a href={l.href} class={`nav-link ${isActive(l.href) ? 'nav-link--active' : ''}`}>
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="nav-mobile-actions">
+          <a href={otherLangHref} class="lang-toggle" aria-label={`Switch language to ${otherLang.toUpperCase()}`}>
+            <span class:list={['lang-chip', currentLang === 'ko' && 'lang-chip--active']}>KO</span>
+            <span class:list={['lang-chip', currentLang === 'en' && 'lang-chip--active']}>EN</span>
+          </a>
+          <SocialLinks size="sm" />
+        </div>
+      </div>
+    </details>
   </div>
+  <script>
+    document.addEventListener('click', (event) => {
+      const mobileNav = document.querySelector('.nav-mobile');
+      if (!(mobileNav instanceof HTMLDetailsElement)) return;
+      if (mobileNav.contains(event.target)) return;
+      mobileNav.open = false;
+    });
+
+    document.querySelectorAll('.nav-mobile-panel a').forEach((link) => {
+      link.addEventListener('click', () => {
+        const mobileNav = document.querySelector('.nav-mobile');
+        if (mobileNav instanceof HTMLDetailsElement) mobileNav.open = false;
+      });
+    });
+  </script>
 </nav>
 
 <style>
@@ -72,6 +119,7 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
   }
 
   .logo {
@@ -97,6 +145,69 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     display: flex;
     align-items: center;
     gap: 1.5rem;
+  }
+
+  .nav-mobile {
+    display: none;
+  }
+
+  .nav-mobile-summary {
+    list-style: none;
+  }
+
+  .nav-mobile-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .hamburger {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    background: rgba(250, 204, 21, 0.03);
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.22rem;
+  }
+
+  .hamburger span {
+    width: 0.95rem;
+    height: 1.5px;
+    background: #facc15;
+    border-radius: 999px;
+  }
+
+  .nav-mobile-lang {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.18rem;
+    border: 1px solid #30363d;
+    border-radius: 999px;
+    background: rgba(250, 204, 21, 0.03);
+    gap: 0.2rem;
+  }
+
+  .nav-mobile-panel {
+    margin-top: 0.7rem;
+    padding: 0.85rem;
+    border: 1px solid #21262d;
+    border-radius: 12px;
+    background: rgba(13, 17, 23, 0.96);
+  }
+
+  .nav-links--mobile {
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .nav-mobile-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-top: 0.85rem;
   }
 
   .nav-links {
@@ -145,59 +256,81 @@ const otherLangHref = forcedLangToggleHref ?? withLang(current, otherLang)
     color: #facc15;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 900px) {
     .nav-inner {
-      align-items: stretch;
-      gap: 0.9rem;
-      flex-direction: column;
-      padding: 0.8rem 1rem 0.95rem;
+      padding: 0.8rem 1rem;
     }
 
     .nav-right {
-      width: 100%;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.75rem;
+      gap: 0.9rem;
     }
 
     .nav-links {
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 0.55rem 0.7rem;
+      gap: 0.75rem;
     }
 
     .nav-link {
-      display: inline-flex;
-      align-items: center;
-      min-height: 2rem;
-      padding: 0.12rem 0;
-    }
-
-    .lang-toggle {
-      order: 2;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .logo {
-      flex-wrap: wrap;
-      row-gap: 0.1rem;
+      font-size: 0.78rem;
     }
 
     .logo-name {
       font-size: 0.88rem;
     }
 
-    .nav-right {
+    .logo-sub,
+    .lang-chip {
+      font-size: 0.64rem;
+    }
+  }
+
+  @media (max-width: 720px) and (pointer: coarse) {
+    .nav-inner {
+      padding: 0.8rem 1rem 0.95rem;
+    }
+
+    .nav-right--desktop {
+      display: none;
+    }
+
+    .nav-mobile {
+      display: block;
+    }
+
+    .nav-mobile-summary {
+      display: flex;
       align-items: center;
+      gap: 0.65rem;
+      cursor: pointer;
     }
 
-    .nav-links {
-      order: 1;
+    .nav-mobile-panel .nav-link {
+      display: inline-flex;
+      align-items: center;
+      min-height: 2.2rem;
+      padding: 0.1rem 0;
+    }
+  }
+
+  @media (max-width: 480px) and (pointer: coarse) {
+    .nav-inner {
+      gap: 0.75rem;
     }
 
-    .lang-toggle {
-      margin-right: auto;
+    .logo-name {
+      font-size: 0.88rem;
+    }
+
+    .nav-mobile-summary {
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-mobile-panel {
+      padding: 0.8rem;
+    }
+
+    .nav-mobile-actions {
+      flex-wrap: wrap;
     }
   }
 </style>
