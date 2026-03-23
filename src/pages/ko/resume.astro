@@ -24,6 +24,7 @@ const projects = [
     name: 'Almaeng',
     url: null,
     github: null,
+    href: '/ko/portfolio/almaeng',
     desc: '성분 투명성과 가격 효율 비교에 초점을 맞춘 AI 영양제 분석 및 가격 인텔리전스 제품입니다. 2025.12에 출시했습니다.',
     stack: ['Django Ninja', 'HTMX', 'pgvector', 'Gemini Flash', 'Coolify'],
   },
@@ -31,6 +32,7 @@ const projects = [
     name: 'LawNGood',
     url: null,
     github: 'https://github.com/ken-do-it/law_news_c_v2',
+    href: '/ko/portfolio/LegalRadar',
     desc: 'LawAndGood를 위해 만든 법률 뉴스 모니터링 POC로, Naver News API 수집과 기사 파싱, Gemini 분류를 결합했습니다.',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
   },
@@ -38,6 +40,7 @@ const projects = [
     name: 'SportsIQ',
     url: null,
     github: null,
+    href: '/ko/portfolio/kinetiq',
     desc: 'Multi-agent workflow, graphRAG, Mirofish, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
     stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
   },
@@ -88,12 +91,14 @@ const skills = {
     <div class="projects-grid">
       {projects.map(p => (
         <div class="glass-card project-card" data-card-3d>
+          {p.href && <a href={p.href} class="project-card-overlay" aria-label={`${p.name} case study`}></a>}
           <h3 class="project-name">{p.name}</h3>
           <p class="project-desc">{p.desc}</p>
           <div class="flex flex-wrap gap-2 mt-3">
             {p.stack.map(s => <SkillBadge name={s} />)}
           </div>
           <div class="project-links">
+            {p.href && <a href={p.href} class="project-link project-link--primary">케이스 스터디 →</a>}
             {p.url && <a href={p.url} target="_blank" rel="noopener" class="project-link project-link--primary">Live ↗</a>}
             {p.github && <a href={p.github} target="_blank" rel="noopener" class="project-link project-link--secondary">GitHub ↗</a>}
           </div>
@@ -151,10 +156,11 @@ const skills = {
   .timeline-desc { font-size: 0.88rem; line-height: 1.75; color: #8b949e; }
   .projects-grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
   @media (min-width: 640px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
-  .project-card { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .project-card { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; position: relative; overflow: hidden; }
+  .project-card-overlay { position: absolute; inset: 0; z-index: 1; border-radius: inherit; }
   .project-name { font-weight: 600; font-size: 0.9rem; color: #e2e8f0; }
   .project-desc { font-size: 0.82rem; line-height: 1.6; color: #8b949e; }
-  .project-links { display: flex; gap: 1rem; font-size: 0.78rem; margin-top: 0.25rem; }
+  .project-links { display: flex; gap: 1rem; font-size: 0.78rem; margin-top: 0.25rem; position: relative; z-index: 2; }
   .project-link { transition: color 0.2s; }
   .project-link--primary { color: #facc15; }
   .project-link--primary:hover { text-shadow: 0 0 10px rgba(250, 204, 21, 0.35); }
