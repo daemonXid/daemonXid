@@ -90,9 +90,9 @@ public/
 
 ## Recommended Posts
 
-- [Why I removed Redis and kept just PostgreSQL](https://daemonxid.com/blog/no-redis)
+- [Why I removed Redis and kept just PostgreSQL](https://daemonxid.com/blog/no-redis-en)
 - [Why I chose HTML, CSS, and HTMX over React for Django](https://daemonxid.com/blog/why-i-did-not-pick-react-for-django-en)
-- [Why I prefer vertical slice architecture](https://daemonxid.com/blog/why-i-prefer-vertical-slice)
+- [Why I prefer vertical slice architecture](https://daemonxid.com/blog/vertical-slice-en)
 
 ## Privacy Notes
 
