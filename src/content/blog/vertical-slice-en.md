@@ -3,6 +3,8 @@ title: "Why I Prefer Vertical Slice Architecture"
 excerpt: "Vertical Slice is not folder aesthetics. It is a structural choice for cohesion, localized change, and more controllable AI-assisted development."
 date: 2026-03-16
 category: daemon
+series: daemon-core
+seriesOrder: 3
 translationKey: vertical-slice
 tags: ["architecture", "vertical-slice", "modular-monolith", "django"]
 draft: false

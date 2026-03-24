@@ -3,6 +3,8 @@ title: "SportsIQ Architecture — Sports Science Meets Pose Estimation"
 excerpt: "Why MediaPipe was chosen first, where YOLO fits later, and how pgvector turns pose analysis into a usable sports-science system."
 date: 2026-03-20
 category: sports-ai
+series: sportsiq
+seriesOrder: 1
 translationKey: sportsiq-architecture
 tags: ["MediaPipe", "YOLO", "biomechanics", "architecture"]
 draft: false

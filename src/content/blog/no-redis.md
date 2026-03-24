@@ -2,7 +2,9 @@
 title: "PostgreSQL 하나로 Redis를 버린 이유"
 excerpt: "100만 트래픽 미만에서는 Redis보다 PostgreSQL 하나로 단순한 아키텍처를 유지하는 편이 더 낫다고 판단한 이유를 정리했습니다."
 date: 2026-03-19
-category: daemon
+category: backend
+series: daemon-backend
+seriesOrder: 3
 translationKey: no-redis
 tags: ["PostgreSQL", "pgmq", "architecture", "Redis"]
 draft: false

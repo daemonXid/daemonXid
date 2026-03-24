@@ -3,6 +3,8 @@ title: "uv vs pip — 왜 나는 이제 pip를 기본 선택으로 두지 않는
 excerpt: "pip은 설치 도구이고 uv는 프로젝트 전체 생명주기를 더 넓게 다룬다. 지금 내 기본값은 uv다."
 date: 2026-03-10
 category: daemon
+series: tooling
+seriesOrder: 1
 translationKey: uv-vs-pip
 tags: ["python", "uv", "pip", "packaging", "tooling"]
 draft: false

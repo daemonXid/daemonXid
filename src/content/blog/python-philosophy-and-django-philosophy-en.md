@@ -3,6 +3,8 @@ title: "Python Philosophy and Django Philosophy — Why I Still Choose This Pair
 excerpt: "Python and Django share a practical philosophy centered on readability, explicitness, and useful defaults. That still matters in product work."
 date: 2026-03-17
 category: daemon
+series: daemon-core
+seriesOrder: 1
 translationKey: python-and-django-philosophy
 tags: ["python", "django", "philosophy", "architecture"]
 draft: false

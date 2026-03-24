@@ -3,6 +3,8 @@ title: "SportsIQ 아키텍처 — 스포츠과학과 포즈 추정이 만나는 
 excerpt: "왜 처음엔 MediaPipe를 먼저 선택했는지, YOLO는 어디에 붙는지, 그리고 pgvector가 포즈 분석을 어떻게 스포츠과학 도구로 바꾸는지 정리했다."
 date: 2026-03-20
 category: sports-ai
+series: sportsiq
+seriesOrder: 1
 translationKey: sportsiq-architecture
 tags: ["MediaPipe", "YOLO", "biomechanics", "architecture"]
 draft: false

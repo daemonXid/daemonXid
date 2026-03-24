@@ -3,6 +3,8 @@ title: "Python의 철학과 Django의 철학 — 왜 나는 이 조합을 계속
 excerpt: "Python과 Django는 단순히 인기 있는 도구가 아니라, 읽기 쉬움과 실용성을 중심에 두는 철학적 연속선 위에 있다."
 date: 2026-03-17
 category: daemon
+series: daemon-core
+seriesOrder: 1
 translationKey: python-and-django-philosophy
 tags: ["python", "django", "philosophy", "architecture"]
 draft: false

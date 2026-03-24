@@ -3,6 +3,8 @@ title: "uv vs pip — Why pip Is No Longer My Default"
 excerpt: "pip installs packages, but uv manages more of the project lifecycle with better speed and ergonomics. My default has shifted."
 date: 2026-03-10
 category: daemon
+series: tooling
+seriesOrder: 1
 translationKey: uv-vs-pip
 tags: ["python", "uv", "pip", "packaging", "tooling"]
 draft: false

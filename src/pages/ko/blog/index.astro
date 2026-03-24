@@ -2,6 +2,8 @@
 import Base from '../../../layouts/Base.astro'
 import { getCollection } from 'astro:content'
 import { getBlogPath, selectPostsForLang } from '../../../lib/blogTranslations'
+import { getSeriesLabel } from '../../../lib/blogMeta'
+import { seriesIntro } from '../../../lib/blogVisuals'
 
 const posts = selectPostsForLang(
   (await getCollection('blog')).filter(p => !p.data.draft),
@@ -11,12 +13,14 @@ const posts = selectPostsForLang(
 const getExcerpt = (post: (typeof posts)[number]) =>
   post.data.excerpt ?? post.body.replace(/[#>*`-]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 140) + '…'
 
-const categories = [
-  { key: 'daemon', label: 'DAEMON' },
-  { key: 'deployment', label: '배포' },
-  { key: 'sports-ai', label: '스포츠 AI' },
-  { key: 'retrospective', label: '회고' },
-] as const
+const postsBySeries = new Map(
+  seriesIntro.ko.map(item => [
+    item.key,
+    posts
+      .filter(p => p.data.series === item.key)
+      .sort((a, b) => (a.data.seriesOrder ?? 999) - (b.data.seriesOrder ?? 999) || b.data.date.valueOf() - a.data.date.valueOf()),
+  ]),
+)
 ---
 
 <Base title="Wonsub Song (Tony) | 블로그" lang="ko" description="한글과 영문을 포함한 기술 노트, 아키텍처 기록, 배포 경험을 정리한 블로그입니다.">
@@ -25,18 +29,47 @@ const categories = [
     <p class="page-sub">영문과 한글을 모두 포함해, 아키텍처 결정과 배포 경험, 기술 노트를 정리합니다.</p>
   </header>
 
+  <section class="series-guide">
+    <div class="series-guide-header">
+      <h2 class="section-label">Series</h2>
+      <p class="series-guide-copy">평평한 글 목록보다, 반복되는 주제와 관점이 보이도록 시리즈 단위로 읽히게 구성했습니다.</p>
+    </div>
+    <div class="series-grid">
+      {seriesIntro.ko.map(item => {
+        const startPost = postsBySeries.get(item.key)?.[0]
+        return (
+          <article class="series-card">
+            <h3>{item.title}</h3>
+            <p>{item.copy}</p>
+            {startPost && (
+              <a class="series-start" href={getBlogPath(startPost)}>
+                <span aria-hidden="true">→</span> Start here: {startPost.data.title}
+              </a>
+            )}
+          </article>
+        )
+      })}
+    </div>
+  </section>
+
   <div class="space-y-12">
-    {categories.map(({ key, label }) => {
-      const filtered = posts.filter(p => p.data.category === key)
+    {seriesIntro.ko.map(({ key, title }) => {
+      const filtered = postsBySeries.get(key) ?? []
       if (!filtered.length) return null
       return (
         <section>
-          <h2 class="section-label">{label}</h2>
+          <h2 class="section-label">{title}</h2>
           <ul class="post-list">
             {filtered.map(post => (
               <li>
                 <a href={getBlogPath(post)} class="post-link">
                   <span class="post-copy">
+                    {(post.data.series || post.data.tags.length > 0) && (
+                      <span class="post-meta-line">
+                        {post.data.series && <span class="post-series">{getSeriesLabel('ko', post.data.series, post.data.seriesOrder)}</span>}
+                        {post.data.tags.length > 0 && <span class="post-tagline">{post.data.tags.slice(0, 3).join(' · ')}</span>}
+                      </span>
+                    )}
                     <span class="post-title">{post.data.title}</span>
                     <span class="post-excerpt">{getExcerpt(post)}</span>
                   </span>
@@ -56,11 +89,41 @@ const categories = [
 <style>
   .page-title { font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.4rem; background: linear-gradient(135deg, #ffffff 20%, #facc15 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
   .page-sub { font-size: 0.86rem; color: #8b949e; }
+  .series-guide { margin-bottom: 3rem; padding: 1rem 1.05rem; border: 1px solid rgba(250, 204, 21, 0.1); border-radius: 12px; background: linear-gradient(180deg, rgba(250, 204, 21, 0.03), rgba(255,255,255,0.01)); }
+  .series-guide-header { margin-bottom: 1rem; }
+  .series-guide-copy { font-size: 0.8rem; color: #8b949e; line-height: 1.7; max-width: 42rem; }
+  .series-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+  .series-card { padding: 0.85rem 0.9rem; border-radius: 10px; background: rgba(13, 17, 23, 0.45); border: 1px solid rgba(250, 204, 21, 0.08); }
+  .series-card h3 { margin: 0 0 0.35rem; font-size: 0.78rem; color: #facc15; text-transform: uppercase; letter-spacing: 0.08em; font-family: "JetBrains Mono", monospace; }
+  .series-card p { margin: 0; font-size: 0.76rem; color: #e6edf3; line-height: 1.7; }
+  .series-start {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.7rem;
+    font-size: 0.72rem;
+    color: #8b949e;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .series-start:hover { color: #facc15; }
   .post-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.3rem; }
   .post-link { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; padding: 0.8rem 0.9rem; border-radius: 8px; border: 1px solid transparent; transition: border-color 0.2s, background 0.2s; }
   .post-link:hover { border-color: rgba(250, 204, 21, 0.1); background: rgba(250, 204, 21, 0.02); }
   .post-link:hover .post-title { color: #facc15; }
   .post-copy { display:flex; flex-direction:column; gap:0.32rem; max-width:40rem; }
+  .post-meta-line { display: flex; flex-wrap: wrap; gap: 0.55rem; align-items: center; }
+  .post-series {
+    font-size: 0.66rem;
+    font-family: "JetBrains Mono", monospace;
+    color: rgba(250, 204, 21, 0.72);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .post-tagline {
+    font-size: 0.68rem;
+    color: rgba(250, 204, 21, 0.78);
+  }
   .post-title { font-size: 0.85rem; color: #e6edf3; transition: color 0.2s; }
   .post-excerpt { font-size: 0.78rem; color: #8b949e; line-height: 1.6; }
   .post-date { display: inline-flex; align-items: center; gap: 0.45rem; white-space: nowrap; }
@@ -73,6 +136,10 @@ const categories = [
   @media (max-width: 640px) {
     .page-sub {
       line-height: 1.7;
+    }
+
+    .series-grid {
+      grid-template-columns: 1fr;
     }
 
     .post-link {

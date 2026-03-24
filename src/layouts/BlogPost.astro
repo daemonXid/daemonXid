@@ -1,12 +1,17 @@
 ---
 import Base from './Base.astro'
+import { getSeriesLabel, type BlogCategory, type BlogSeries } from '../lib/blogMeta'
+import { getBlogOgImage } from '../lib/blogVisuals'
 
 interface Props {
   frontmatter: {
     title: string
     excerpt?: string
     date: Date
-    category: string
+    category: BlogCategory
+    series?: BlogSeries
+    seriesOrder?: number
+    ogImage?: string
     translationKey: string
     tags?: string[]
     lang?: string
@@ -16,18 +21,20 @@ interface Props {
 }
 
 const { frontmatter, lang = 'en', langToggleHref } = Astro.props
-const { title, excerpt, date, category, tags = [], lang: postLang = 'ko' } = frontmatter
+const { title, excerpt, date, category, series, seriesOrder, ogImage, tags = [], lang: postLang = 'ko' } = frontmatter
 const backHref = lang === 'ko' ? '/ko/blog' : '/blog'
 const backLabel = lang === 'ko' ? '← 블로그' : '← Blog'
+const seriesLabel = series ? getSeriesLabel(lang, series, seriesOrder) : null
+const resolvedOgImage = ogImage ?? getBlogOgImage(frontmatter)
 ---
 
-<Base title={`${title} | Wonsub Song (Tony)`} lang={lang} description={excerpt ?? title} langToggleHref={langToggleHref}>
+<Base title={`${title} | Wonsub Song (Tony)`} lang={lang} description={excerpt ?? title} ogImage={resolvedOgImage} langToggleHref={langToggleHref}>
   <a href={backHref} class="back-link">{backLabel}</a>
 
   <article>
     <header class="post-header">
       <div class="post-meta">
-        <span class="meta-cat">{category}</span>
+        {seriesLabel && <span class="meta-series">{seriesLabel}</span>}
         <span class="meta-sep">·</span>
         <time class="meta-date">{date.toISOString().slice(0, 10)}</time>
         {postLang === 'ko' && <><span class="meta-sep">·</span><span class="meta-lang">KO</span></>}
@@ -67,7 +74,7 @@ const backLabel = lang === 'ko' ? '← 블로그' : '← Blog'
     font-size: 0.7rem;
     font-family: "JetBrains Mono", monospace;
   }
-  .meta-cat  { color: rgba(250, 204, 21, 0.5); text-transform: uppercase; letter-spacing: 0.1em; }
+  .meta-series { color: rgba(250, 204, 21, 0.78); text-transform: uppercase; letter-spacing: 0.08em; }
   .meta-sep  { color: #30363d; }
   .meta-date { color: #8b949e; }
   .meta-lang { color: #8b949e; }

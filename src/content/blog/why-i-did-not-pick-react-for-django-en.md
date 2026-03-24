@@ -2,7 +2,9 @@
 title: "Why I Chose HTML, CSS, and HTMX Over React for Django"
 excerpt: "I did not avoid React out of ignorance or dislike. In the architecture I chose around Django, modular monoliths, and vertical slices, HTMX felt more natural."
 date: 2026-03-21
-category: daemon
+category: frontend
+series: daemon-ui
+seriesOrder: 1
 translationKey: django-react-vs-htmx
 tags: ["django", "react", "htmx", "architecture", "frontend"]
 draft: false

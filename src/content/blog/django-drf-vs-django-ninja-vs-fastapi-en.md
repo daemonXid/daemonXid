@@ -2,7 +2,9 @@
 title: "Django DRF vs Django Ninja vs FastAPI — What I Choose and When"
 excerpt: "DRF, Django Ninja, and FastAPI each solve different problems. I choose between them based on product friction, not hype."
 date: 2026-03-18
-category: daemon
+category: backend
+series: daemon-backend
+seriesOrder: 1
 translationKey: api-framework-selection
 tags: ["django", "drf", "django-ninja", "fastapi", "architecture"]
 draft: false

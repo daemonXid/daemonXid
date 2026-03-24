@@ -3,6 +3,8 @@ title: "pyproject.toml vs requirements.txt — Declaration Is Not the Same as In
 excerpt: "A pyproject.toml describes the project itself. A requirements.txt usually describes an install target. Treating them as the same causes confusion."
 date: 2026-03-11
 category: daemon
+series: tooling
+seriesOrder: 2
 translationKey: pyproject-vs-requirements
 tags: ["python", "pyproject", "requirements", "uv", "packaging"]
 draft: false

@@ -3,6 +3,8 @@ title: "pyproject.toml vs requirements.txt — 선언과 설치를 같은 것으
 excerpt: "pyproject.toml은 프로젝트 선언이고 requirements.txt는 설치 스크립트에 가깝다. 둘은 역할부터 다르다."
 date: 2026-03-11
 category: daemon
+series: tooling
+seriesOrder: 2
 translationKey: pyproject-vs-requirements
 tags: ["python", "pyproject", "requirements", "uv", "packaging"]
 draft: false

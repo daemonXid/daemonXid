@@ -2,7 +2,9 @@
 title: "Why I Removed Redis and Kept Just PostgreSQL"
 excerpt: "Below a certain scale, Redis often adds more operational complexity than real value. For many products, PostgreSQL plus pgmq is enough."
 date: 2026-03-19
-category: daemon
+category: backend
+series: daemon-backend
+seriesOrder: 3
 translationKey: no-redis
 tags: ["PostgreSQL", "pgmq", "architecture", "Redis"]
 draft: false

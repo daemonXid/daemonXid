@@ -3,6 +3,8 @@ title: "왜 나는 Vertical Slice를 고집하는가"
 excerpt: "기능별로 코드를 수직으로 묶는 Vertical Slice는 단순한 폴더 취향이 아니라, 응집도와 유지보수성을 지키는 구조적 선택이다."
 date: 2026-03-16
 category: daemon
+series: daemon-core
+seriesOrder: 3
 translationKey: vertical-slice
 tags: ["architecture", "vertical-slice", "modular-monolith", "django"]
 draft: false

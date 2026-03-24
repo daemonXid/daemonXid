@@ -2,7 +2,9 @@
 title: "왜 나는 Django에서 React 대신 HTML, CSS, HTMX를 먼저 골랐는가"
 excerpt: "React를 몰라서가 아니라, Django 기반 제품의 구조와 속도, 응집도를 생각했을 때 HTML, CSS, HTMX가 더 자연스러운 선택이었다."
 date: 2026-03-21
-category: daemon
+category: frontend
+series: daemon-ui
+seriesOrder: 1
 translationKey: django-react-vs-htmx
 tags: ["django", "react", "htmx", "architecture", "frontend"]
 draft: false

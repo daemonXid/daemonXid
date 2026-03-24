@@ -3,6 +3,8 @@ title: "Modular Monolith vs Microservice — Why I Start with the Monolith"
 excerpt: "Microservices can look scalable, but in early products they often import operational complexity before the product earns it."
 date: 2026-03-15
 category: daemon
+series: daemon-core
+seriesOrder: 2
 translationKey: modular-monolith-vs-microservice
 tags: ["architecture", "modular-monolith", "microservices", "deployment"]
 draft: false

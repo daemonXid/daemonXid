@@ -3,6 +3,8 @@ title: "Build Offloading and GHCR — Why I Let CI Build Instead of My Laptop"
 excerpt: "If container builds live only on a developer machine, reproducibility and deployment traceability suffer. CI plus GHCR gives a cleaner release path."
 date: 2026-03-14
 category: deployment
+series: deployment-patterns
+seriesOrder: 2
 translationKey: build-offloading-ghcr
 tags: ["ghcr", "docker", "deployment", "github-actions", "build"]
 draft: false

@@ -3,6 +3,8 @@ title: "Justfile vs Docker — They Are Not Alternatives"
 excerpt: "Justfile and Docker live at different layers. One defines command workflows, the other defines execution environments."
 date: 2026-03-12
 category: deployment
+series: deployment-patterns
+seriesOrder: 1
 translationKey: justfile-vs-docker
 tags: ["justfile", "docker", "developer-experience", "deployment"]
 draft: false

@@ -1,0 +1,11 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#101418"/>
+  <rect x="36" y="36" width="1128" height="558" rx="28" fill="#111827" stroke="#F59E0B"/>
+  <circle cx="1010" cy="174" r="110" fill="#F59E0B" fill-opacity=".12"/>
+  <circle cx="930" cy="244" r="46" fill="#FACC15" fill-opacity=".18"/>
+  <text x="88" y="126" fill="#FBBF24" font-family="Inter, Arial, sans-serif" font-size="28" letter-spacing="8">DAEMON UI</text>
+  <text x="88" y="242" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="700">Modern UI</text>
+  <text x="88" y="322" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="70" font-weight="700">Without SPA Gravity</text>
+  <text x="88" y="448" fill="#CBD5E1" font-family="Inter, Arial, sans-serif" font-size="34">HTMX + Alpine + server-centered flow</text>
+  <text x="88" y="540" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="28">daemonxid.com / django / htmx / alpine</text>
+</svg>

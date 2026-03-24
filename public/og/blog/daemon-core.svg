@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0B1020"/>
+  <rect x="36" y="36" width="1128" height="558" rx="28" fill="url(#bg)" stroke="#334155"/>
+  <path d="M88 472H1112" stroke="#FACC15" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M88 410H760" stroke="#38BDF8" stroke-opacity=".28" stroke-width="2"/>
+  <path d="M88 348H930" stroke="#38BDF8" stroke-opacity=".14" stroke-width="2"/>
+  <text x="88" y="140" fill="#FACC15" font-family="Inter, Arial, sans-serif" font-size="28" letter-spacing="8">DAEMON CORE</text>
+  <text x="88" y="250" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">Architecture</text>
+  <text x="88" y="332" fill="#E2E8F0" font-family="Inter, Arial, sans-serif" font-size="72" font-weight="700">As A Discipline</text>
+  <text x="88" y="540" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="28">daemonxid.com / modular monolith / vertical slice / django</text>
+  <defs>
+    <linearGradient id="bg" x1="36" y1="36" x2="1164" y2="594" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

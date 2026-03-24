@@ -1,0 +1,10 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#09090B"/>
+  <rect x="36" y="36" width="1128" height="558" rx="28" fill="#111827" stroke="#A855F7"/>
+  <path d="M900 116L1050 116L1112 178L1112 330L962 330L900 268Z" fill="#A855F7" fill-opacity=".12" stroke="#C084FC"/>
+  <text x="88" y="126" fill="#C084FC" font-family="Inter, Arial, sans-serif" font-size="28" letter-spacing="8">AI CONTRACTS</text>
+  <text x="88" y="236" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="700">Trust Structure</text>
+  <text x="88" y="316" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="68" font-weight="700">More Than Fluency</text>
+  <text x="88" y="446" fill="#D8B4FE" font-family="Inter, Arial, sans-serif" font-size="34">Pydantic v2 / PydanticAI / schema-first outputs</text>
+  <text x="88" y="540" fill="#94A3B8" font-family="Inter, Arial, sans-serif" font-size="28">daemonxid.com / ai systems / contracts / validation</text>
+</svg>

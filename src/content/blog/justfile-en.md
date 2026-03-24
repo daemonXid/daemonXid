@@ -3,6 +3,8 @@ title: "Justfile — Why I Define Standard Project Commands Explicitly"
 excerpt: "A Justfile is more than a shortcut list. It becomes the command interface that tells people and tools how the project should be run."
 date: 2026-03-13
 category: daemon
+series: tooling
+seriesOrder: 3
 translationKey: justfile-standard-commands
 tags: ["justfile", "developer-experience", "workflow", "tooling"]
 draft: false

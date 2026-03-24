@@ -3,6 +3,8 @@ title: "Justfile vs Docker — 비교 대상이 아니라 같이 쓰는 도구"
 excerpt: "Justfile은 명령 인터페이스이고 Docker는 실행 환경이다. 둘은 경쟁 관계가 아니라 서로 다른 레이어를 담당한다."
 date: 2026-03-12
 category: deployment
+series: deployment-patterns
+seriesOrder: 1
 translationKey: justfile-vs-docker
 tags: ["justfile", "docker", "developer-experience", "deployment"]
 draft: false
