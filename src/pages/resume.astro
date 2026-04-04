@@ -68,12 +68,30 @@ const skills = {
   <section class="mb-14">
     <h2 class="section-label">Summary</h2>
     <p class="body-text">
-      AI-first full-stack developer focused on reliable backend systems and structured AI workflows.
-      With a background in Sports Science and Health and competitive basketball,
-      I bring domain knowledge in sports, health, and movement analysis into product development.
-      I build systems with Django, HTMX, PostgreSQL, and Gemini API, with emphasis on validation,
-      maintainability, and production readiness.
+      I build backend systems and ship AI-integrated products. My background spans Sports Science
+      and software engineering — two unrelated disciplines I bridged independently. That
+      cross-domain learning ability is the same skill I apply when entering a new problem space:
+      absorb context fast, identify the real constraint, build what's actually needed.
     </p>
+    <p class="body-text" style="margin-top: 0.75rem;">
+      Stack: Django, HTMX, PostgreSQL, Gemini API. Production-deployed, self-operated.
+    </p>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Communication &amp; Thinking</h2>
+    <div class="timeline-item">
+      <h3 class="timeline-role">Asian Parliamentary Debate — University-level champion</h3>
+      <p class="timeline-desc">
+        University-level Asian Parliamentary Debate champion. Argued across 40+ distinct domains —
+        economics, policy, healthcare, technology — with 15-minute preparation windows. Developed
+        the ability to absorb unfamiliar context rapidly and structure defensible positions under
+        pressure — the same process that applies when entering any new problem space cold.
+      </p>
+      <p class="timeline-desc" style="margin-top: 0.5rem;">
+        English: Professional working proficiency.
+      </p>
+    </div>
   </section>
 
   <section class="mb-14">
@@ -89,6 +107,33 @@ const skills = {
           </div>
         </div>
       ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="section-label">Architecture</h2>
+    <div class="timeline-item">
+      <h3 class="timeline-role">DAEMON-ONE — Django architecture template</h3>
+      <p class="timeline-meta">Private repository — available on request</p>
+      <p class="timeline-desc">
+        After building 15+ side projects, I identified repeating pain points in maintainability
+        and onboarding cost. I designed DAEMON-ONE as a structured template embodying deliberate
+        architectural tradeoffs:
+      </p>
+      <ul style="margin-top: 0.6rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;">
+        <li class="timeline-desc"><strong style="color: #e2e8f0;">Modular Monolith</strong> over microservices — single deployable unit, domain boundaries enforced via <code>interface.py</code>.</li>
+        <li class="timeline-desc"><strong style="color: #e2e8f0;">HTMX + SSR</strong> over React — server-driven state, zero JS build step, LCP-first rendering.</li>
+        <li class="timeline-desc"><strong style="color: #e2e8f0;">Vertical Slicing</strong> — logic, template, and style colocated per feature. Delete a folder = feature gone cleanly.</li>
+      </ul>
+      <p class="timeline-desc" style="margin-top: 0.6rem;">
+        Used in production: Almaeng, SportsIQ (in development).
+      </p>
+      <div class="flex flex-wrap gap-2 mt-3">
+        <SkillBadge name="Python" />
+        <SkillBadge name="Django" />
+        <SkillBadge name="HTMX" />
+        <SkillBadge name="PostgreSQL" />
+      </div>
     </div>
   </section>
 
@@ -135,15 +180,6 @@ const skills = {
     </div>
   </section>
 
-  <section class="mb-14">
-    <h2 class="section-label">Additional</h2>
-    <div class="timeline-item">
-      <p class="timeline-desc">Founding President, SEDA.</p>
-      <p class="timeline-desc">Participated in intercollegiate English debate communities, including Debate Korea.</p>
-      <p class="timeline-desc">Winner of a university-level Asian Parliamentary Debate championship.</p>
-      <p class="timeline-desc">English: Professional working proficiency.</p>
-    </div>
-  </section>
 </Base>
 
 <style>
