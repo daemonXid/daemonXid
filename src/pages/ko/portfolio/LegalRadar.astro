@@ -109,7 +109,40 @@ const metaItems = [
 
     <section>
       <h2 class="case-label">아키텍처</h2>
-      <p class="leading-relaxed">파이프라인은 수집, 파싱, 분류, 검토 단계로 나뉩니다. Naver News API가 초기 기사 목록을 제공하고, BeautifulSoup4가 본문을 정제하며, Gemini가 법률 관련성과 모니터링 가치를 분류하고, 검증된 결과가 Django와 PostgreSQL로 연결됩니다. 짧은 인턴십 기간 안에 빠르게 구현하면서도 실제로 검토 가능한 흐름을 만들기 위한 구조였습니다.</p>
+      <p class="leading-relaxed">수집 → 파싱 → 분류 → 검토, 단계별로 역할을 분리했습니다. Pydantic이 Gemini와 PostgreSQL 사이에서 스키마 검증을 담당해 구조화되지 않은 LLM 출력이 직접 DB에 저장되는 일이 없습니다.</p>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">파이프라인</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">Naver News API</div>
+          <span class="flow-hint">1차 기사 발굴 소스</span>
+        </div>
+        <div class="flow-edge">↓ 수집</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">BeautifulSoup4</div>
+          <span class="flow-hint">본문 파싱 · HTML 정제</span>
+        </div>
+        <div class="flow-edge">↓ 정제된 텍스트</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">Gemini API</div>
+          <span class="flow-hint">relevance_score · risk_label · summary</span>
+        </div>
+        <div class="flow-edge">↓ 구조화 출력</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Pydantic</div>
+          <span class="flow-hint">스키마 검증 · 저장 안전 확인</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">articles · analyses · cases · case_articles</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Django 리뷰 UI</div>
+          <span class="flow-hint">모니터링 · 트리아지 · 사건-기사 매칭</span>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -130,4 +163,15 @@ const metaItems = [
   .cta-secondary { padding:0.55rem 1rem; border-radius:6px; border:1px solid #333; color:#8b949e; display:inline-block; }
   .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
   .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,204,21,0.4); margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: rgba(250,204,21,0.3); font-family: "JetBrains Mono", monospace; }
+  @media (max-width: 640px) { .flow-hint { display: none; } }
 </style>

@@ -125,11 +125,42 @@ const metaItems = [
     <section>
       <h2 class="case-label">Architecture</h2>
       <p class="leading-relaxed">
-        The pipeline separates collection, parsing, classification, and review. Naver News API provides the initial article set,
-        BeautifulSoup4 extracts and cleans article content, Gemini evaluates legal relevance and monitoring value, and validated outputs
-        move into Django and PostgreSQL for review. That structure kept the POC shippable within a short internship window while still
-        making the AI output operationally usable.
+        Four separated stages: collect → parse → classify → review.
+        Each stage has a single responsibility; Pydantic validation sits between Gemini and PostgreSQL so unstructured AI output never reaches the DB directly.
       </p>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">Pipeline</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">Naver News API</div>
+          <span class="flow-hint">primary article discovery source</span>
+        </div>
+        <div class="flow-edge">↓ collect</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">BeautifulSoup4</div>
+          <span class="flow-hint">parse · extract body · clean HTML</span>
+        </div>
+        <div class="flow-edge">↓ cleaned text</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">Gemini API</div>
+          <span class="flow-hint">relevance_score · risk_label · summary</span>
+        </div>
+        <div class="flow-edge">↓ structured output</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Pydantic</div>
+          <span class="flow-hint">schema validation · safe to write</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">articles · analyses · cases · case_articles</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Django Review UI</div>
+          <span class="flow-hint">monitor · triage · case-article matching</span>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -153,4 +184,15 @@ const metaItems = [
     color: #52525b;
     margin-bottom: 1rem;
   }
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: #52525b; font-family: "JetBrains Mono", monospace; }
+  @media (max-width: 640px) { .flow-hint { display: none; } }
 </style>

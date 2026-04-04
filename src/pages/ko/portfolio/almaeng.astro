@@ -112,7 +112,48 @@ const metaItems = [
 
     <section>
       <h2 class="case-label">아키텍처</h2>
-      <p class="leading-relaxed">프론트엔드 복잡도를 키우기보다 Django 중심의 서버 렌더링 구조에 HTMX와 Alpine.js를 조합했습니다. 검색, 비교, 분석 로직이 서버 권한형으로 움직이는 제품이기 때문에 React SPA보다 구현과 운영이 단순했고, 실험 속도도 더 빨랐습니다. PostgreSQL과 pgvector는 구조화 데이터와 향후 의미 기반 기능을 받치고, Gemini Flash와 Pydantic AI는 AI 분석 결과를 더 예측 가능한 형태로 다루는 데 사용했습니다.</p>
+      <p class="leading-relaxed">Django + HTMX 서버 렌더링 구조. 검색, 비교, 분석 로직이 모두 서버 권한형으로 동작합니다. Gemini Flash + Pydantic AI가 영양제 라벨을 구조화된 안전한 출력으로 변환합니다.</p>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">시스템 흐름</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">사용자</div>
+          <span class="flow-hint">브라우저</span>
+        </div>
+        <div class="flow-edge">↓ HTTP 요청</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Django + HTMX</div>
+          <span class="flow-hint">DAEMON-ONE · 검색, 비교, 분석 뷰 · SSR</span>
+        </div>
+        <div class="flow-edge">↓ 쿼리</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">supplements · ingredients · price_snapshots · pgvector</span>
+        </div>
+      </div>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">AI 라벨 분석</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">영양제 라벨</div>
+          <span class="flow-hint">원본 텍스트 입력</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">Gemini Flash</div>
+          <span class="flow-hint">성분 · 함량 · 단위 · 위험 플래그 추출</span>
+        </div>
+        <div class="flow-edge">↓ 구조화 출력</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Pydantic AI</div>
+          <span class="flow-hint">스키마 검증 · 저장 안전 확인</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">정규화된 성분 데이터</span>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -139,8 +180,19 @@ const metaItems = [
   .cta-secondary { padding:0.55rem 1rem; border-radius:6px; border:1px solid #333; color:#8b949e; }
   .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
   .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,204,21,0.4); margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: rgba(250,204,21,0.3); font-family: "JetBrains Mono", monospace; }
 
   @media (max-width: 640px) {
+    .flow-hint { display: none; }
     .lead {
       font-size: 0.96rem;
       line-height: 1.7;

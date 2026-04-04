@@ -132,11 +132,50 @@ const metaItems = [
     <section>
       <h2 class="case-label">Architecture</h2>
       <p class="leading-relaxed">
-        I chose a Django-centered server-rendered architecture with HTMX and Alpine.js rather than a React-heavy SPA. The product logic,
-        search behavior, and comparison flows are server authoritative, so keeping rendering close to the backend reduced complexity and made
-        the iteration loop faster. PostgreSQL and pgvector support structured storage and future semantic features, while Gemini Flash and
-        Pydantic AI help shape AI-assisted product analysis into predictable outputs.
+        Server-rendered with Django + HTMX. Product logic, search, and comparison flows stay on the server — no React SPA.
+        PostgreSQL stores all normalized data; Gemini Flash + Pydantic AI turn supplement labels into structured, safe-to-store output.
       </p>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">System Flow</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">User</div>
+          <span class="flow-hint">browser</span>
+        </div>
+        <div class="flow-edge">↓ HTTP request</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Django + HTMX</div>
+          <span class="flow-hint">DAEMON-ONE · search, compare, analysis views · SSR</span>
+        </div>
+        <div class="flow-edge">↓ query</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">supplements · ingredients · price_snapshots · pgvector</span>
+        </div>
+      </div>
+
+      <p class="diag-sub" style="margin-top:1.25rem;">AI Label Analysis</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">Supplement Label</div>
+          <span class="flow-hint">raw text input</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">Gemini Flash</div>
+          <span class="flow-hint">extract ingredients · amounts · units · risk flags</span>
+        </div>
+        <div class="flow-edge">↓ structured output</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Pydantic AI</div>
+          <span class="flow-hint">schema validation · safe to store</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">normalized ingredient data</span>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -162,8 +201,19 @@ const metaItems = [
     color: rgba(250, 204, 21, 0.72);
     margin-bottom: 1rem;
   }
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: #52525b; font-family: "JetBrains Mono", monospace; }
 
   @media (max-width: 640px) {
+    .flow-hint { display: none; }
     .mb-12 {
       margin-bottom: 2.25rem;
     }

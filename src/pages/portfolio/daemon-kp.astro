@@ -97,6 +97,82 @@ const metaItems = [
         </div>
       </div>
       <p class="text-sm" style="color:#52525b;margin-top:0.75rem;">Core RAG flow (chunking → lexical search → AI answer) works out of the box.</p>
+
+      <p class="diag-sub" style="margin-top:1.5rem;">Detailed Flow</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">Source</div>
+          <span class="flow-hint">URL · File · API</span>
+        </div>
+        <div class="flow-edge">↓ parse (parsers.py)</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Document</div>
+          <span class="flow-hint">title · body · slug · summary</span>
+        </div>
+        <div class="flow-edge">↓ auto-chunk on save (1200 chars, 150 overlap)</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Chunks</div>
+          <span class="flow-hint">heading-aware · content_hash dedup</span>
+        </div>
+        <div class="flow-edge">↓ embed → pgvector HNSW · index → pg_search BM25</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">Search Index</div>
+          <span class="flow-hint">BM25 (45%) + cosine similarity (55%) → fused score</span>
+        </div>
+        <div class="flow-edge">↓ top-K chunks passed to LLM</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">Answer</div>
+          <span class="flow-hint">Gemini 2.5-flash · grounded generation · structured output</span>
+        </div>
+        <div class="flow-edge">↓ source_ids in response</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">Citation</div>
+          <span class="flow-hint">Chunk → Document · always traceable</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="case-label">Domain Map</h2>
+      <div class="domain-map">
+        <div class="domain-group">
+          <p class="dg-label">Knowledge Core</p>
+          <div class="dg-tags">
+            <span class="dg-tag">sources</span>
+            <span class="dg-tag">documents</span>
+            <span class="dg-tag">chunks</span>
+            <span class="dg-tag">topics</span>
+          </div>
+        </div>
+        <div class="domain-group">
+          <p class="dg-label">Intelligence</p>
+          <div class="dg-tags">
+            <span class="dg-tag">search</span>
+            <span class="dg-tag">answers</span>
+            <span class="dg-tag">entities</span>
+          </div>
+        </div>
+        <div class="domain-group">
+          <p class="dg-label">Interaction</p>
+          <div class="dg-tags">
+            <span class="dg-tag">discussions</span>
+            <span class="dg-tag">workspace</span>
+          </div>
+        </div>
+        <div class="domain-group">
+          <p class="dg-label">Pipeline</p>
+          <div class="dg-tags">
+            <span class="dg-tag">ingestion</span>
+          </div>
+        </div>
+        <div class="domain-group dg-span2">
+          <p class="dg-label">Foundation</p>
+          <div class="dg-tags">
+            <span class="dg-tag">core</span>
+            <span class="dg-tag">accounts</span>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section>
@@ -227,6 +303,24 @@ const metaItems = [
   .ct-done { color: #3fb950; white-space: nowrap; }
   .ct-partial { color: rgba(250, 204, 21, 0.7); white-space: nowrap; }
 
+  /* diagram */
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: #52525b; font-family: "JetBrains Mono", monospace; }
+  .domain-map { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+  .domain-group { padding: 0.7rem 0.85rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; background: rgba(255,255,255,0.01); }
+  .dg-span2 { grid-column: span 2; }
+  .dg-label { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,204,21,0.5); margin-bottom: 0.5rem; font-family: "JetBrains Mono", monospace; }
+  .dg-tags { display: flex; flex-wrap: wrap; gap: 0.3rem; }
+  .dg-tag { font-size: 0.72rem; font-family: "JetBrains Mono", monospace; padding: 0.15rem 0.45rem; border-radius: 3px; background: rgba(96,165,250,0.06); border: 1px solid rgba(96,165,250,0.15); color: #60a5fa; }
+
   @media (max-width: 640px) {
     .mb-12 { margin-bottom: 2.25rem; }
     .text-3xl { font-size: 1.75rem; line-height: 1.2; }
@@ -237,5 +331,8 @@ const metaItems = [
     .pipe-step { font-size: 0.72rem; padding: 0.2rem 0.45rem; }
     .ct-row { grid-template-columns: 1fr; gap: 0.2rem; }
     .ct-done, .ct-partial { font-size: 0.72rem; }
+    .flow-hint { display: none; }
+    .domain-map { grid-template-columns: 1fr; }
+    .dg-span2 { grid-column: span 1; }
   }
 </style>

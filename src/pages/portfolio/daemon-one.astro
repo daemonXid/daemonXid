@@ -70,6 +70,54 @@ const metaItems = [
     </section>
 
     <section>
+      <h2 class="case-label">Architecture</h2>
+
+      <p class="diag-sub">Folder Structure</p>
+<pre class="tree-block">backend/domains/
+├── <span class="th">accounts/</span>
+│   ├── <span class="th">state/</span>             <span class="tc">← DB Owner · models · migrations · admin</span>
+│   │   └── <span class="tk">interface.py</span>   <span class="ta">← only cross-domain exit</span>
+│   ├── <span class="th">logic/</span>             <span class="tc">← Stateless · pure functions · Pydantic (frozen)</span>
+│   └── <span class="th">pages/</span>             <span class="tc">← UI Slices · view + template colocated</span>
+│       └── profile/
+│           ├── views.py
+│           └── profile.html
+└── <span class="th">core/</span>                <span class="tc">← home · health · base models</span></pre>
+
+      <p class="diag-sub" style="margin-top:1.5rem;">Request Flow</p>
+      <div class="flow-col">
+        <div class="flow-row">
+          <div class="flow-box fb-blue">HTTP Request</div>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">pages/views.py</div>
+          <span class="flow-hint">thin handler</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-yellow">state/interface.py</div>
+          <span class="flow-hint">only cross-domain boundary</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">logic/services.py</div>
+          <span class="flow-hint">pure functions · Pydantic in/out · no DB access</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-gray">state/models.py</div>
+          <span class="flow-hint">Django ORM · django-lifecycle hooks</span>
+        </div>
+        <div class="flow-edge">↓</div>
+        <div class="flow-row">
+          <div class="flow-box fb-green">PostgreSQL</div>
+          <span class="flow-hint">pgvector · pgmq · pg_search</span>
+        </div>
+      </div>
+    </section>
+
+    <section>
       <h2 class="case-label">Template Assessment</h2>
       <div class="assess-grid text-sm">
         <div class="assess-item">
@@ -141,6 +189,24 @@ const metaItems = [
   .assess-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.4rem; }
   .assess-desc { font-size: 0.8rem; line-height: 1.55; color: #8b949e; }
   @media (max-width: 480px) { .assess-grid { grid-template-columns: 1fr; } }
+
+  /* diagram shared */
+  .diag-sub { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.65rem; font-family: "JetBrains Mono", monospace; }
+  .tree-block { font-family: "JetBrains Mono", monospace; font-size: 0.77rem; line-height: 1.75; color: #8b949e; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; padding: 1rem 1.2rem; overflow-x: auto; white-space: pre; }
+  .th { color: #e6edf3; }
+  .tk { color: #facc15; }
+  .tc { color: #52525b; }
+  .ta { color: rgba(250,204,21,0.65); }
+  .flow-col { display: flex; flex-direction: column; align-items: flex-start; }
+  .flow-row { display: flex; align-items: center; gap: 0.7rem; }
+  .flow-box { font-family: "JetBrains Mono", monospace; font-size: 0.79rem; padding: 0.38rem 0.85rem; border-radius: 5px; border: 1px solid; white-space: nowrap; }
+  .fb-blue  { color: #60a5fa; border-color: rgba(96,165,250,0.25);  background: rgba(96,165,250,0.05); }
+  .fb-gray  { color: #e6edf3; border-color: rgba(255,255,255,0.1);  background: rgba(255,255,255,0.02); }
+  .fb-yellow{ color: #facc15; border-color: rgba(250,204,21,0.25);  background: rgba(250,204,21,0.04); }
+  .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
+  .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.75rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
+  .flow-hint { font-size: 0.71rem; color: #52525b; font-family: "JetBrains Mono", monospace; }
+  @media (max-width: 640px) { .flow-hint { display: none; } .tree-block { font-size: 0.7rem; padding: 0.75rem 0.9rem; } }
 
   @media (max-width: 640px) {
     .mb-12 { margin-bottom: 2.25rem; }
