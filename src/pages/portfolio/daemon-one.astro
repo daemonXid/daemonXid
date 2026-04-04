@@ -70,6 +70,26 @@ const metaItems = [
     </section>
 
     <section>
+      <h2 class="case-label">Template Assessment</h2>
+      <div class="assess-grid text-sm">
+        <div class="assess-item">
+          <p class="assess-score">80%</p>
+          <p class="assess-label">Efficiency</p>
+          <p class="assess-desc">One-command init, auto-domain discovery, full CI/CD pipeline wired.</p>
+        </div>
+        <div class="assess-item">
+          <p class="assess-score">90%</p>
+          <p class="assess-label">Effectiveness</p>
+          <p class="assess-desc">Auth, AI integration, hybrid search, background jobs, smoke-tested deploys — production-grade out of the box.</p>
+        </div>
+      </div>
+      <p class="leading-relaxed text-sm" style="margin-top:1rem;">
+        CI pipeline: <code>pytest</code> → <code>smoke-test</code> (real PostgreSQL, health check) → <code>GHCR build+push</code>.
+        The Docker image is never published if smoke fails — catches "tests pass but prod breaks" before it ships.
+      </p>
+    </section>
+
+    <section>
       <h2 class="case-label">Related Writing</h2>
       <ul class="space-y-2 text-sm">
         <li>→ <a href="/blog/modular-monolith-vs-microservice-en" style="color:#facc15;" class="hover:text-white transition-colors">Modular Monolith vs Microservice — Why I Start with the Monolith</a></li>
@@ -115,6 +135,12 @@ const metaItems = [
     padding: 0.1em 0.35em;
     border-radius: 3px;
   }
+  .assess-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; }
+  .assess-item { padding: 0.9rem 1rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; background: rgba(255,255,255,0.01); }
+  .assess-score { font-size: 1.6rem; font-weight: 700; font-family: "JetBrains Mono", monospace; color: #facc15; line-height: 1; margin-bottom: 0.2rem; }
+  .assess-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: #52525b; margin-bottom: 0.4rem; }
+  .assess-desc { font-size: 0.8rem; line-height: 1.55; color: #8b949e; }
+  @media (max-width: 480px) { .assess-grid { grid-template-columns: 1fr; } }
 
   @media (max-width: 640px) {
     .mb-12 { margin-bottom: 2.25rem; }

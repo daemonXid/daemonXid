@@ -1,0 +1,241 @@
+---
+import Base from '../../layouts/Base.astro'
+import ProjectMetaBar from '../../components/ProjectMetaBar.astro'
+import SkillBadge from '../../components/SkillBadge.astro'
+
+const stack = ['Django', 'HTMX', 'pgvector', 'pg_search', 'Gemini API', 'Pydantic AI', 'Taskiq', 'Docker', 'Coolify']
+const metaItems = [
+  { label: 'Type', value: 'Architecture template' },
+  { label: 'Role', value: 'Designer & sole author' },
+  { label: 'Repository', value: 'Private · available on request' },
+  { label: 'Built on it', value: 'SportsIQ' },
+]
+---
+
+<Base title="DAEMON-KP | Wonsub Song (Tony)" lang="en" description="DAEMON-KP: Django architecture template for knowledge platforms. End-to-end RAG pipeline — Source → Document → Chunk → Hybrid Search → Grounded Answer → Citation.">
+  <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
+    ← Portfolio
+  </a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">DAEMON-KP</h1>
+      <span style="font-size:0.75rem;padding:0.2rem 0.5rem;border-radius:4px;background:#0a1628;color:#60a5fa;border:1px solid #1e3a5f;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.04em;">
+        ARCH
+      </span>
+    </div>
+    <p class="text-lg mb-2" style="color:#a1a1aa;">
+      A Django architecture template for knowledge platforms — an end-to-end RAG pipeline from source ingestion to citation-grounded answers.
+    </p>
+    <p class="text-sm mb-6" style="color:#52525b;">
+      Private repository · Available on request
+    </p>
+    <ProjectMetaBar items={metaItems} />
+    <div class="flex flex-wrap gap-2">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+  </header>
+
+  <div class="space-y-12" style="color:#a1a1aa;">
+    <section>
+      <h2 class="case-label">Why It Exists</h2>
+      <p class="leading-relaxed">
+        Every knowledge product faces the same structural problem: getting from raw sources to answers
+        a user can actually trust. The pipeline sounds simple — ingest, chunk, search, answer — but the
+        failure modes compound: hallucinated citations, keyword-only search missing semantic intent, semantic
+        search missing exact terms. DAEMON-KP is the architecture I designed to solve that, purpose-built for
+        knowledge-heavy products where answer quality is the product.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Pipeline</h2>
+      <div class="pipeline-row">
+        <span class="pipe-step">Source</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-step">Document</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-step">Chunk</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-step">Search</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-step">Answer</span>
+        <span class="pipe-arrow">→</span>
+        <span class="pipe-step">Citation</span>
+      </div>
+      <p class="leading-relaxed text-sm mt-4">
+        Each stage is a typed Pydantic boundary — a chunk that doesn't meet quality criteria never reaches the search index.
+        An answer that can't be grounded in retrieved context is flagged, not surfaced.
+      </p>
+      <div class="completeness-table">
+        <div class="ct-row ct-header">
+          <span>Stage</span><span>Status</span>
+        </div>
+        <div class="ct-row">
+          <span>Chunking (heading-aware, 1200 chars / 150 overlap)</span>
+          <span class="ct-done">Complete</span>
+        </div>
+        <div class="ct-row">
+          <span>Lexical Search (Django FTS)</span>
+          <span class="ct-done">Complete</span>
+        </div>
+        <div class="ct-row">
+          <span>Hybrid Search (45% lexical + 55% semantic)</span>
+          <span class="ct-done">Complete</span>
+        </div>
+        <div class="ct-row">
+          <span>AI Answer + Citation (Gemini 2.5-flash)</span>
+          <span class="ct-done">Complete</span>
+        </div>
+        <div class="ct-row">
+          <span>Semantic Search (pgvector HNSW)</span>
+          <span class="ct-partial">60% — embedding task stub</span>
+        </div>
+        <div class="ct-row">
+          <span>Source Ingestion (URL/File parser)</span>
+          <span class="ct-partial">30% — parsers.py stub</span>
+        </div>
+      </div>
+      <p class="text-sm" style="color:#52525b;margin-top:0.75rem;">Core RAG flow (chunking → lexical search → AI answer) works out of the box.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Key Decisions</h2>
+      <ul class="space-y-5 text-sm">
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">Hybrid Search (BM25 + vector similarity)</p>
+          <p class="leading-relaxed">
+            <code>pg_search</code> (BM25 ranking) + <code>pgvector</code> (semantic similarity), scores fused at query time
+            with a 45/55 split. Handles both "what is X" and "find the document that mentions Y" — neither alone is sufficient.
+          </p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">Citation-First Answers</p>
+          <p class="leading-relaxed">
+            Answers are generated only from retrieved chunks. Gemini receives chunk IDs directly and returns structured output
+            with <code>source_ids</code> alongside the answer text — no post-hoc attribution. If context doesn't support an
+            answer, the system says so.
+          </p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">PostgreSQL-Only (no separate vector DB)</p>
+          <p class="leading-relaxed">
+            <code>pgvector</code> + <code>pg_search</code> inside the same PostgreSQL instance. No Pinecone, no Elasticsearch,
+            no sync overhead. The search index is always consistent with the document store by construction.
+          </p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">Built on DAEMON-ONE</p>
+          <p class="leading-relaxed">
+            DAEMON-KP is a domain-layer extension of DAEMON-ONE. 12 domains — <code>documents</code>, <code>chunks</code>,
+            <code>search</code>, <code>answers</code>, <code>sources</code>, <code>topics</code>, <code>discussions</code>,
+            <code>entities</code>, <code>ingestion</code>, <code>workspace</code>, <code>accounts</code>, <code>core</code> —
+            each following the same Vertical Slicing and <code>interface.py</code> boundary rules.
+            Drop the <code>knowledge/</code> domain folder and the RAG system is gone cleanly.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Target Products</h2>
+      <ul class="space-y-1 text-sm">
+        <li style="color:#e6edf3;">Sports Science Platform &nbsp;· University Wiki &nbsp;· Research Explorer &nbsp;· Recipe Archive</li>
+        <li class="leading-relaxed" style="margin-top:0.5rem;">Any product where documents are the data model and answers need to cite their sources.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Related Writing</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ <a href="/blog/postgres-first-architecture-en" style="color:#facc15;" class="hover:text-white transition-colors">PostgreSQL-First Architecture: You Can Go Far Without Redis</a></li>
+        <li>→ <a href="/blog/django-interface-py-domain-boundary-en" style="color:#facc15;" class="hover:text-white transition-colors">Django Domain Boundaries: Why I Force an interface.py</a></li>
+        <li>→ <a href="/blog/vertical-slice-en" style="color:#facc15;" class="hover:text-white transition-colors">Why I Prefer Vertical Slice Architecture</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Built On DAEMON-KP</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ <a href="/portfolio/kinetiq" style="color:#facc15;" class="hover:text-white transition-colors">SportsIQ</a> — Sports knowledge platform, in development</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Status</h2>
+      <p class="leading-relaxed">
+        Private repository. The pipeline evolves with SportsIQ as the proving ground.
+        Available on request.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52525b;
+    margin-bottom: 1rem;
+  }
+  code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82em;
+    color: #facc15;
+    background: rgba(250,204,21,0.06);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+  .pipeline-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+  }
+  .pipe-step {
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(96, 165, 250, 0.06);
+    border: 1px solid rgba(96, 165, 250, 0.18);
+    color: #60a5fa;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+  .pipe-arrow { color: #52525b; font-size: 0.9rem; }
+  .completeness-table {
+    margin-top: 1rem;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 6px;
+    overflow: hidden;
+    font-size: 0.8rem;
+    font-family: "JetBrains Mono", monospace;
+  }
+  .ct-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.5rem 0.85rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: center;
+  }
+  .ct-row:last-child { border-bottom: none; }
+  .ct-header { color: #52525b; font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; background: rgba(255,255,255,0.02); }
+  .ct-done { color: #3fb950; white-space: nowrap; }
+  .ct-partial { color: rgba(250, 204, 21, 0.7); white-space: nowrap; }
+
+  @media (max-width: 640px) {
+    .mb-12 { margin-bottom: 2.25rem; }
+    .text-3xl { font-size: 1.75rem; line-height: 1.2; }
+    .text-lg { font-size: 1rem; line-height: 1.65; }
+    .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.2rem; }
+    .leading-relaxed { line-height: 1.75; }
+    .pipeline-row { gap: 0.3rem; }
+    .pipe-step { font-size: 0.72rem; padding: 0.2rem 0.45rem; }
+    .ct-row { grid-template-columns: 1fr; gap: 0.2rem; }
+    .ct-done, .ct-partial { font-size: 0.72rem; }
+  }
+</style>

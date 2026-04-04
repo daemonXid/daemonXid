@@ -57,6 +57,25 @@ const metaItems = [
     </section>
 
     <section>
+      <h2 class="case-label">템플릿 평가</h2>
+      <div class="assess-grid text-sm">
+        <div class="assess-item">
+          <p class="assess-score">80%</p>
+          <p class="assess-label">효율성 (Efficiency)</p>
+          <p class="assess-desc">원클릭 초기화, 도메인 자동 등록, CI/CD 파이프라인 완성 상태.</p>
+        </div>
+        <div class="assess-item">
+          <p class="assess-score">90%</p>
+          <p class="assess-label">효능성 (Effectiveness)</p>
+          <p class="assess-desc">인증, AI 통합, Hybrid 검색, 백그라운드 잡, 스모크 테스트 배포 — 처음부터 프로덕션 수준.</p>
+        </div>
+      </div>
+      <p class="leading-relaxed text-sm" style="margin-top:1rem;">
+        CI 파이프라인: <code>pytest</code> → <code>smoke-test</code>(실제 PostgreSQL + 헬스 체크) → <code>GHCR 빌드+푸시</code>. 스모크가 실패하면 Docker 이미지가 게시되지 않습니다. "테스트는 통과하는데 프로덕션이 깨지는" 상황을 배포 전에 차단합니다.
+      </p>
+    </section>
+
+    <section>
       <h2 class="case-label">관련 글</h2>
       <ul class="space-y-2 text-sm">
         <li>→ <a href="/ko/blog/modular-monolith-vs-microservice" style="color:#facc15;" class="hover:text-white transition-colors">Modular Monolith vs Microservice — 왜 나는 먼저 모놀리스를 고른다</a></li>
@@ -91,6 +110,12 @@ const metaItems = [
   .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
   .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250, 204, 21, 0.72); margin-bottom:1rem; }
   code { font-family:"JetBrains Mono",monospace; font-size:0.82em; color:#facc15; background:rgba(250,204,21,0.06); padding:0.1em 0.35em; border-radius:3px; }
+  .assess-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 0.75rem; }
+  .assess-item { padding: 0.9rem 1rem; border: 1px solid rgba(255,255,255,0.06); border-radius: 6px; background: rgba(255,255,255,0.01); }
+  .assess-score { font-size: 1.6rem; font-weight: 700; font-family: "JetBrains Mono", monospace; color: #facc15; line-height: 1; margin-bottom: 0.2rem; }
+  .assess-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(250,204,21,0.4); margin-bottom: 0.4rem; }
+  .assess-desc { font-size: 0.8rem; line-height: 1.55; color: #8b949e; }
+  @media (max-width: 480px) { .assess-grid { grid-template-columns: 1fr; } }
 
   @media (max-width: 640px) {
     .lead { font-size: 0.96rem; line-height: 1.7; }
