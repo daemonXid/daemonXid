@@ -41,15 +41,15 @@ const projects = [
     url: null,
     github: null,
     href: '/ko/portfolio/kinetiq',
-    desc: 'Multi-agent workflow, graphRAG, Mirofish, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
-    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+    desc: 'Multi-agent workflow, graphRAG, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
+    stack: ['Multi-agent', 'graphRAG', 'pgvector'],
   },
 ]
 
 const skills = {
   백엔드: ['Python', 'Django', 'Django Ninja', 'PostgreSQL', 'Pydantic', 'Taskiq'],
   프론트엔드: ['HTMX', 'Alpine.js', 'Tailwind CSS', 'Astro'],
-  'AI / Vision': ['Gemini API', 'MediaPipe', 'YOLO', 'Pydantic AI'],
+  'AI / Vision': ['Gemini API', 'Pydantic AI'],
   인프라: ['Docker', 'Coolify', 'Hetzner VPS', 'GitHub Actions', 'Cloudflare'],
 }
 ---
@@ -59,9 +59,10 @@ const skills = {
     <h1 class="resume-name">Wonsub Song <span class="resume-name-sub">(Tony)</span></h1>
     <p class="resume-title">AI 중심 풀스택 개발자</p>
     <div class="resume-facts">
+      <span class="resume-fact resume-fact--available">● 구직 중</span>
       <span class="resume-fact">백엔드 + AI 포지션</span>
       <span class="resume-fact">Django / HTMX / PostgreSQL</span>
-      <span class="resume-fact">Self-hosted 배포 경험</span>
+      <span class="resume-fact">해외 포지션 가능</span>
     </div>
   </header>
 
@@ -86,7 +87,7 @@ const skills = {
         대학생 영어토론대회 우승 경험 (Asian Parliamentary Debate 형식). 경제, 정책, 의료, 기술 등 40개 이상의
         낯선 주제를 15분 준비로 논증하는 과정을 반복했습니다. 낯선 맥락을 빠르게 흡수하고,
         압박 속에서도 방어 가능한 입장을 구조화하는 능력을 키웠습니다 — 어떤 새로운 문제 공간에
-        진입하더라도 동일하게 적용되는 과정입니다. WUDC 예선 진출. SEDA, ESC 창설 및 회장 역임.
+        진입하더라도 동일하게 적용되는 과정입니다. WUDC(세계대학토론선수권대회) 참가. 영어토론동아리 SEDA, 영어회화동아리 ESC 창설 및 회장 역임.
       </p>
       <p class="timeline-desc" style="margin-top: 0.5rem;">
         영어: 실무 수준 커뮤니케이션 가능.
@@ -189,6 +190,7 @@ const skills = {
   .resume-title { font-size: 1.05rem; color: #a3adb8; margin-bottom: 1rem; }
   .resume-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
   .resume-fact { font-size: 0.72rem; font-family: "JetBrains Mono", monospace; padding: 0.28rem 0.6rem; border-radius: 999px; color: rgba(250, 204, 21, 0.82); border: 1px solid rgba(250, 204, 21, 0.18); background: rgba(250, 204, 21, 0.06); }
+  .resume-fact--available { color: #3fb950; border-color: rgba(63, 185, 80, 0.3); background: rgba(63, 185, 80, 0.06); }
   .resume-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
   .resume-link { font-size: 0.8rem; font-family: "JetBrains Mono", monospace; color: #8b949e; transition: color 0.2s, text-shadow 0.2s; }
   .resume-link:hover { color: #facc15; text-shadow: 0 0 10px rgba(250, 204, 21, 0.25); }

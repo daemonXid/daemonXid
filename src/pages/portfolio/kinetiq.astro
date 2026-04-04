@@ -5,7 +5,7 @@ import ProjectShowcase from '../../components/ProjectShowcase.astro'
 import SkillBadge from '../../components/SkillBadge.astro'
 import { getPortfolioMedia } from '../../lib/portfolioMedia'
 
-const stack = ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector', 'Django', 'PostgreSQL']
+const stack = ['Multi-agent', 'graphRAG', 'pgvector', 'Django', 'PostgreSQL']
 const media = getPortfolioMedia('sportsiq', {
   graph: 'Early view of graph-oriented retrieval and entity connections.',
   workflow: 'Multi-agent and retrieval flow for analysis and knowledge operations.',
@@ -17,7 +17,7 @@ const techSections = [
     bullets: [
       'The project is moving from pure motion analysis into a broader sports knowledge platform.',
       'Multi-agent workflows are used to orchestrate research, retrieval, synthesis, and structured feedback generation.',
-      'graphRAG, Mirofish, and pgvector are part of the current retrieval and knowledge-layer direction.',
+      'graphRAG and pgvector are part of the current retrieval and knowledge-layer direction.',
     ],
   },
   {
@@ -100,7 +100,7 @@ const metaItems = [
       <h2 class="case-label">Planned Architecture</h2>
       <ul class="space-y-2 text-sm">
         <li>→ Multi-agent workflows for retrieval, synthesis, and feedback generation</li>
-        <li>→ graphRAG and Mirofish to connect entity relations with document-level retrieval</li>
+        <li>→ graphRAG to connect entity relations with document-level retrieval</li>
         <li>→ pgvector storage for semantic search and knowledge recall</li>
         <li>→ Django backend for orchestration, storage, and review interfaces</li>
         <li>→ Sports-domain data structures designed for future movement and performance use cases</li>

@@ -41,15 +41,15 @@ const projects = [
     url: null,
     github: null,
     href: '/portfolio/kinetiq',
-    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, Mirofish, and pgvector.',
-    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.',
+    stack: ['Multi-agent', 'graphRAG', 'pgvector'],
   },
 ]
 
 const skills = {
   Backend:        ['Python', 'Django', 'Django Ninja', 'PostgreSQL', 'Pydantic', 'Taskiq'],
   Frontend:       ['HTMX', 'Alpine.js', 'Tailwind CSS', 'Astro'],
-  'AI / Vision':  ['Gemini API', 'MediaPipe', 'YOLO', 'Pydantic AI'],
+  'AI / Vision':  ['Gemini API', 'Pydantic AI'],
   Infrastructure: ['Docker', 'Coolify', 'Hetzner VPS', 'GitHub Actions', 'Cloudflare'],
 }
 ---
@@ -59,9 +59,10 @@ const skills = {
     <h1 class="resume-name">Wonsub Song <span class="resume-name-sub">(Tony)</span></h1>
     <p class="resume-title">AI-First Full-Stack Developer</p>
     <div class="resume-facts">
+      <span class="resume-fact resume-fact--available">● Available</span>
       <span class="resume-fact">Backend + AI roles</span>
       <span class="resume-fact">Django / HTMX / PostgreSQL</span>
-      <span class="resume-fact">Self-hosted deployment</span>
+      <span class="resume-fact">Open to relocation</span>
     </div>
   </header>
 
@@ -87,6 +88,8 @@ const skills = {
         economics, policy, healthcare, technology — with 15-minute preparation windows. Developed
         the ability to absorb unfamiliar context rapidly and structure defensible positions under
         pressure — the same process that applies when entering any new problem space cold.
+        WUDC (World Universities Debating Championship) participant. Founded SEDA (English debate society)
+        and ESC (English speaking club) and led both.
       </p>
       <p class="timeline-desc" style="margin-top: 0.5rem;">
         English: Professional working proficiency.
@@ -188,6 +191,7 @@ const skills = {
   .resume-title { font-size: 1.05rem; color: #a3adb8; margin-bottom: 1rem; }
   .resume-facts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1.2rem; }
   .resume-fact { font-size: 0.72rem; font-family: "JetBrains Mono", monospace; padding: 0.28rem 0.6rem; border-radius: 999px; color: rgba(250, 204, 21, 0.82); border: 1px solid rgba(250, 204, 21, 0.18); background: rgba(250, 204, 21, 0.06); }
+  .resume-fact--available { color: #3fb950; border-color: rgba(63, 185, 80, 0.3); background: rgba(63, 185, 80, 0.06); }
   .resume-links { display: flex; flex-wrap: wrap; gap: 1.25rem; }
   .resume-link { font-size: 0.8rem; font-family: "JetBrains Mono", monospace; color: #8b949e; transition: color 0.2s, text-shadow 0.2s; }
   .resume-link:hover { color: #facc15; text-shadow: 0 0 10px rgba(250, 204, 21, 0.25); }

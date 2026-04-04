@@ -5,7 +5,7 @@ interface Props {
   stack: string[]
   url?: string | null
   github?: string
-  status?: 'live' | 'wip' | 'offline'
+  status?: 'live' | 'wip' | 'offline' | 'arch'
   href?: string
 }
 
@@ -28,6 +28,9 @@ const { name, desc, stack, url, github, status = 'live', href } = Astro.props
       )}
       {status === 'offline' && (
         <span class="badge badge--offline">OFFLINE</span>
+      )}
+      {status === 'arch' && (
+        <span class="badge badge--arch">ARCH</span>
       )}
     </div>
 
@@ -143,6 +146,11 @@ const { name, desc, stack, url, github, status = 'live', href } = Astro.props
     color: #f97316;
     background: rgba(249, 115, 22, 0.08);
     border: 1px solid rgba(249, 115, 22, 0.18);
+  }
+  .badge--arch {
+    color: #60a5fa;
+    background: rgba(96, 165, 250, 0.08);
+    border: 1px solid rgba(96, 165, 250, 0.2);
   }
 
   .card-desc {

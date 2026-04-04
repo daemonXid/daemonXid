@@ -46,6 +46,7 @@ const ogUrl = new URL(ogImage, SITE_URL).toString()
   <meta property="og:url" content={canonical} />
   <meta property="og:image" content={ogUrl} />
   <meta property="og:site_name" content={SITE_NAME} />
+  <meta property="og:locale" content={lang === 'ko' ? 'ko_KR' : 'en_US'} />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={title} />
   <meta name="twitter:description" content={description} />

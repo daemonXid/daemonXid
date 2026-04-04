@@ -2,16 +2,28 @@
 import Base from '../../layouts/Base.astro'
 import ProjectCard from '../../components/ProjectCard.astro'
 
-const projects = [
+const b2c = [
   {
     name: 'Almaeng',
     desc: 'AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.',
-    stack: ['Django Ninja', 'HTMX', 'pgvector', 'Gemini Flash', 'Coolify'],
+    stack: ['DAEMON-ONE', 'Django Ninja', 'HTMX', 'pgvector', 'Coolify'],
     url: null,
     github: null,
     href: '/portfolio/almaeng',
     status: 'offline' as const,
   },
+  {
+    name: 'SportsIQ',
+    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.',
+    stack: ['DAEMON-ONE', 'Multi-agent', 'graphRAG', 'pgvector'],
+    url: null,
+    github: null,
+    href: '/portfolio/kinetiq',
+    status: 'offline' as const,
+  },
+]
+
+const b2b = [
   {
     name: 'LawNGood',
     desc: 'Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.',
@@ -21,14 +33,17 @@ const projects = [
     href: '/portfolio/LegalRadar',
     status: 'live' as const,
   },
+]
+
+const architecture = [
   {
-    name: 'SportsIQ',
-    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, Mirofish, and pgvector.',
-    stack: ['Multi-agent', 'graphRAG', 'Mirofish', 'pgvector'],
+    name: 'DAEMON-ONE',
+    desc: 'Django architecture template for AI-integrated monolith products. Deliberate tradeoffs: Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.',
+    stack: ['Django', 'HTMX', 'pgvector', 'Pydantic'],
     url: null,
     github: null,
-    href: '/portfolio/kinetiq',
-    status: 'offline' as const,
+    href: '/portfolio/daemon-one',
+    status: 'arch' as const,
   },
 ]
 ---
@@ -41,17 +56,40 @@ const projects = [
     </p>
   </header>
 
-  <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-    {projects.map(p => (
-      <ProjectCard
-        name={p.name}
-        desc={p.desc}
-        stack={p.stack}
-        url={p.url}
-        github={p.github}
-        href={p.href}
-        status={p.status}
-      />
-    ))}
+  <div class="portfolio-sections">
+    <section class="portfolio-section">
+      <h2 class="section-label">B2C</h2>
+      <div class="cards-grid">
+        {b2c.map(p => <ProjectCard {...p} />)}
+      </div>
+    </section>
+
+    <section class="portfolio-section">
+      <h2 class="section-label">B2B</h2>
+      <div class="cards-grid">
+        {b2b.map(p => <ProjectCard {...p} />)}
+      </div>
+    </section>
+
+    <section class="portfolio-section">
+      <h2 class="section-label">Architecture</h2>
+      <div class="cards-grid">
+        {architecture.map(p => <ProjectCard {...p} />)}
+      </div>
+    </section>
   </div>
 </Base>
+
+<style>
+  .portfolio-sections { display: flex; flex-direction: column; gap: 3rem; }
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(250, 204, 21, 0.6);
+    margin-bottom: 1rem;
+  }
+  .cards-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
+  @media (min-width: 640px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>

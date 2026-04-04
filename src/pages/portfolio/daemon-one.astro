@@ -1,0 +1,126 @@
+---
+import Base from '../../layouts/Base.astro'
+import ProjectMetaBar from '../../components/ProjectMetaBar.astro'
+import SkillBadge from '../../components/SkillBadge.astro'
+
+const stack = ['Django', 'HTMX', 'Alpine.js', 'PostgreSQL', 'pgvector', 'Pydantic', 'Docker', 'Coolify']
+const metaItems = [
+  { label: 'Type', value: 'Architecture template' },
+  { label: 'Role', value: 'Designer & sole author' },
+  { label: 'Repository', value: 'Private · available on request' },
+  { label: 'Built on it', value: 'Almaeng · SportsIQ' },
+]
+---
+
+<Base title="DAEMON-ONE | Wonsub Song (Tony)" lang="en" description="DAEMON-ONE: a deliberate Django architecture template. Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.">
+  <a href="/portfolio" class="text-sm hover:text-white transition-colors mb-8 inline-block" style="color:#8b949e;">
+    ← Portfolio
+  </a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">DAEMON-ONE</h1>
+      <span style="font-size:0.75rem;padding:0.2rem 0.5rem;border-radius:4px;background:#0a1628;color:#60a5fa;border:1px solid #1e3a5f;font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:0.04em;">
+        ARCH
+      </span>
+    </div>
+    <p class="text-lg mb-2" style="color:#a1a1aa;">
+      A Django architecture template built to eliminate structural drift across projects — deliberate tradeoffs, not a boilerplate.
+    </p>
+    <p class="text-sm mb-6" style="color:#52525b;">
+      Private repository · Available on request
+    </p>
+    <ProjectMetaBar items={metaItems} />
+    <div class="flex flex-wrap gap-2">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+  </header>
+
+  <div class="space-y-12" style="color:#a1a1aa;">
+    <section>
+      <h2 class="case-label">Why It Exists</h2>
+      <p class="leading-relaxed">
+        After 15+ side projects, the same structural problems kept reappearing: business logic scattered
+        across views and signals, unclear domain boundaries, and every project starting from scratch with
+        the same mistakes. DAEMON-ONE is the architecture I designed to fix that — a structured Django
+        monolith template with deliberate decisions built in from the start.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="case-label">Key Decisions</h2>
+      <ul class="space-y-5 text-sm">
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">Modular Monolith over microservices</p>
+          <p class="leading-relaxed">Single deployable unit. Domain boundaries enforced via <code>interface.py</code> — the only file through which one domain can reach another. No cross-domain foreign keys. Complexity lives at the right boundary.</p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">HTMX + SSR over React</p>
+          <p class="leading-relaxed">Server-driven UI state. No JS build step. LCP-first rendering by default. Alpine.js handles isolated client state only. The result: a full-stack product without a frontend build pipeline.</p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">Vertical Slicing</p>
+          <p class="leading-relaxed">Logic, template, and style colocated per feature. Delete a folder and the feature is completely gone — no orphaned imports or lingering references. This also makes AI-assisted development tractable: scope the AI to one folder at a time.</p>
+        </li>
+        <li>
+          <p style="color:#e6edf3;font-weight:600;margin-bottom:0.3rem;">PostgreSQL-First</p>
+          <p class="leading-relaxed">pgvector for semantic search, pgmq as message queue (replacing Redis), pg_search for full-text. One database, one deployment unit. No Redis or Elasticsearch complexity until the scale actually demands it.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Related Writing</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ <a href="/blog/modular-monolith-vs-microservice-en" style="color:#facc15;" class="hover:text-white transition-colors">Modular Monolith vs Microservice — Why I Start with the Monolith</a></li>
+        <li>→ <a href="/blog/vertical-slice-en" style="color:#facc15;" class="hover:text-white transition-colors">Why I Prefer Vertical Slice Architecture</a></li>
+        <li>→ <a href="/blog/why-i-did-not-pick-react-for-django-en" style="color:#facc15;" class="hover:text-white transition-colors">Why I Chose HTML, CSS, and HTMX Over React for Django</a></li>
+        <li>→ <a href="/blog/postgres-first-architecture-en" style="color:#facc15;" class="hover:text-white transition-colors">PostgreSQL-First Architecture: You Can Go Far Without Redis</a></li>
+        <li>→ <a href="/blog/django-interface-py-domain-boundary-en" style="color:#facc15;" class="hover:text-white transition-colors">Django Domain Boundaries: Why I Force an interface.py</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Built On DAEMON-ONE</h2>
+      <ul class="space-y-2 text-sm">
+        <li>→ <a href="/portfolio/almaeng" style="color:#facc15;" class="hover:text-white transition-colors">Almaeng</a> — AI supplement analysis service, live in production</li>
+        <li>→ <a href="/portfolio/kinetiq" style="color:#facc15;" class="hover:text-white transition-colors">SportsIQ</a> — Sports knowledge platform, in development</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">Status</h2>
+      <p class="leading-relaxed">
+        Private repository. The architecture evolves with each project built on it.
+        Available on request.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .case-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #52525b;
+    margin-bottom: 1rem;
+  }
+  code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.82em;
+    color: #facc15;
+    background: rgba(250,204,21,0.06);
+    padding: 0.1em 0.35em;
+    border-radius: 3px;
+  }
+
+  @media (max-width: 640px) {
+    .mb-12 { margin-bottom: 2.25rem; }
+    .text-3xl { font-size: 1.75rem; line-height: 1.2; }
+    .text-lg { font-size: 1rem; line-height: 1.65; }
+    .space-y-12 > :not([hidden]) ~ :not([hidden]) { margin-top: 2.2rem; }
+    .leading-relaxed { line-height: 1.75; }
+  }
+</style>
