@@ -30,14 +30,12 @@ report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 .claude
 .claude/
 *.tsbuildinfo
-
+.superpowers/
 # IntelliJ based IDEs
 .idea
 
 # Finder (MacOS) folder config
 .DS_Store
 
-docs/portfolio-drafts/
-docs/resume-versions/
-docs/superpowers/
+docs/
 DAEMON.md
