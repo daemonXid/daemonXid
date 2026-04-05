@@ -1,64 +1,52 @@
-# daemonxid.com
+# Wonsub Song
 
-Personal portfolio site for Wonsub Song (Tony) — backend engineer building AI-integrated products.
+> I solve real-world problems by designing and building systems
 
-Live: [daemonxid.com](https://daemonxid.com)
-
----
-
-## What's Here
-
-- **Home** — Engineering narrative, selected projects, recent writing
-- **Resume** — Experience, architecture work (DAEMON-ONE), skills, education (EN + KO)
-- **Portfolio** — Case studies: Almaeng, LawNGood, SportsIQ
-- **Blog** — Technical notes in Korean and English: architecture decisions, Django patterns, deployment, AI integration
+Backend / AI / System Design (Django)
 
 ---
 
-## Tech Stack
+## 🧠 What I Do
 
-Built with [Astro](https://astro.build) — static site generator, no client-side framework.
+I focus on translating domain problems into working systems.
 
-| Layer | Choice |
-|---|---|
-| Framework | Astro (MPA, static output) |
-| Styling | Tailwind CSS v4 |
-| Fonts | Inter + JetBrains Mono |
-| Deployment | GitHub Pages via GitHub Actions |
-| Package manager | Bun |
+- Define real problems from messy real-world contexts
+- Design systems that can solve them
+- Build end-to-end implementations using Python and Django
 
 ---
 
-## Local Dev
+## 🚀 Selected Work
 
-```bash
-bun install
-bun dev
-```
+### 🧠 DAEMON-KP — AI Knowledge Platform
+- Built a full RAG pipeline (Document → Chunk → Search → Answer → Citation)
+- Hybrid search (pgvector + full-text search)
+- LLM-based grounded answer system
 
-Build:
-
-```bash
-bun run build
-```
-
----
-
-## Structure
-
-```
-src/
-  components/     # Nav, Footer, SocialLinks, ProjectCard, SkillBadge
-  content/blog/   # Markdown blog posts (KO + EN)
-  layouts/        # Base.astro, BlogPost.astro
-  lib/            # i18n, siteMeta, blogMeta helpers
-  pages/          # EN pages
-  pages/ko/       # KO pages (mirrored)
-  styles/         # global.css
-```
+### 🏗 DAEMON-ONE — Django Architecture
+- Designed for fast iteration in a single-developer environment
+- Modular monolith + vertical slicing
+- Interface-based domain communication
 
 ---
 
-## Content Languages
+## 🧩 How I Think
 
-All main pages exist in both English (`/`) and Korean (`/ko/`). Language toggle is in the nav.
+- Technology is a tool, not the goal
+- Problem definition matters more than implementation
+- Systems should reflect real-world constraints
+
+---
+
+## 🎯 Interested In
+
+- Forward Deployed Engineering
+- AI system deployment
+- Real-world problem solving
+
+---
+
+## 📫 Contact
+
+- Portfolio: daemonxid.com
+- LinkedIn: https://www.linkedin.com/in/wonsub-song-0b0291167
