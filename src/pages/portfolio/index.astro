@@ -1,104 +1,126 @@
 ---
-import Base from '../../layouts/Base.astro'
-import ProjectCard from '../../components/ProjectCard.astro'
+import Base from "../../layouts/Base.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
 
 const b2c = [
-  {
-    name: 'Almaeng',
-    desc: 'AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.',
-    stack: ['DAEMON-ONE', 'Django Ninja', 'HTMX', 'pgvector', 'Coolify'],
-    url: null,
-    github: null,
-    href: '/portfolio/almaeng',
-    status: 'offline' as const,
-  },
-  {
-    name: 'SportsIQ',
-    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.',
-    stack: ['DAEMON-ONE', 'Multi-agent', 'graphRAG', 'pgvector'],
-    url: null,
-    github: null,
-    href: '/portfolio/kinetiq',
-    status: 'offline' as const,
-  },
-]
+    {
+        name: "Almaeng",
+        desc: "AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.",
+        stack: ["DAEMON-ONE", "Django Ninja", "HTMX", "pgvector", "Coolify"],
+        url: null,
+        github: null,
+        href: "/portfolio/almaeng",
+        status: "offline" as const,
+    },
+    {
+        name: "SportsIQ",
+        desc: "Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.",
+        stack: ["DAEMON-ONE", "Multi-agent", "graphRAG", "pgvector"],
+        url: null,
+        github: null,
+        href: "/portfolio/kinetiq",
+        status: "offline" as const,
+    },
+];
 
 const b2b = [
-  {
-    name: 'LawNGood',
-    desc: 'Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.',
-    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-    url: null,
-    github: 'https://github.com/ken-do-it/law_news_c_v2',
-    href: '/portfolio/LegalRadar',
-    status: 'live' as const,
-  },
-]
+    {
+        name: "LawNGood",
+        desc: "Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.",
+        stack: [
+            "Django",
+            "Naver News API",
+            "BeautifulSoup4",
+            "Gemini API",
+            "PostgreSQL",
+        ],
+        url: null,
+        github: "https://github.com/ken-do-it/law_news_c_v2",
+        href: "/portfolio/lawngood",
+        status: "live" as const,
+    },
+];
 
 const architecture = [
-  {
-    name: 'DAEMON-ONE',
-    desc: 'Django architecture template for AI-integrated monolith products. Deliberate tradeoffs: Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.',
-    stack: ['Django', 'HTMX', 'pgvector', 'Pydantic'],
-    url: null,
-    github: null,
-    href: '/portfolio/daemon-one',
-    status: 'arch' as const,
-  },
-  {
-    name: 'DAEMON-KP',
-    desc: 'Django architecture template for knowledge platforms. End-to-end RAG pipeline: Source → Document → Chunk → Hybrid Search (BM25 + pgvector) → Grounded Answer → Citation.',
-    stack: ['Django', 'pgvector', 'pg_search', 'Gemini API', 'Pydantic AI'],
-    url: null,
-    github: null,
-    href: '/portfolio/daemon-kp',
-    status: 'arch' as const,
-  },
-]
+    {
+        name: "DAEMON-ONE",
+        desc: "Django architecture template for AI-integrated monolith products. Deliberate tradeoffs: Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.",
+        stack: ["Django", "HTMX", "pgvector", "Pydantic"],
+        url: null,
+        github: null,
+        href: "/portfolio/daemon-one",
+        status: "arch" as const,
+    },
+    {
+        name: "DAEMON-KP",
+        desc: "Django architecture template for knowledge platforms. End-to-end RAG pipeline: Source → Document → Chunk → Hybrid Search (BM25 + pgvector) → Grounded Answer → Citation.",
+        stack: ["Django", "pgvector", "pg_search", "Gemini API", "Pydantic AI"],
+        url: null,
+        github: null,
+        href: "/portfolio/daemon-kp",
+        status: "arch" as const,
+    },
+];
 ---
 
-<Base title="Wonsub Song (Tony) | Portfolio" lang="en" description="Production deployments, case studies, and in-progress AI product builds.">
-  <header class="mb-12">
-    <h1 class="text-3xl font-bold mb-3">Portfolio</h1>
-    <p style="color:#8b949e;" class="text-sm">
-      Production deployments and work-in-progress builds.
-    </p>
-  </header>
+<Base
+    title="Wonsub Song (Tony) | Portfolio"
+    lang="en"
+    description="Production deployments, case studies, and in-progress AI product builds."
+>
+    <header class="mb-12">
+        <h1 class="text-3xl font-bold mb-3">Portfolio</h1>
+        <p style="color:#8b949e;" class="text-sm">
+            Production deployments and work-in-progress builds.
+        </p>
+    </header>
 
-  <div class="portfolio-sections">
-    <section class="portfolio-section">
-      <h2 class="section-label">B2C</h2>
-      <div class="cards-grid">
-        {b2c.map(p => <ProjectCard {...p} />)}
-      </div>
-    </section>
+    <div class="portfolio-sections">
+        <section class="portfolio-section">
+            <h2 class="section-label">B2C</h2>
+            <div class="cards-grid">
+                {b2c.map((p) => <ProjectCard {...p} />)}
+            </div>
+        </section>
 
-    <section class="portfolio-section">
-      <h2 class="section-label">B2B</h2>
-      <div class="cards-grid">
-        {b2b.map(p => <ProjectCard {...p} />)}
-      </div>
-    </section>
+        <section class="portfolio-section">
+            <h2 class="section-label">B2B</h2>
+            <div class="cards-grid">
+                {b2b.map((p) => <ProjectCard {...p} />)}
+            </div>
+        </section>
 
-    <section class="portfolio-section">
-      <h2 class="section-label">Architecture</h2>
-      <div class="cards-grid">
-        {architecture.map(p => <ProjectCard {...p} />)}
-      </div>
-    </section>
-  </div>
+        <section class="portfolio-section">
+            <h2 class="section-label">Architecture</h2>
+            <div class="cards-grid">
+                {architecture.map((p) => <ProjectCard {...p} />)}
+            </div>
+        </section>
+    </div>
 </Base>
 
 <style>
-  .portfolio-sections { display: flex; flex-direction: column; gap: 3rem; }
-  .section-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(250, 204, 21, 0.6);
-    margin-bottom: 1rem;
-  }
-  .cards-grid { display: grid; grid-template-columns: 1fr; gap: 0.85rem; }
-  @media (min-width: 640px) { .cards-grid { grid-template-columns: repeat(2, 1fr); } }
+    .portfolio-sections {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+    .section-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(250, 204, 21, 0.6);
+        margin-bottom: 1rem;
+    }
+    .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.85rem;
+    }
+    @media (min-width: 640px) {
+        .cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
 </style>

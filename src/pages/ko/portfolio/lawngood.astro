@@ -173,5 +173,10 @@ const metaItems = [
   .fb-green { color: #3fb950; border-color: rgba(63,185,80,0.25);   background: rgba(63,185,80,0.04); }
   .flow-edge { color: rgba(250,204,21,0.28); font-size: 0.72rem; font-family: "JetBrains Mono", monospace; margin: 0.18rem 0 0.18rem 1.1rem; }
   .flow-hint { font-size: 0.71rem; color: rgba(250,204,21,0.3); font-family: "JetBrains Mono", monospace; }
-  @media (max-width: 640px) { .flow-hint { display: none; } }
+
+  @media (max-width: 640px) {
+    .flow-hint { display: none; }
+    .insights-grid { grid-template-columns: 1fr; }
+    .insight-block--full { grid-column: 1; }
+  }
 </style>
