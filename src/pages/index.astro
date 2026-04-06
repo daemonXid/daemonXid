@@ -14,15 +14,6 @@ const getExcerpt = (post: (typeof posts)[number]) =>
 
 const featuredProjects = [
   {
-    name: 'Almaeng',
-    desc: 'AI supplement analysis and price intelligence product focused on ingredient transparency and practical value comparison.',
-    stack: ['DAEMON-ONE', 'Django Ninja', 'HTMX', 'pgvector', 'Coolify'],
-    url: null,
-    github: null,
-    href: '/portfolio/almaeng',
-    status: 'offline' as const,
-  },
-  {
     name: 'LawNGood',
     desc: 'Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'PostgreSQL'],
@@ -32,13 +23,22 @@ const featuredProjects = [
     status: 'live' as const,
   },
   {
-    name: 'SportsIQ',
-    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.',
-    stack: ['DAEMON-ONE', 'Multi-agent', 'graphRAG', 'pgvector'],
+    name: 'DAEMON-KP',
+    desc: 'Knowledge-platform RAG architecture covering ingestion, hybrid retrieval, grounded answers, and citations.',
+    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
     url: null,
     github: null,
-    href: '/portfolio/kinetiq',
-    status: 'offline' as const,
+    href: '/portfolio/daemon-kp',
+    status: 'arch' as const,
+  },
+  {
+    name: 'DAEMON-ONE',
+    desc: 'Django architecture template built around Modular Monolith, HTMX+SSR, Vertical Slicing, and PostgreSQL-First.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
+    url: null,
+    github: null,
+    href: '/portfolio/daemon-one',
+    status: 'arch' as const,
   },
 ]
 ---

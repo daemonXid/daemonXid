@@ -4,30 +4,22 @@ import SkillBadge from '../components/SkillBadge.astro'
 
 const experience = [
   {
-    role: 'Backend & AI Engineer Intern',
-    company: 'LawAndGood × Likelion Rocket Team',
+    role: 'Backend & AI Engineer — Intern',
+    company: 'Likelion Rocket Team (Client: LawAndGood)',
     period: '2026.02 - 2026.03',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
     desc: 'Built LawNGood, a legal-dispute discovery and monitoring proof of concept for a client review workflow. Designed and implemented a structured pipeline across collection, extraction, classification, grouping, and review.',
   },
   {
-    role: 'Founder / Product Engineer',
-    company: 'Almaeng',
-    period: '2025.12 - Present',
-    stack: ['Django', 'HTMX', 'Alpine.js', 'Gemini API', 'PostgreSQL', 'Hetzner VPS'],
-    desc: 'Built and operate ALMAENG, an AI-powered supplement analysis and price-comparison service. Structured ingredient and pricing data, integrated external commerce data sources, and run the service in production.',
+    role: 'Solo · Product Engineer / Architecture Builder',
+    company: 'Personal AI architecture templates',
+    period: '2025.01 - Present',
+    stack: ['Django Ninja', 'HTMX', 'Gemini API', 'pgvector', 'PostgreSQL', 'Hetzner VPS'],
+    desc: 'Designed and templated DAEMON-ONE and DAEMON-KP. Built reusable AI system foundations for solo development, deployment, and operation, then applied them across personal projects.',
   },
 ]
 
 const projects = [
-  {
-    name: 'Almaeng',
-    url: null,
-    github: null,
-    href: '/portfolio/almaeng',
-    desc: 'AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.',
-    stack: ['Django Ninja', 'HTMX', 'pgvector', 'Gemini Flash', 'Coolify'],
-  },
   {
     name: 'LawNGood',
     url: null,
@@ -37,12 +29,20 @@ const projects = [
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
   },
   {
-    name: 'SportsIQ',
+    name: 'DAEMON-KP',
     url: null,
     github: null,
-    href: '/portfolio/kinetiq',
-    desc: 'Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.',
-    stack: ['Multi-agent', 'graphRAG', 'pgvector'],
+    href: '/portfolio/daemon-kp',
+    desc: 'Knowledge-platform RAG architecture covering ingestion, hybrid retrieval, grounded answers, and citations.',
+    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
+  },
+  {
+    name: 'DAEMON-ONE',
+    url: null,
+    github: null,
+    href: '/portfolio/daemon-one',
+    desc: 'Django architecture template built around Modular Monolith, HTMX+SSR, Vertical Slicing, and PostgreSQL-First.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
   },
 ]
 
@@ -69,13 +69,12 @@ const skills = {
   <section class="mb-14">
     <h2 class="section-label">Summary</h2>
     <p class="body-text">
-      I build backend systems and ship AI-integrated products. My background spans Sports Science
-      and software engineering — two unrelated disciplines I bridged independently. That
-      cross-domain learning ability is the same skill I apply when entering a new problem space:
-      absorb context fast, identify the real constraint, build what's actually needed.
+      I focus on understanding real customer problems quickly and turning them into systems that are stable and maintainable.
+      My background spans Sports Science and programming, which trained me to ramp fast in unfamiliar domains and structure the real constraint before building.
     </p>
     <p class="body-text" style="margin-top: 0.75rem;">
-      Stack: Django, HTMX, PostgreSQL, Gemini API. Production-deployed, self-operated.
+      I designed and templated a modular-monolith architecture (DAEMON-ONE) and an enterprise-style RAG pipeline (DAEMON-KP),
+      then used them to build and operate productized AI systems in a solo development environment.
     </p>
   </section>
 
@@ -129,7 +128,7 @@ const skills = {
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Vertical Slicing</strong> — logic, template, and style colocated per feature. Delete a folder = feature gone cleanly.</li>
       </ul>
       <p class="timeline-desc" style="margin-top: 0.6rem;">
-        Used in production: Almaeng. In development: SportsIQ.
+        DAEMON-KP extends the same framework into a reusable RAG layer covering ingestion, hybrid retrieval, and citation-grounded answers.
       </p>
       <div class="flex flex-wrap gap-2 mt-3">
         <SkillBadge name="Python" />
@@ -281,4 +280,3 @@ const skills = {
     }
   }
 </style>
-

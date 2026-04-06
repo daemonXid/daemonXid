@@ -14,15 +14,6 @@ const getExcerpt = (post: (typeof posts)[number]) =>
 
 const featuredProjects = [
   {
-    name: 'Almaeng',
-    desc: '성분 투명성과 실제 가격 효율 비교에 초점을 맞춘 AI 영양제 분석 및 가격 인텔리전스 제품입니다.',
-    stack: ['DAEMON-ONE', 'Django Ninja', 'HTMX', 'pgvector', 'Coolify'],
-    url: null,
-    github: null,
-    href: '/ko/portfolio/almaeng',
-    status: 'offline' as const,
-  },
-  {
     name: 'LawNGood',
     desc: 'LawAndGood를 위해 만든 법률 뉴스 모니터링 POC로, Naver News API 수집과 기사 파싱, Gemini 분류를 결합했습니다.',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'PostgreSQL'],
@@ -32,13 +23,22 @@ const featuredProjects = [
     status: 'live' as const,
   },
   {
-    name: 'SportsIQ',
-    desc: 'Multi-agent workflow, graphRAG, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
-    stack: ['DAEMON-ONE', 'Multi-agent', 'graphRAG', 'pgvector'],
+    name: 'DAEMON-KP',
+    desc: '문서 수집, Hybrid Search, 출처 기반 답변 흐름을 포함한 knowledge platform용 RAG 아키텍처입니다.',
+    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
     url: null,
     github: null,
-    href: '/ko/portfolio/kinetiq',
-    status: 'offline' as const,
+    href: '/ko/portfolio/daemon-kp',
+    status: 'arch' as const,
+  },
+  {
+    name: 'DAEMON-ONE',
+    desc: 'Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First를 핵심으로 한 Django 아키텍처 템플릿입니다.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
+    url: null,
+    github: null,
+    href: '/ko/portfolio/daemon-one',
+    status: 'arch' as const,
   },
 ]
 ---

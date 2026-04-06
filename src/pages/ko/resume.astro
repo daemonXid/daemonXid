@@ -4,30 +4,22 @@ import SkillBadge from '../../components/SkillBadge.astro'
 
 const experience = [
   {
-    role: 'Backend & AI Engineer Intern',
-    company: 'LawAndGood × Likelion Rocket Team',
+    role: 'Backend & AI Engineer — Intern',
+    company: '멋쟁이사자처럼 Rocket Team (클라이언트: LawAndGood)',
     period: '2026.02 - 2026.03',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
     desc: '클라이언트 검토 워크플로우를 위한 법률분쟁 자동발굴 POC LawNGood를 2인 팀으로 개발했습니다. 수집, 추출, 분류, 그룹핑, 리뷰까지 구조화된 파이프라인을 설계하고 구현했습니다.',
   },
   {
-    role: 'Founder / Product Engineer',
-    company: 'Almaeng',
-    period: '2025.12 - 현재',
-    stack: ['Django', 'HTMX', 'Alpine.js', 'Gemini API', 'PostgreSQL', 'Hetzner VPS'],
-    desc: 'AI 기반 보충제 성분 분석 및 가격 비교 서비스 ALMAENG를 기획, 개발, 배포, 운영하고 있습니다. 성분과 가격 데이터를 구조화하고 외부 커머스 데이터를 연동해 실서비스로 운영 중입니다.',
+    role: 'Solo · Product Engineer / Architecture Builder',
+    company: '개인 AI 아키텍처 템플릿 개발 및 적용',
+    period: '2025.01 - 현재',
+    stack: ['Django Ninja', 'HTMX', 'Gemini API', 'pgvector', 'PostgreSQL', 'Hetzner VPS'],
+    desc: 'DAEMON-ONE과 DAEMON-KP를 직접 설계·템플릿화했습니다. 1인 개발·배포·운영 환경에서 재사용 가능한 AI 시스템 구조를 구축하고 실제 프로젝트에 적용하고 있습니다.',
   },
 ]
 
 const projects = [
-  {
-    name: 'Almaeng',
-    url: null,
-    github: null,
-    href: '/ko/portfolio/almaeng',
-    desc: '성분 투명성과 가격 효율 비교에 초점을 맞춘 AI 영양제 분석 및 가격 인텔리전스 제품입니다. 2025.12에 출시했습니다.',
-    stack: ['Django Ninja', 'HTMX', 'pgvector', 'Gemini Flash', 'Coolify'],
-  },
   {
     name: 'LawNGood',
     url: null,
@@ -37,12 +29,20 @@ const projects = [
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
   },
   {
-    name: 'SportsIQ',
+    name: 'DAEMON-KP',
     url: null,
     github: null,
-    href: '/ko/portfolio/kinetiq',
-    desc: 'Multi-agent workflow, graphRAG, pgvector 기반으로 진행 중인 knowledge platform 프로젝트입니다.',
-    stack: ['Multi-agent', 'graphRAG', 'pgvector'],
+    href: '/ko/portfolio/daemon-kp',
+    desc: '문서 수집, Hybrid Search, 출처 기반 답변 흐름을 포함한 knowledge platform용 RAG 아키텍처입니다.',
+    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
+  },
+  {
+    name: 'DAEMON-ONE',
+    url: null,
+    github: null,
+    href: '/ko/portfolio/daemon-one',
+    desc: 'Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First를 핵심으로 한 Django 아키텍처 템플릿입니다.',
+    stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
   },
 ]
 
@@ -69,13 +69,13 @@ const skills = {
   <section class="mb-14">
     <h2 class="section-label">소개</h2>
     <p class="body-text">
-      백엔드 시스템을 구축하고 AI 통합 제품을 출시합니다. 스포츠건강과학과 소프트웨어 엔지니어링 —
-      전혀 다른 두 분야를 스스로 연결한 경험이 있습니다. 낯선 영역에 빠르게 적응하는 이 능력은,
-      새로운 문제 공간에 진입할 때도 동일하게 적용됩니다. 맥락을 빠르게 파악하고, 핵심 제약을
-      찾아내고, 실제로 필요한 것을 만듭니다.
+      고객 현장의 실제 문제를 빠르게 파악하고, 이를 안정적이고 유지보수하기 쉬운 시스템으로 구현합니다.
+      스포츠건강과학과 프로그래밍이라는 서로 다른 두 영역을 스스로 연결한 경험 덕분에,
+      낯선 도메인에서도 맥락을 빠르게 파악하고 핵심 제약을 구조화하는 데 익숙합니다.
     </p>
     <p class="body-text" style="margin-top: 0.75rem;">
-      스택: Django, HTMX, PostgreSQL, Gemini API. 프로덕션 배포, 직접 운영.
+      Django 기반 Modular Monolith 아키텍처(DAEMON-ONE)와 Enterprise RAG 파이프라인(DAEMON-KP)을 직접 설계·템플릿화했으며,
+      1인 개발·배포·운영 환경에서 제품형 AI 시스템을 빠르게 구축하고 운영해 왔습니다.
     </p>
   </section>
 
@@ -127,7 +127,7 @@ const skills = {
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Vertical Slicing</strong> — 기능별로 로직·템플릿·스타일 공존. 폴더 삭제 = 기능 완전 제거.</li>
       </ul>
       <p class="timeline-desc" style="margin-top: 0.6rem;">
-        실서비스 적용: Almaeng. 개발 중: SportsIQ.
+        DAEMON-KP는 동일한 프레임워크 위에 확장한 RAG 아키텍처로, 문서 수집, Hybrid Search, 출처 기반 답변 흐름을 재사용 가능한 도메인 레이어로 분리했습니다.
       </p>
       <div class="flex flex-wrap gap-2 mt-3">
         <SkillBadge name="Python" />

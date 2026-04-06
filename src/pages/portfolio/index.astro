@@ -2,27 +2,6 @@
 import Base from "../../layouts/Base.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 
-const b2c = [
-    {
-        name: "Almaeng",
-        desc: "AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.",
-        stack: ["DAEMON-ONE", "Django Ninja", "HTMX", "pgvector", "Coolify"],
-        url: null,
-        github: null,
-        href: "/portfolio/almaeng",
-        status: "offline" as const,
-    },
-    {
-        name: "SportsIQ",
-        desc: "Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.",
-        stack: ["DAEMON-ONE", "Multi-agent", "graphRAG", "pgvector"],
-        url: null,
-        github: null,
-        href: "/portfolio/kinetiq",
-        status: "offline" as const,
-    },
-];
-
 const b2b = [
     {
         name: "LawNGood",
@@ -43,6 +22,15 @@ const b2b = [
 
 const architecture = [
     {
+        name: "DAEMON-KP",
+        desc: "Django architecture template for knowledge platforms. End-to-end RAG pipeline: Source → Document → Chunk → Hybrid Search (BM25 + pgvector) → Grounded Answer → Citation.",
+        stack: ["Django", "pgvector", "pg_search", "Gemini API", "Pydantic AI"],
+        url: null,
+        github: null,
+        href: "/portfolio/daemon-kp",
+        status: "arch" as const,
+    },
+    {
         name: "DAEMON-ONE",
         desc: "Django architecture template for AI-integrated monolith products. Deliberate tradeoffs: Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.",
         stack: ["Django", "HTMX", "pgvector", "Pydantic"],
@@ -51,14 +39,26 @@ const architecture = [
         href: "/portfolio/daemon-one",
         status: "arch" as const,
     },
+];
+
+const products = [
     {
-        name: "DAEMON-KP",
-        desc: "Django architecture template for knowledge platforms. End-to-end RAG pipeline: Source → Document → Chunk → Hybrid Search (BM25 + pgvector) → Grounded Answer → Citation.",
-        stack: ["Django", "pgvector", "pg_search", "Gemini API", "Pydantic AI"],
+        name: "SportsIQ",
+        desc: "Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.",
+        stack: ["DAEMON-ONE", "Multi-agent", "graphRAG", "pgvector"],
         url: null,
         github: null,
-        href: "/portfolio/daemon-kp",
-        status: "arch" as const,
+        href: "/portfolio/kinetiq",
+        status: "offline" as const,
+    },
+    {
+        name: "Almaeng",
+        desc: "AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.",
+        stack: ["DAEMON-ONE", "Django Ninja", "HTMX", "pgvector", "Coolify"],
+        url: null,
+        github: null,
+        href: "/portfolio/almaeng",
+        status: "offline" as const,
     },
 ];
 ---
@@ -77,9 +77,9 @@ const architecture = [
 
     <div class="portfolio-sections">
         <section class="portfolio-section">
-            <h2 class="section-label">B2C</h2>
+            <h2 class="section-label">Architecture</h2>
             <div class="cards-grid">
-                {b2c.map((p) => <ProjectCard {...p} />)}
+                {architecture.map((p) => <ProjectCard {...p} />)}
             </div>
         </section>
 
@@ -91,9 +91,9 @@ const architecture = [
         </section>
 
         <section class="portfolio-section">
-            <h2 class="section-label">Architecture</h2>
+            <h2 class="section-label">Products</h2>
             <div class="cards-grid">
-                {architecture.map((p) => <ProjectCard {...p} />)}
+                {products.map((p) => <ProjectCard {...p} />)}
             </div>
         </section>
     </div>
