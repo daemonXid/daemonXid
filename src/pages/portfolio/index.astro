@@ -23,7 +23,7 @@ const b2b = [
 const architecture = [
     {
         name: "DAEMON-KP",
-        desc: "Django architecture template for knowledge platforms. End-to-end RAG pipeline: Source → Document → Chunk → Hybrid Search (BM25 + pgvector) → Grounded Answer → Citation.",
+        desc: "Django architecture template for knowledge platforms, covering ingestion, hybrid retrieval, and citation-grounded answers.",
         stack: ["Django", "pgvector", "pg_search", "Gemini API", "Pydantic AI"],
         url: null,
         github: null,
@@ -32,7 +32,7 @@ const architecture = [
     },
     {
         name: "DAEMON-ONE",
-        desc: "Django architecture template for AI-integrated monolith products. Deliberate tradeoffs: Modular Monolith, HTMX+SSR, Vertical Slicing, PostgreSQL-First.",
+        desc: "Django architecture template for AI-integrated monolith products built around deliberate tradeoffs and PostgreSQL-First defaults.",
         stack: ["Django", "HTMX", "pgvector", "Pydantic"],
         url: null,
         github: null,
@@ -53,7 +53,7 @@ const products = [
     },
     {
         name: "Almaeng",
-        desc: "AI supplement analysis and price intelligence product focused on ingredient transparency, comparison, and practical unit pricing. Launched in 2025.12.",
+        desc: "AI supplement analysis and price intelligence project focused on ingredient transparency and practical value comparison.",
         stack: ["DAEMON-ONE", "Django Ninja", "HTMX", "pgvector", "Coolify"],
         url: null,
         github: null,
