@@ -4,44 +4,44 @@ import SkillBadge from '../components/SkillBadge.astro'
 
 const experience = [
   {
-    role: 'Backend & AI Engineer — Intern',
+    role: 'Backend Engineer — Intern',
     company: 'Likelion Rocket Team (Client: LawAndGood)',
     period: '2026.02 - 2026.03',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-    desc: 'Built LawNGood, a legal-dispute discovery and monitoring proof of concept for a client review workflow. Designed and implemented a structured pipeline across collection, extraction, classification, grouping, and review.',
+    desc: 'Automated a LawAndGood workflow in which one employee monitored and classified up to 60 articles per day against internal guidelines. In a two-person team, designed and implemented the operating pipeline from collection and parsing through AI classification, grouping, and review.',
   },
   {
-    role: 'Solo · Product Engineer / Architecture Builder',
-    company: 'Personal AI architecture templates',
+    role: 'Solo · Backend Engineer / Product Builder',
+    company: 'Operational systems and architecture design',
     period: '2025.01 - Present',
     stack: ['Django Ninja', 'HTMX', 'Gemini API', 'pgvector', 'PostgreSQL', 'Hetzner VPS'],
-    desc: 'Designed and templated DAEMON-ONE and DAEMON-KP. Built reusable AI system foundations for solo development, deployment, and operation, then applied them across personal projects.',
+    desc: 'After observing the burden of paper-and-spreadsheet operations at a sports academy, I built and now operate ClubKebi in ongoing dialogue with its operator. I designed and applied DAEMON-ONE principles to keep growing operational workflows maintainable.',
   },
 ]
 
 const projects = [
   {
-    name: 'LawNGood',
+    name: 'ClubKebi',
+    url: 'https://clubkebi.com',
+    github: null,
+    href: '/portfolio/clubkebi',
+    desc: "A live operations Web SaaS that turns a sports academy's paper-and-spreadsheet workflows into student, attendance, makeup-class, and revenue management.",
+    stack: ['Django', 'Multi-tenant', 'PostgreSQL', 'Web SaaS'],
+  },
+  {
+    name: 'LawNGood POC',
     url: null,
     github: 'https://github.com/ken-do-it/law_news_c_v2',
     href: '/portfolio/lawngood',
-    desc: 'Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.',
-    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-  },
-  {
-    name: 'DAEMON-KP',
-    url: null,
-    github: null,
-    href: '/portfolio/daemon-kp',
-    desc: 'Knowledge-platform RAG architecture covering ingestion, hybrid retrieval, grounded answers, and citations.',
-    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
+    desc: 'A legal-news operations POC that automated an employee workflow of monitoring and classifying up to 60 articles per day.',
+    stack: ['Django', 'Naver News API', 'Gemini API', 'PostgreSQL'],
   },
   {
     name: 'DAEMON-ONE',
     url: null,
     github: null,
     href: '/portfolio/daemon-one',
-    desc: 'Django architecture template built around Modular Monolith, HTMX+SSR, Vertical Slicing, and PostgreSQL-First.',
+    desc: 'Django architecture principles for turning complex field operations into maintainable systems.',
     stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
   },
 ]
@@ -54,13 +54,13 @@ const skills = {
 }
 ---
 
-<Base title="Wonsub Song (Tony) | Resume" lang="en" description="Resume of Wonsub Song (Tony), an AI-first full-stack developer focused on backend systems and AI-integrated products.">
+<Base title="Wonsub Song (Tony) | Resume" lang="en" description="Resume of Wonsub Song (Tony), a backend engineer who turns repeated field work into operational systems.">
   <header class="mb-16">
     <h1 class="resume-name">Wonsub Song <span class="resume-name-sub">(Tony)</span></h1>
-    <p class="resume-title">AI-First Full-Stack Developer</p>
+    <p class="resume-title">Backend Engineer Building Operational Systems</p>
     <div class="resume-facts">
       <span class="resume-fact resume-fact--available">● Available</span>
-      <span class="resume-fact">Backend + AI roles</span>
+      <span class="resume-fact">Operational systems + backend</span>
       <span class="resume-fact">Django / HTMX / PostgreSQL</span>
       <span class="resume-fact">Open to relocation</span>
     </div>
@@ -69,12 +69,12 @@ const skills = {
   <section class="mb-14">
     <h2 class="section-label">Summary</h2>
     <p class="body-text">
-      I focus on understanding real customer problems quickly and turning them into systems that are stable and maintainable.
-      My background spans Sports Science and programming, which trained me to ramp fast in unfamiliar domains and structure the real constraint before building.
+      I identify repeated manual work and operational friction, then turn it into stable systems teams can use every day.
+      My background spans Sports Science and programming, which trained me to ramp quickly in unfamiliar domains and structure workflows and constraints before building.
     </p>
     <p class="body-text" style="margin-top: 0.75rem;">
-      I designed and templated a modular-monolith architecture (DAEMON-ONE) and an enterprise-style RAG pipeline (DAEMON-KP),
-      then used them to build and operate productized AI systems in a solo development environment.
+      With LawNGood POC, I automated a legal-news monitoring workflow. With ClubKebi, I turned sports-academy operations based on paper and spreadsheets into a live web service.
+      I use DAEMON-ONE principles to build domain boundaries that remain maintainable as operational work grows, and take responsibility through deployment and operation.
     </p>
   </section>
 
@@ -115,18 +115,14 @@ const skills = {
       <h3 class="timeline-role">DAEMON-ONE — Django architecture template</h3>
       <p class="timeline-meta">Private repository — available on request</p>
       <p class="timeline-desc">
-        After building 15+ side projects, I identified repeating pain points in maintainability
-        and onboarding cost. I designed DAEMON-ONE as a structured template embodying deliberate
-        architectural tradeoffs:
+        DAEMON-ONE is a set of principles for preventing complex field operations from becoming entangled as features grow.
+        It turns repeated work into maintainable systems by preserving the following boundaries:
       </p>
       <ul style="margin-top: 0.6rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;">
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Modular Monolith</strong> over microservices — single deployable unit, domain boundaries enforced via <code>interface.py</code>.</li>
         <li class="timeline-desc"><strong style="color: #e2e8f0;">HTMX + SSR</strong> over React — server-driven state, zero JS build step, LCP-first rendering.</li>
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Vertical Slicing</strong> — logic, template, and style colocated per feature. Delete a folder = feature gone cleanly.</li>
       </ul>
-      <p class="timeline-desc" style="margin-top: 0.6rem;">
-        DAEMON-KP extends the same framework into a reusable RAG layer covering ingestion, hybrid retrieval, and citation-grounded answers.
-      </p>
       <div class="flex flex-wrap gap-2 mt-3">
         <SkillBadge name="Python" />
         <SkillBadge name="Django" />
@@ -175,7 +171,6 @@ const skills = {
     <h2 class="section-label">Education</h2>
     <div class="timeline-item">
       <h3 class="timeline-role">Bachelor's Degree in Sports Science and Health</h3>
-      <p class="timeline-meta">Coursework: Biomechanics, Exercise Physiology, Sports Analytics</p>
     </div>
   </section>
 

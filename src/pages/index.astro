@@ -14,26 +14,26 @@ const getExcerpt = (post: (typeof posts)[number]) =>
 
 const featuredProjects = [
   {
-    name: 'LawNGood',
-    desc: 'Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.',
-    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'PostgreSQL'],
+    name: 'ClubKebi',
+    desc: "A live operations Web SaaS that turns a sports academy's paper-and-spreadsheet workflows into student, attendance, makeup-class, and revenue management.",
+    stack: ['Django', 'Multi-tenant', 'PostgreSQL', 'Web SaaS'],
+    url: 'https://clubkebi.com',
+    github: null,
+    href: '/portfolio/clubkebi',
+    status: 'live' as const,
+  },
+  {
+    name: 'LawNGood POC',
+    desc: 'A legal-news operations POC that automated an employee workflow of monitoring and classifying up to 60 articles per day.',
+    stack: ['Django', 'Naver News API', 'Gemini API', 'PostgreSQL'],
     url: null,
     github: 'https://github.com/ken-do-it/law_news_c_v2',
     href: '/portfolio/lawngood',
     status: 'live' as const,
   },
   {
-    name: 'DAEMON-KP',
-    desc: 'Knowledge-platform RAG architecture covering ingestion, hybrid retrieval, grounded answers, and citations.',
-    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
-    url: null,
-    github: null,
-    href: '/portfolio/daemon-kp',
-    status: 'arch' as const,
-  },
-  {
     name: 'DAEMON-ONE',
-    desc: 'Django architecture template built around Modular Monolith, HTMX+SSR, Vertical Slicing, and PostgreSQL-First.',
+    desc: 'Django architecture principles for turning complex field operations into maintainable systems.',
     stack: ['Django', 'HTMX', 'PostgreSQL', 'Pydantic'],
     url: null,
     github: null,
@@ -43,7 +43,7 @@ const featuredProjects = [
 ]
 ---
 
-<Base title="Wonsub Song (Tony) | AI-First Full-Stack Developer" lang="en" description="AI-first full-stack developer building backend systems, productized AI tools, and sports-domain software.">
+<Base title="Wonsub Song (Tony) | Backend Engineer for Operational Systems" lang="en" description="Backend engineer turning repeated field work into operational systems teams can rely on every day.">
   <header class="hero">
     <div class="journey-arc">
       <span class="arc-dim">Debate</span>
@@ -57,31 +57,30 @@ const featuredProjects = [
       Wonsub Song <span class="hero-paren">(Tony)</span>
     </h1>
 
-    <p class="hero-title">Engineer who turns ambiguous customer problems into working systems</p>
+    <p class="hero-title">Backend engineer turning repeated field work into operational systems teams can rely on every day</p>
 
     <div class="hero-facts">
-      <span class="fact-pill">Backend + AI</span>
+      <span class="fact-pill">Operational Systems + Backend</span>
       <span class="fact-pill">Django / HTMX / PostgreSQL</span>
       <span class="fact-pill">Open to relocation</span>
     </div>
 
     <div class="hero-copy">
       <p>
-        Years of competitive debate sharpened one specific skill: absorbing an unfamiliar
-        problem fast, then structuring it into an argument anyone can follow.
-        Asian Parliamentary Debate champion. WUDC (World Universities Debating Championship) participant. Founded SEDA (English debate society)
-        and ESC (English speaking club) and led both.
+        Years of competitive debate trained me to grasp unfamiliar problems quickly, examine them from multiple angles,
+        and organize them into a structure others can use. I am comfortable using spreadsheets and presentations to make
+        complex information clear and actionable. Asian Parliamentary Debate champion, WUDC participant, and founder of SEDA and ESC.
       </p>
       <p>
-        I apply that same structure to engineering. When requirements are unclear, domains are unfamiliar,
-        and constraints compete, I start by redefining the real problem. I build with Django,
-        HTMX, and PostgreSQL, then turn that structure into systems that can actually run in production.
+        I am curious about how things work, regardless of the domain. That curiosity led me to teach myself programming.
+        Today, I observe repeated manual work and operational friction, then turn workflows, data, and permissions into systems
+        teams can use every day—designed, deployed, and operated with Django, HTMX, and PostgreSQL.
       </p>
     </div>
 
     <p class="hero-location">
       <span class="location-dot"></span>
-      Open to relocation for backend &amp; AI roles
+      Open to relocation for operational-systems and backend roles
     </p>
 
     <div class="hero-actions">

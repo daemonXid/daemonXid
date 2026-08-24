@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro'
+import ProjectMetaBar from '../../components/ProjectMetaBar.astro'
+import SkillBadge from '../../components/SkillBadge.astro'
+
+const stack = ['Django', 'Web SaaS', 'Multi-tenant', 'PostgreSQL', 'Cloudflare', 'Coolify']
+const metaItems = [
+  { label: 'Type', value: 'Sports operations Web SaaS' },
+  { label: 'Role', value: 'Product design and solo development' },
+  { label: 'Status', value: 'Live service' },
+  { label: 'Service', value: 'clubkebi.com' },
+]
+---
+
+<Base title="ClubKebi | Wonsub Song (Tony)" lang="en" description="ClubKebi case study: a Django-based multi-tenant operations SaaS for sports academies, student clubs, and community teams.">
+  <a href="/portfolio" class="back-link">← Portfolio</a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4"><h1 class="text-3xl font-bold">ClubKebi</h1><span class="status-live">LIVE</span></div>
+    <p class="lead">An operations platform for sports academies, school and university clubs, and community teams.</p>
+    <p class="meta">Live service · <a href="https://clubkebi.com" target="_blank" rel="noopener">clubkebi.com ↗</a></p>
+    <ProjectMetaBar items={metaItems} />
+    <div class="flex flex-wrap gap-2">{stack.map(s => <SkillBadge name={s} />)}</div>
+  </header>
+
+  <div class="content-wrap">
+    <section><h2 class="case-label">Overview</h2><p class="leading-relaxed">ClubKebi is a Django-based Web SaaS for managing students, classes, attendance, coaches, progress reports, and finances in one place. It runs entirely in the browser, and each academy has a public landing page and tenant entry point at <code>{'{slug}'}.clubkebi.com</code>.</p></section>
+    <section>
+      <h2 class="case-label">Product structure</h2>
+      <div class="table-wrap"><table><thead><tr><th>Area</th><th>Role</th></tr></thead><tbody>
+        <tr><td><code>/</code></td><td>Free, no-login tools such as match score sheets and league tables</td></tr>
+        <tr><td><code>/program/</code></td><td>Academy and club operations program with Free / Plus pricing</td></tr>
+        <tr><td><code>{'{slug}'}.clubkebi.com</code></td><td>Academy-specific public landing page and tenant entry point</td></tr>
+        <tr><td><code>sample.clubkebi.com</code></td><td>Official read-only sample academy</td></tr>
+      </tbody></table></div>
+    </section>
+    <section><h2 class="case-label">Operating status</h2><ul class="space-y-3 text-sm"><li>→ Free / Plus pricing, limits, and the 30-day trial policy are managed through one public billing API.</li><li>→ Public landing metadata, an official read-only sample, first-customer handoff, and deployment smoke checklists are in place.</li><li>→ Resend sender-domain verification, the Founding Academy rehearsal, and backup, recovery, and monitoring remain core operational checks.</li><li>→ The product and operations roadmap is the single source of truth for detailed status and next work.</li></ul></section>
+    <section><h2 class="case-label">Core principles</h2><ul class="space-y-3 text-sm"><li>→ Keep a Django modular monolith and vertical slices.</li><li>→ Use only public <code>interface.py</code> APIs across domains.</li><li>→ Isolate all operational data in an <code>academy_id</code> tenant scope.</li><li>→ Make automated financial aggregation and manual adjustments auditable.</li><li>→ Prioritize stable, repeatable operation for one academy over feature count.</li></ul></section>
+    <section><h2 class="case-label">Local development</h2><p class="leading-relaxed mb-4">The development guide is the source of truth for local setup, seeding, and test commands.</p><pre class="command-block">just up
+cp .env.example .env
+just setup
+just dev</pre></section>
+  </div>
+</Base>
+
+<style>
+  .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; } .back-link:hover, .meta a { color:#facc15; }
+  .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:rgba(63,185,80,0.08); color:#3fb950; border:1px solid rgba(63,185,80,0.2); font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:0.04em; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; } .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; } .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
+  .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,204,21,0.72); margin-bottom:1rem; }
+  code { font-family:"JetBrains Mono",monospace; font-size:0.82em; color:#facc15; background:rgba(250,204,21,0.06); padding:0.1em 0.35em; border-radius:3px; }
+  .table-wrap { overflow-x:auto; border:1px solid rgba(255,255,255,0.07); border-radius:6px; } table { width:100%; border-collapse:collapse; font-size:0.84rem; min-width:520px; } th, td { padding:0.85rem 1rem; text-align:left; vertical-align:top; border-bottom:1px solid rgba(255,255,255,0.06); } th { color:#e6edf3; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(255,255,255,0.02); } tr:last-child td { border-bottom:0; } td:first-child { color:#e6edf3; white-space:nowrap; }
+  .command-block { font-family:"JetBrains Mono",monospace; font-size:0.8rem; line-height:1.8; color:#e6edf3; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:6px; padding:1rem 1.2rem; overflow-x:auto; }
+  @media (max-width:640px) { .lead { font-size:0.96rem; line-height:1.7; } .content-wrap { gap:2.2rem; } .leading-relaxed { line-height:1.78; } }
+</style>

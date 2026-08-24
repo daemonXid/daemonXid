@@ -1,48 +1,54 @@
 # Wonsub Song
 
-> I solve real-world problems by designing and building systems
+> I turn repeated field work into operational systems teams can rely on
 
-Backend / AI / System Design (Django)
+Backend Engineering / Operational Systems / System Design (Django)
 
 ---
 
 ## 🧠 What I Do
 
-I focus on translating domain problems into working systems.
+I focus on finding repeated manual work and operational friction, then turning
+them into systems teams can use every day.
 
-- Define real problems from messy real-world contexts
-- Design systems that can solve them
-- Build end-to-end implementations using Python and Django
+- Understand domain workflows and constraints in the field
+- Model data, permissions, and operations as maintainable systems
+- Build, deploy, and operate end-to-end implementations with Python and Django
 
 ---
 
 ## 🚀 Selected Work
 
-### 🧠 DAEMON-KP — AI Knowledge Platform
-- Built a full RAG pipeline (Document → Chunk → Search → Answer → Citation)
-- Hybrid search (pgvector + full-text search)
-- LLM-based grounded answer system
+### ⚽ ClubKebi — Sports Operations Web SaaS
+- Built after observing the burden of paper- and spreadsheet-based operations at a sports academy
+- Manages students, attendance, makeup classes, coaches, progress reports, and revenue in one web service
+- Live multi-tenant Django SaaS, developed in ongoing dialogue with the operator
 
-### 🏗 DAEMON-ONE — Django Architecture
-- Designed for fast iteration in a single-developer environment
-- Modular monolith + vertical slicing
-- Interface-based domain communication
+### 📰 LawNGood POC — Legal News Operations
+- Automated a workflow where one employee monitored and classified up to 60 articles per day against internal guidelines
+- Built a pipeline for collection, parsing, AI classification, grouping, and review
+- Developed in a two-person team for LawAndGood
+
+### 🏗 DAEMON-ONE — Operational-System Architecture
+- Modular monolith and vertical slices keep growing operational work maintainable
+- `interface.py` enforces explicit domain boundaries
+- Designed to turn complex field operations into stable, auditable software
 
 ---
 
 ## 🧩 How I Think
 
 - Technology is a tool, not the goal
-- Problem definition matters more than implementation
-- Systems should reflect real-world constraints
+- Understand the workflow before implementing features
+- Systems should reflect real-world constraints and remain usable in daily operations
 
 ---
 
 ## 🎯 Interested In
 
-- Forward Deployed Engineering
-- AI system deployment
-- Real-world problem solving
+- Operational systems and backend engineering
+- Forward-deployed and domain-facing engineering work
+- AI and automation where they materially improve a workflow
 
 ---
 

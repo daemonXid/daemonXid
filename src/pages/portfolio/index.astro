@@ -2,10 +2,19 @@
 import Base from "../../layouts/Base.astro";
 import ProjectCard from "../../components/ProjectCard.astro";
 
-const b2b = [
+const operationalSystems = [
     {
-        name: "LawNGood",
-        desc: "Legal news monitoring POC for LawAndGood, combining Naver News API collection, article parsing, and Gemini-based classification.",
+        name: "ClubKebi",
+        desc: "A live operations Web SaaS that turns a sports academy's paper-and-spreadsheet workflows into student, attendance, makeup-class, and revenue management.",
+        stack: ["Django", "Multi-tenant", "PostgreSQL", "Web SaaS"],
+        url: "https://clubkebi.com",
+        github: null,
+        href: "/portfolio/clubkebi",
+        status: "live" as const,
+    },
+    {
+        name: "LawNGood POC",
+        desc: "A client POC that automated a legal-news workflow where one employee monitored and classified up to 60 articles per day.",
         stack: [
             "Django",
             "Naver News API",
@@ -22,17 +31,8 @@ const b2b = [
 
 const architecture = [
     {
-        name: "DAEMON-KP",
-        desc: "Django architecture template for knowledge platforms, covering ingestion, hybrid retrieval, and citation-grounded answers.",
-        stack: ["Django", "pgvector", "pg_search", "Gemini API", "Pydantic AI"],
-        url: null,
-        github: null,
-        href: "/portfolio/daemon-kp",
-        status: "arch" as const,
-    },
-    {
         name: "DAEMON-ONE",
-        desc: "Django architecture template for AI-integrated monolith products built around deliberate tradeoffs and PostgreSQL-First defaults.",
+        desc: "Django architecture principles for turning complex field operations into maintainable systems.",
         stack: ["Django", "HTMX", "pgvector", "Pydantic"],
         url: null,
         github: null,
@@ -41,16 +41,7 @@ const architecture = [
     },
 ];
 
-const products = [
-    {
-        name: "SportsIQ",
-        desc: "Knowledge platform in progress, built with multi-agent workflows, graphRAG, and pgvector.",
-        stack: ["DAEMON-ONE", "Multi-agent", "graphRAG", "pgvector"],
-        url: null,
-        github: null,
-        href: "/portfolio/kinetiq",
-        status: "offline" as const,
-    },
+const aiProducts = [
     {
         name: "Almaeng",
         desc: "AI supplement analysis and price intelligence project focused on ingredient transparency and practical value comparison.",
@@ -60,22 +51,56 @@ const products = [
         href: "/portfolio/almaeng",
         status: "offline" as const,
     },
+    {
+        name: "BriefKR",
+        desc: "A live news and policy briefing service.",
+        stack: ["Web Service"],
+        url: "https://briefkr.com",
+        github: null,
+        status: "live" as const,
+    },
+];
+
+const products = [
+    {
+        name: "Salmal",
+        desc: "A live public service. Visit the website for details.",
+        stack: ["Web Service"],
+        url: "https://salmal.app",
+        github: null,
+        status: "live" as const,
+    },
+    {
+        name: "PivotKebi",
+        desc: "A live public service. Visit the website for details.",
+        stack: ["Web Service"],
+        url: "https://pivotkebi.com",
+        github: null,
+        status: "live" as const,
+    },
 ];
 ---
 
 <Base
     title="Wonsub Song (Tony) | Portfolio"
     lang="en"
-    description="Production deployments, case studies, and in-progress AI product builds."
+    description="Projects and architecture for turning repeated field work into operational systems teams can rely on."
 >
     <header class="mb-12">
         <h1 class="text-3xl font-bold mb-3">Portfolio</h1>
         <p style="color:#8b949e;" class="text-sm">
-            Production deployments and work-in-progress builds.
+            I turn repeated field work into operational systems teams can rely on every day.
         </p>
     </header>
 
     <div class="portfolio-sections">
+        <section class="portfolio-section">
+            <h2 class="section-label">Operational Systems</h2>
+            <div class="cards-grid">
+                {operationalSystems.map((p) => <ProjectCard {...p} />)}
+            </div>
+        </section>
+
         <section class="portfolio-section">
             <h2 class="section-label">Architecture</h2>
             <div class="cards-grid">
@@ -84,9 +109,9 @@ const products = [
         </section>
 
         <section class="portfolio-section">
-            <h2 class="section-label">B2B</h2>
+            <h2 class="section-label">Personal AI Projects</h2>
             <div class="cards-grid">
-                {b2b.map((p) => <ProjectCard {...p} />)}
+                {aiProducts.map((p) => <ProjectCard {...p} />)}
             </div>
         </section>
 

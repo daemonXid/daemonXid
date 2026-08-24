@@ -4,37 +4,37 @@ import SkillBadge from '../../components/SkillBadge.astro'
 
 const experience = [
   {
-    role: 'Backend & AI Engineer — Intern',
+    role: 'Backend Engineer — Intern',
     company: '멋쟁이사자처럼 Rocket Team (클라이언트: LawAndGood)',
     period: '2026.02 - 2026.03',
     stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-    desc: '클라이언트 검토 워크플로우를 위한 법률분쟁 자동발굴 POC LawNGood를 2인 팀으로 개발했습니다. 수집, 추출, 분류, 그룹핑, 리뷰까지 구조화된 파이프라인을 설계하고 구현했습니다.',
+    desc: 'LawAndGood에서 담당자 1명이 매일 최대 60개 기사를 직접 모니터링하고 내부 가이드라인에 따라 분류하던 업무를 자동화했습니다. 2인 팀으로 뉴스 수집·파싱·AI 분류·그룹핑·리뷰까지 이어지는 운영 파이프라인을 설계하고 구현했습니다.',
   },
   {
-    role: 'Solo · Product Engineer / Architecture Builder',
-    company: '개인 AI 아키텍처 템플릿 개발 및 적용',
+    role: 'Solo · Backend Engineer / Product Builder',
+    company: '운영 시스템 및 아키텍처 설계·개발',
     period: '2025.01 - 현재',
     stack: ['Django Ninja', 'HTMX', 'Gemini API', 'pgvector', 'PostgreSQL', 'Hetzner VPS'],
-    desc: 'DAEMON-ONE과 DAEMON-KP를 직접 설계·템플릿화했습니다. 1인 개발·배포·운영 환경에서 재사용 가능한 AI 시스템 구조를 구축하고 실제 프로젝트에 적용하고 있습니다.',
+    desc: '스포츠 학원의 수기·엑셀 운영 부담을 현장에서 확인한 뒤, 운영자와 지속적으로 소통하며 ClubKebi를 개발해 서비스하고 있습니다. 이 과정에서 복잡한 업무를 유지 가능한 시스템으로 만들기 위한 DAEMON-ONE 아키텍처 원칙을 설계하고 적용했습니다.',
   },
 ]
 
 const projects = [
   {
-    name: 'LawNGood',
+    name: 'ClubKebi',
+    url: 'https://clubkebi.com',
+    github: null,
+    href: '/ko/portfolio/clubkebi',
+    desc: '스포츠 학원의 수기·엑셀 운영 부담을 학생·출석·보강·매출 관리 흐름으로 전환한 Django 기반 운영 Web SaaS입니다.',
+    stack: ['Django', 'Multi-tenant', 'PostgreSQL', 'Web SaaS'],
+  },
+  {
+    name: 'LawNGood POC',
     url: null,
     github: 'https://github.com/ken-do-it/law_news_c_v2',
     href: '/ko/portfolio/lawngood',
-    desc: 'LawAndGood를 위해 만든 법률 뉴스 모니터링 POC로, Naver News API 수집과 기사 파싱, Gemini 분류를 결합했습니다.',
-    stack: ['Django', 'Naver News API', 'BeautifulSoup4', 'Gemini API', 'PostgreSQL'],
-  },
-  {
-    name: 'DAEMON-KP',
-    url: null,
-    github: null,
-    href: '/ko/portfolio/daemon-kp',
-    desc: '문서 수집, Hybrid Search, 출처 기반 답변 흐름을 포함한 knowledge platform용 RAG 아키텍처입니다.',
-    stack: ['DAEMON-ONE', 'pgvector', 'pg_search', 'Gemini API'],
+    desc: '담당자 1명이 매일 최대 60개 기사를 직접 모니터링·분류하던 업무를 자동화한 법률 뉴스 운영 POC입니다.',
+    stack: ['Django', 'Naver News API', 'Gemini API', 'PostgreSQL'],
   },
   {
     name: 'DAEMON-ONE',
@@ -54,13 +54,13 @@ const skills = {
 }
 ---
 
-<Base title="Wonsub Song (Tony) | 이력서" lang="ko" description="백엔드 시스템과 AI 통합 제품 개발에 집중하는 Wonsub Song (Tony)의 이력서입니다.">
+<Base title="Wonsub Song (Tony) | 이력서" lang="ko" description="현장의 반복 업무를 운영 가능한 시스템으로 전환하는 백엔드 엔지니어 Wonsub Song (Tony)의 이력서입니다.">
   <header class="mb-16">
     <h1 class="resume-name">Wonsub Song <span class="resume-name-sub">(Tony)</span></h1>
-    <p class="resume-title">AI 중심 풀스택 개발자</p>
+    <p class="resume-title">현장 운영 시스템을 만드는 백엔드 엔지니어</p>
     <div class="resume-facts">
       <span class="resume-fact resume-fact--available">● 구직 중</span>
-      <span class="resume-fact">백엔드 + AI 포지션</span>
+      <span class="resume-fact">운영 시스템 + 백엔드</span>
       <span class="resume-fact">Django / HTMX / PostgreSQL</span>
       <span class="resume-fact">해외 포지션 가능</span>
     </div>
@@ -69,13 +69,13 @@ const skills = {
   <section class="mb-14">
     <h2 class="section-label">소개</h2>
     <p class="body-text">
-      고객 현장의 실제 문제를 빠르게 파악하고, 이를 안정적이고 유지보수하기 쉬운 시스템으로 구현합니다.
+      현장의 반복 업무와 운영 부담을 파악하고, 이를 팀이 매일 사용할 수 있는 안정적인 시스템으로 구현합니다.
       스포츠건강과학과 프로그래밍이라는 서로 다른 두 영역을 스스로 연결한 경험 덕분에,
-      낯선 도메인에서도 맥락을 빠르게 파악하고 핵심 제약을 구조화하는 데 익숙합니다.
+      낯선 도메인에서도 맥락을 빠르게 파악하고 업무 흐름과 핵심 제약을 구조화하는 데 익숙합니다.
     </p>
     <p class="body-text" style="margin-top: 0.75rem;">
-      Django 기반 Modular Monolith 아키텍처(DAEMON-ONE)와 Enterprise RAG 파이프라인(DAEMON-KP)을 직접 설계·템플릿화했으며,
-      1인 개발·배포·운영 환경에서 제품형 AI 시스템을 빠르게 구축하고 운영해 왔습니다.
+      LawNGood POC에서는 법률 뉴스 모니터링 업무를 자동화했고, ClubKebi에서는 스포츠 학원의 수기·엑셀 기반 운영을 웹 서비스로 전환했습니다.
+      Django 기반 DAEMON-ONE 원칙으로 업무가 커져도 유지 가능한 도메인 구조를 설계하고, 배포와 운영까지 직접 책임집니다.
     </p>
   </section>
 
@@ -116,18 +116,14 @@ const skills = {
       <h3 class="timeline-role">DAEMON-ONE — Django 아키텍처 템플릿</h3>
       <p class="timeline-meta">비공개 저장소 — 요청 시 공유 가능</p>
       <p class="timeline-desc">
-        15개 이상의 사이드 프로젝트를 만들면서 유지보수성과 온보딩 비용에서 반복되는 문제를
-        발견했습니다. 직접 설계한 DAEMON-ONE은 의도적인 아키텍처 트레이드오프를 담은
-        구조화된 템플릿입니다:
+        복잡한 현장 업무가 기능 추가와 함께 뒤엉키지 않도록 설계한 아키텍처 원칙입니다.
+        반복 운영해야 하는 업무를 유지 가능한 시스템으로 전환하기 위해 다음의 경계를 지킵니다:
       </p>
       <ul style="margin-top: 0.6rem; padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.35rem;">
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Modular Monolith</strong> vs 마이크로서비스 — 단일 배포 단위, <code>interface.py</code>로 도메인 경계 강제.</li>
         <li class="timeline-desc"><strong style="color: #e2e8f0;">HTMX + SSR</strong> vs React — 서버 중심 상태 관리, 빌드 스텝 없음, LCP 우선 렌더링.</li>
         <li class="timeline-desc"><strong style="color: #e2e8f0;">Vertical Slicing</strong> — 기능별로 로직·템플릿·스타일 공존. 폴더 삭제 = 기능 완전 제거.</li>
       </ul>
-      <p class="timeline-desc" style="margin-top: 0.6rem;">
-        DAEMON-KP는 동일한 프레임워크 위에 확장한 RAG 아키텍처로, 문서 수집, Hybrid Search, 출처 기반 답변 흐름을 재사용 가능한 도메인 레이어로 분리했습니다.
-      </p>
       <div class="flex flex-wrap gap-2 mt-3">
         <SkillBadge name="Python" />
         <SkillBadge name="Django" />
@@ -176,7 +172,6 @@ const skills = {
     <h2 class="section-label">학력</h2>
     <div class="timeline-item">
       <h3 class="timeline-role">스포츠건강과학 학사</h3>
-      <p class="timeline-meta">Biomechanics, Exercise Physiology, Sports Analytics</p>
     </div>
   </section>
 

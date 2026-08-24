@@ -1,0 +1,118 @@
+---
+import Base from '../../../layouts/Base.astro'
+import ProjectMetaBar from '../../../components/ProjectMetaBar.astro'
+import SkillBadge from '../../../components/SkillBadge.astro'
+
+const stack = ['Django', 'Web SaaS', 'Multi-tenant', 'PostgreSQL', 'Cloudflare', 'Coolify']
+const metaItems = [
+  { label: 'Type', value: '스포츠 운영 Web SaaS' },
+  { label: 'Role', value: '제품 설계 및 단독 개발' },
+  { label: 'Status', value: '서비스 운영 중' },
+  { label: 'Service', value: 'clubkebi.com' },
+]
+---
+
+<Base title="ClubKebi | Wonsub Song (Tony)" lang="ko" description="ClubKebi 케이스 스터디: 스포츠 학원·동아리·클럽을 위한 Django 기반 멀티테넌트 운영 SaaS입니다.">
+  <a href="/ko/portfolio" class="back-link">← 포트폴리오</a>
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <h1 class="text-3xl font-bold">ClubKebi</h1>
+      <span class="status-live">LIVE</span>
+    </div>
+    <p class="lead">스포츠 학원·학교 동아리·대학 체육동아리·사회인 클럽을 위한 운영 플랫폼입니다.</p>
+    <p class="meta">서비스 운영 중 · <a href="https://clubkebi.com" target="_blank" rel="noopener">clubkebi.com ↗</a></p>
+    <ProjectMetaBar items={metaItems} />
+    <div class="flex flex-wrap gap-2">
+      {stack.map(s => <SkillBadge name={s} />)}
+    </div>
+  </header>
+
+  <div class="content-wrap">
+    <section>
+      <h2 class="case-label">제품 개요</h2>
+      <p class="leading-relaxed">ClubKebi는 학생, 수업, 출석, 코치, 성장 리포트, 재무를 한곳에서 운영하는 Django 기반 Web SaaS입니다. 별도 설치 없이 웹에서 운영하며, 각 학원은 <code>{'{slug}'}.clubkebi.com</code>에서 공개 랜딩과 테넌트 운영 진입점을 제공합니다.</p>
+    </section>
+
+    <section>
+      <h2 class="case-label">제품 구조</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>영역</th><th>역할</th></tr></thead>
+          <tbody>
+            <tr><td><code>/</code></td><td>경기 기록표·리그 순위표 등 로그인 없는 무료 도구</td></tr>
+            <tr><td><code>/program/</code></td><td>학원·클럽 운영 프로그램과 Free / Plus 가격 안내</td></tr>
+            <tr><td><code>{'{slug}'}.clubkebi.com</code></td><td>학원별 공개 랜딩과 tenant 운영 진입점</td></tr>
+            <tr><td><code>sample.clubkebi.com</code></td><td>공식 read-only 샘플 학원</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="case-label">운영 상태</h2>
+      <ul class="space-y-3 text-sm">
+        <li>→ Free / Plus 가격·한도·30일 체험 정책을 billing 공개 API 한 곳에서 관리합니다.</li>
+        <li>→ 공개 랜딩 공유 메타, 공식 read-only sample, 첫 고객 전달·배포 smoke checklist를 갖췄습니다.</li>
+        <li>→ Resend 발신 도메인 인증, Founding Academy 리허설, 백업·복구·모니터링을 운영 안정성의 핵심 점검 항목으로 관리합니다.</li>
+        <li>→ 세부 체크 상태와 다음 작업은 제품·운영 로드맵을 단일 기준으로 관리합니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">핵심 원칙</h2>
+      <ul class="space-y-3 text-sm">
+        <li>→ Django modular monolith와 vertical slice를 유지합니다.</li>
+        <li>→ 도메인 간 접근은 <code>interface.py</code> 공개 API만 사용합니다.</li>
+        <li>→ 모든 운영 데이터는 <code>academy_id</code> tenant scope로 격리합니다.</li>
+        <li>→ 재무 자동 집계와 수동 조정 변경은 감사할 수 있어야 합니다.</li>
+        <li>→ 기능 수보다 실제 한 학원의 안정적인 반복 운영을 제품 운영의 우선순위로 둡니다.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="case-label">개발 환경</h2>
+      <p class="leading-relaxed mb-4">로컬 환경, 시딩, 테스트 명령은 개발 가이드를 기준으로 관리합니다.</p>
+      <pre class="command-block">just up
+cp .env.example .env
+just setup
+just dev</pre>
+    </section>
+
+    <section>
+      <h2 class="case-label">운영 문서</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>문서</th><th>용도</th></tr></thead>
+          <tbody>
+            <tr><td>제품·운영 로드맵</td><td>제품 결정, 완료 상태, 출시 전 체크리스트</td></tr>
+            <tr><td>제품 개요 · 개발 가이드</td><td>대상 사용자, 기능 범위, AI 원칙과 로컬 실행·시딩·테스트</td></tr>
+            <tr><td>아키텍처 · Production 배포</td><td>modular monolith, tenant 경계, Docker·GHCR·Coolify·Cloudflare</td></tr>
+            <tr><td>외부 URL 배포 Smoke Check · Sample 운영</td><td>공개 URL·보안 헤더·sample 확인과 공식 샘플 학원 운영</td></tr>
+            <tr><td>첫 고객 전달 · Founding 리허설</td><td>계정 전달과 첫 주 운영, 첫 고객 여정 점검</td></tr>
+            <tr><td>보안·데이터 · 인프라 운영</td><td>데이터 보존, 감사 로그, 백업·복구·모니터링·오브젝트 스토리지</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .back-link { display:inline-block; margin-bottom:2rem; color:#8b949e; font-size:0.8rem; }
+  .back-link:hover, .meta a { color:#facc15; }
+  .status-live { font-size:0.75rem; padding:0.2rem 0.5rem; border-radius:4px; background:rgba(63,185,80,0.08); color:#3fb950; border:1px solid rgba(63,185,80,0.2); font-family:"JetBrains Mono",monospace; font-weight:700; letter-spacing:0.04em; }
+  .lead { color:#a3adb8; font-size:1rem; margin-bottom:0.5rem; }
+  .meta { color:#8b949e; font-size:0.82rem; margin-bottom:1.5rem; }
+  .content-wrap { color:#a3adb8; display:flex; flex-direction:column; gap:3rem; }
+  .case-label { font-size:0.7rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:rgba(250,204,21,0.72); margin-bottom:1rem; }
+  code { font-family:"JetBrains Mono",monospace; font-size:0.82em; color:#facc15; background:rgba(250,204,21,0.06); padding:0.1em 0.35em; border-radius:3px; }
+  .table-wrap { overflow-x:auto; border:1px solid rgba(255,255,255,0.07); border-radius:6px; }
+  table { width:100%; border-collapse:collapse; font-size:0.84rem; min-width:520px; }
+  th, td { padding:0.85rem 1rem; text-align:left; vertical-align:top; border-bottom:1px solid rgba(255,255,255,0.06); }
+  th { color:#e6edf3; font-size:0.7rem; letter-spacing:0.08em; text-transform:uppercase; background:rgba(255,255,255,0.02); }
+  tr:last-child td { border-bottom:0; }
+  td:first-child { color:#e6edf3; white-space:nowrap; }
+  .command-block { font-family:"JetBrains Mono",monospace; font-size:0.8rem; line-height:1.8; color:#e6edf3; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.07); border-radius:6px; padding:1rem 1.2rem; overflow-x:auto; }
+  @media (max-width:640px) { .lead { font-size:0.96rem; line-height:1.7; } .content-wrap { gap:2.2rem; } .leading-relaxed { line-height:1.78; } }
+</style>
