@@ -36,11 +36,31 @@ them into systems teams can use every day.
 
 ---
 
+## 🛠 Technology
+
+**Core**
+
+`Python` · `Django` · `PostgreSQL` · `HTML` · `CSS` · `JavaScript`
+
+**Application & Desktop**
+
+`Django Ninja` · `HTMX` · `Alpine.js` · `Rust` · `Tauri` · `Astro`
+
+**Data & Automation**
+
+`pgvector` · `Scrapy` · `Scrapling` · `Apify` · `n8n`
+
+**Infrastructure & Tooling**
+
+`Docker` · `Cloudflare` · `Coolify` · `Hetzner` · `GitHub Actions` · `Git` · `uv` · `bun`
+
+---
+
 ## 🧩 How I Think
 
-- Technology is a tool, not the goal
-- Understand the workflow before implementing features
-- Systems should reflect real-world constraints and remain usable in daily operations
+I am less interested in inventing entirely new technologies than in applying
+existing, proven technologies to problems that still haven't been properly
+digitized.
 
 ---
 
@@ -54,20 +74,5 @@ them into systems teams can use every day.
 
 ## 📫 Contact
 
-- Portfolio: daemonxid.com
+- Portfolio: [daemonxid.com](https://daemonxid.com/)
 - LinkedIn: https://www.linkedin.com/in/wonsub-song-0b0291167
-
----
-
-## 🛠 Development
-
-**Stack:** Astro + Tailwind CSS v4 + bun
-
-| Command | Description |
-|:---|:---|
-| `bun install` | install dependencies |
-| `bun dev` | Start dev server → http://localhost:4321 |
-| `bun run build` | Build static site to `dist/` |
-| `bun run preview` | Preview production build locally |
-
-**Deploy:** Push to `main` → GitHub Pages (`daemonxid.com`)
